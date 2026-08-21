@@ -7,6 +7,8 @@ Everything on the site — photos, videos, stories, your bio, experience, skills
 education, contact details and every heading — is edited through the dashboard.
 You never need to touch code to change what the site says.
 
+**বাংলায় পড়তে: [README-bn.md](README-bn.md)** — same instructions, in Bengali.
+
 ---
 
 ## Turning on the login
@@ -56,10 +58,19 @@ it says `base_url:`.
 I should be straight with you about one thing: I had no internet access while
 building your site, so I could not walk through Cloudflare's and GitHub's signup
 screens myself. The code is correct and the steps are carefully written, but the
-wording of buttons on those websites may have changed. If the login popup opens
-and shuts without signing you in, the cause is almost always the **Authorization
-callback URL** in the GitHub app not exactly matching your worker address with
-`/callback` on the end.
+wording of buttons on those websites may have changed.
+
+Two errors and what they mean:
+
+**`DNS_PROBE_FINISHED_NXDOMAIN` on `your-login-helper.workers.dev`** — `base_url`
+in `admin/config.yml` is still the placeholder, so the browser was sent to an
+address that does not exist. Finish the five steps and replace it. Until you do,
+the live `/admin/` page shows those steps instead of a login button, so you cannot
+walk into this again.
+
+**The popup opens and shuts without logging you in** — almost always the
+**Authorization callback URL** in the GitHub app not exactly matching your worker
+address with `/callback` on the end.
 
 ### Option 3 — no dashboard at all
 
