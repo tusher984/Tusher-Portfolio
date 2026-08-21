@@ -1,68 +1,44 @@
 {
-  "contact": {
-    "eyebrow": "Contact",
-    "heading": "Working on a story I should know about?",
-    "lead": "Available for investigative assignments, commissions, fixing and collaborations in Bangladesh. Documents and tips welcome.",
-    "based_in_label": "Based in",
-<<<<<<< HEAD
-    "elsewhere_label": "Social Media",
-    "references_label": "  "
-=======
-    "elsewhere_label": "Elsewhere",
-    "references_label": "References"
->>>>>>> parent of 332e78d (/)
-  },
-  "skills": {
-    "eyebrow": "Skills & tools",
-    "heading": "How the work gets made"
-  },
-  "socials": [
-    {
-      "label": "LinkedIn",
-      "url": "https://www.linkedin.com/in/md-al-amin-tusher-607138170/"
-    },
-    {
-      "label": "X / Twitter",
-      "url": "https://x.com/Alamin984"
-    },
-    {
-      "label": "Instagram",
-      "url": "https://www.instagram.com/alamin_visuals/"
-    },
-    {
-      "label": "Facebook",
-      "url": "https://www.facebook.com/md.alamintusher984/"
-    }
-  ],
-  "experience": {
-    "eyebrow": "Experience",
-    "heading": "Newsrooms & assignments"
-  },
-  "_note": "Headings and wording for every section. Edit in the dashboard under 'Headings & wording'. Links can be written as [words](https://example.com).",
-  "work": {
-    "eyebrow": "Selected work",
-    "heading": "Investigations, data reporting and interactives",
-    "lead": "Reported for Netra News, including document-based investigations and interactive data projects. Reporting and analysis are my own unless noted."
-  },
   "hero": {
-    "eyebrow": "Dhaka, Bangladesh  ·  Staff Correspondent, Netra News",
-    "name": "Md. Al Amin Tusher",
-    "tagline": "Investigative & multimedia journalist",
-    "lead": "I report on the systems that are supposed to keep people safe: building codes, embankments, river channels, welfare rolls, and what happens when they fail. Five years of field reporting, documents, and data across Bangladesh.",
-    "cta_primary": "See selected work",
-    "cta_secondary": "Get in touch"
+    "name": "Al-Amin Tusher",
+    "eyebrow": " ",
+    "lead": " ",
+    "tagline": " ",
+    "cta_primary": " ",
+    "cta_secondary": " "
   },
-  "video": {
-    "eyebrow": "Video",
-    "heading": "Broadcast & documentary",
-    "link_label": "View all video work",
-    "blurb": "News packages and documentary work produced end to end — research, scripting, field reporting, voice-over and edit.",
-    "highlight_title": " ",
-    "highlight_text": " "
+  "work": {
+    "eyebrow": " ",
+    "heading": " ",
+    "lead": " "
   },
   "photography": {
-    "eyebrow": "Photography",
-    "heading": "Documentary photography",
-    "link_label": "View the gallery"
+    "eyebrow": " ",
+    "heading": " ",
+    "link_label": " "
+  },
+  "video": {
+    "eyebrow": " ",
+    "heading": " ",
+    "link_label": " ",
+    "blurb": " ",
+    "highlight_title": "  ",
+    "highlight_text": " "
+  },
+  "experience": {
+    "eyebrow": " ",
+    "heading": " "
+  },
+  "skills": {
+    "eyebrow": " ",
+    "heading": " "
+  },
+  "contact": {
+    "eyebrow": " ",
+    "heading": " ",
+    "lead": " ",
+    "based_in_label": " ",
+    "elsewhere_label": " ",
+    "references_label": " "
   }
 }
