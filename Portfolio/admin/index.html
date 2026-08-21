@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Content dashboard — Md. Al Amin Tusher</title>
+<style>
+  :root { color-scheme: light }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  #setup {
+    max-width: 620px; margin: 12vh auto; padding: 0 1.5rem;
+    color: #0f1b1d; line-height: 1.6;
+  }
+  #setup h1 { font-size: 1.5rem; letter-spacing: -0.02em; }
+  #setup code {
+    background: #eaf0f0; padding: 0.15em 0.4em; border-radius: 3px;
+    font-size: 0.9em;
+  }
+  #setup .box {
+    border-left: 2px solid #2f6d74; background: #f3f7f7;
+    padding: 1rem 1.25rem; border-radius: 3px; margin: 1.25rem 0;
+  }
+  #setup a { color: #2f6d74; }
+</style>
+</head>
+<body>
+
+<!-- Shown only if the dashboard fails to start, so the page is never just blank. -->
+<div id="setup">
+  <h1>Dashboard not connected yet</h1>
+  <p>
+    This is your content dashboard. It needs two things filled in before it can log you in.
+  </p>
+  <div class="box">
+    <p><strong>Open <code>admin/config.yml</code> and set:</strong></p>
+    <p>
+      1. <code>repo:</code> — your GitHub username and repository name<br>
+      2. <code>base_url:</code> — your login helper address
+    </p>
+  </div>
+  <p>
+    Step-by-step instructions are in <strong>README.md</strong> in the main folder,
+    under <em>“Turning on the dashboard”</em>.
+  </p>
+  <p><a href="../">← Back to the site</a></p>
+</div>
+
+<script>
+  // Hide the fallback message once the dashboard actually mounts.
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      if (document.querySelector("#nc-root, .nc-root, [class*='CMS']")) {
+        var s = document.getElementById("setup");
+        if (s) s.style.display = "none";
+      }
+    }, 1200);
+  });
+</script>
+
+<script src="https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js"></script>
+</body>
+</html>
