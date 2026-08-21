@@ -4,8 +4,13 @@
     "heading": "Working on a story I should know about?",
     "lead": "Available for investigative assignments, commissions, fixing and collaborations in Bangladesh. Documents and tips welcome.",
     "based_in_label": "Based in",
+<<<<<<< HEAD
     "elsewhere_label": "Social Media",
     "references_label": "  "
+=======
+    "elsewhere_label": "Elsewhere",
+    "references_label": "References"
+>>>>>>> parent of 332e78d (/)
   },
   "skills": {
     "eyebrow": "Skills & tools",
@@ -17,7 +22,7 @@
       "url": "https://www.linkedin.com/in/md-al-amin-tusher-607138170/"
     },
     {
-      "label": "X",
+      "label": "X / Twitter",
       "url": "https://x.com/Alamin984"
     },
     {
@@ -50,7 +55,7 @@
   "video": {
     "eyebrow": "Video",
     "heading": "Broadcast & documentary",
-    "link_label": "View all video works",
+    "link_label": "View all video work",
     "blurb": "News packages and documentary work produced end to end — research, scripting, field reporting, voice-over and edit.",
     "highlight_title": " ",
     "highlight_text": " "
