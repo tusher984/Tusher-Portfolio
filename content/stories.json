@@ -10,15 +10,6 @@
       "featured": true
     },
     {
-      "title": "The bridge that broke the river",
-      "standfirst": "In 1998, Bangladesh witnessed a milestone: the inauguration of the Jamuna Bridge. The 4.8-kilometre structure across the mighty Jamuna fundamentally transformed connectivity between the northern districts and the capital. But projects of this scale often come with casualties.",
-      "outlet": "Netra News",
-      "format": "Report",
-      "date": "2025-12-24",
-      "url": "https://netra.news/2025/the-bridge-that-broke-the-river/",
-      "featured": true
-    },
-    {
       "title": "Why Dhaka's waterways matter more than flyovers",
       "standfirst": "For decades, successive governments have pursued grand solutions — metro rail, flyovers, elevated expressways. Yet experts argue that the answer may already lie beneath our feet: the waterways that once defined this riverine city.",
       "outlet": "Netra News",
@@ -28,12 +19,12 @@
       "featured": true
     },
     {
-      "title": "Faced with fuel shortage, Bangladesh's motorists turn to cooking gas",
-      "standfirst": "The economics of the cheaper alternative are compelling. But the risks, experts say, are not.",
+      "title": "The bridge that broke the river",
+      "standfirst": "In 1998, Bangladesh witnessed a milestone: the inauguration of the Jamuna Bridge. The 4.8-kilometre structure across the mighty Jamuna fundamentally transformed connectivity between the northern districts and the capital. But projects of this scale often come with casualties.",
       "outlet": "Netra News",
       "format": "Report",
-      "date": "2026-04-14",
-      "url": "https://netra.news/2026/bangladeshs-motorists-turn-to-cooking-gas/",
+      "date": "2025-12-24",
+      "url": "https://netra.news/2025/the-bridge-that-broke-the-river/",
       "featured": true
     },
     {
@@ -43,6 +34,15 @@
       "format": "Report",
       "date": "2026-06-14",
       "url": "https://netra.news/2026/the-women-the-family-card-system-could-not-reach/",
+      "featured": true
+    },
+    {
+      "title": "Faced with fuel shortage, Bangladesh's motorists turn to cooking gas",
+      "standfirst": "The economics of the cheaper alternative are compelling. But the risks, experts say, are not.",
+      "outlet": "Netra News",
+      "format": "Report",
+      "date": "2026-04-14",
+      "url": "https://netra.news/2026/bangladeshs-motorists-turn-to-cooking-gas/",
       "featured": true
     }
   ]

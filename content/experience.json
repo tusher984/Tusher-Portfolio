@@ -48,6 +48,16 @@
       ]
     },
     {
+      "role": "Intern Content Creator",
+      "org": "Prothom Alo",
+      "period": "Dec 2022 — Feb 2023",
+      "current": false,
+      "note": "",
+      "bullets": [
+        "Digital content production, scripting, video editing and publishing."
+      ]
+    },
+    {
       "role": "Assistant Director",
       "org": "BoxOffice",
       "period": "May 2021 — Jan 2024",
@@ -67,16 +77,6 @@
       "bullets": [
         "Reported human-interest and feature stories through field research and interviews.",
         "Produced photography and visual content for publication."
-      ]
-    },
-    {
-      "role": "Intern Content Creator",
-      "org": "Prothom Alo",
-      "period": "Dec 2022 — Feb 2023",
-      "current": false,
-      "note": "",
-      "bullets": [
-        "Digital content production, scripting, video editing and publishing."
       ]
     }
   ]
