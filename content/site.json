@@ -5,7 +5,7 @@
     "lead": "Available for investigative assignments, commissions, fixing and collaborations in Bangladesh. Documents and tips welcome.",
     "based_in_label": "Based in",
     "elsewhere_label": "Elsewhere",
-    "references_label": "References"
+    "references_label": "  "
   },
   "skills": {
     "eyebrow": "Skills & tools",
@@ -17,7 +17,7 @@
       "url": "https://www.linkedin.com/in/md-al-amin-tusher-607138170/"
     },
     {
-      "label": "X / Twitter",
+      "label": "X",
       "url": "https://x.com/Alamin984"
     },
     {
@@ -50,7 +50,7 @@
   "video": {
     "eyebrow": "Video",
     "heading": "Broadcast & documentary",
-    "link_label": "View all video work",
+    "link_label": "View all video works",
     "blurb": "News packages and documentary work produced end to end — research, scripting, field reporting, voice-over and edit.",
     "highlight_title": " ",
     "highlight_text": " "
