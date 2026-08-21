@@ -42,7 +42,10 @@
   function rich(value) {
     return esc(value)
       .replace(
-        /\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g,
+        // The URL pattern allows one level of brackets, so addresses like
+        // en.wikipedia.org/wiki/Dhaka_(district) survive intact instead of
+        // being cut short and turned into a broken link.
+        /\[([^\]\n]+)\]\((https?:\/\/(?:[^\s()]|\([^\s()]*\))+)\)/g,
         '<a href="$2" target="_blank" rel="noopener">$1</a>'
       )
       .replace(/\[([^\]\n]+)\]\((mailto:[^\s)]+)\)/g, '<a href="$2">$1</a>')
