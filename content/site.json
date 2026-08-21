@@ -1,9 +1,9 @@
 {
   "hero": {
     "name": "Al-Amin Tusher",
-    "eyebrow": " ",
-    "lead": " ",
-    "tagline": " ",
+    "eyebrow": " Hello, I am",
+    "lead": "Multimedia Journalist and Investigative Storyteller with over 5 years of experience in digital journalism, video production, data-driven reporting, and multimedia storytelling. Skilled in investigative research, field reporting, interviewing, and translating complex public-interest, environmental, and infrastructure issues into engaging narratives.",
+    "tagline": "Multimedia Journalist & Investigative Storyteller",
     "cta_primary": " ",
     "cta_secondary": " "
   },
@@ -40,5 +40,6 @@
     "based_in_label": " ",
     "elsewhere_label": " ",
     "references_label": " "
-  }
+  },
+  "socials": []
 }
