@@ -1,4 +1,5 @@
 {
+  "_note": "Each video can come from a YouTube ID, a Vimeo ID, or an uploaded MP4 — whichever you fill in first, in that order.",
   "intro": "Documentary and broadcast work — reporting, scripting, voice-over and edit.",
   "items": [
     {
@@ -8,26 +9,32 @@
       "outlet": "Netra News",
       "year": "2026",
       "youtube_id": "",
+      "vimeo_id": "",
+      "video_file": "",
       "url": "",
       "thumbnail": "assets/img/gallery/placeholder-video-01.svg"
     },
     {
       "title": "Add your next video here",
-      "description": "Paste the YouTube video ID and the thumbnail will be pulled in automatically — no image upload needed.",
+      "description": "Paste a YouTube or Vimeo ID and the thumbnail is pulled in automatically. Or upload a short MP4 and it plays straight from the page.",
       "role": "Reporting, script, edit",
       "outlet": "Somoy Media Ltd.",
       "year": "2025",
       "youtube_id": "",
+      "vimeo_id": "",
+      "video_file": "",
       "url": "",
       "thumbnail": "assets/img/gallery/placeholder-video-02.svg"
     },
     {
       "title": "Add your next video here",
-      "description": "Paste the YouTube video ID and the thumbnail will be pulled in automatically — no image upload needed.",
+      "description": "Paste a YouTube or Vimeo ID and the thumbnail is pulled in automatically. Or upload a short MP4 and it plays straight from the page.",
       "role": "Field production",
       "outlet": "The Report. Live",
       "year": "2023",
       "youtube_id": "",
+      "vimeo_id": "",
+      "video_file": "",
       "url": "",
       "thumbnail": "assets/img/gallery/placeholder-video-03.svg"
     }

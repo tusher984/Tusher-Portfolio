@@ -1,0 +1,27 @@
+{
+  "_note": "The 'What I cover' cards and the About section. Links can be written as [words](https://example.com).",
+  "beats_eyebrow": "What I cover",
+  "beats": [
+    {
+      "title": "Infrastructure & safety",
+      "text": "Fire-safety compliance in high-rise buildings, construction standards, bridges and embankments — who signed off, who inspected, and what the paperwork actually shows."
+    },
+    {
+      "title": "Rivers & environment",
+      "text": "The decline of Dhaka's waterways, encroachment and industrial discharge, and the long environmental cost of projects built across the country's rivers."
+    },
+    {
+      "title": "Public interest & welfare",
+      "text": "Whether government programmes reach the people they were written for — traced through records, data and the households left off the list."
+    }
+  ],
+  "eyebrow": "About",
+  "heading": "Reporting from Dhaka since 2019",
+  "portrait": "assets/img/portrait.jpg",
+  "portrait_alt": "Md. Al Amin Tusher standing outdoors holding a DSLR camera",
+  "paragraphs": [
+    "I'm a multimedia journalist with more than five years in digital and broadcast newsrooms, working across investigative research, data reporting, video production and interactive storytelling.",
+    "My work starts in the field and ends in the documents: interviews and on-the-ground reporting, checked against records, datasets and satellite imagery. I've built interactive projects and data visualisations to carry findings that don't fit in prose, and I produce my own video packages from script through edit.",
+    "I currently report for [Netra News](https://netra.news/) and work as an independent consultant with OCCRP. I write and report in both Bengali and English."
+  ]
+}

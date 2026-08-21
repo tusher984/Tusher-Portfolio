@@ -857,6 +857,19 @@ a.index-row:focus-visible .index-go { opacity: 1; transform: translateX(0); }
 .video-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, filter 0.3s ease; }
 .video-thumb:hover img { transform: scale(1.04); filter: brightness(0.85); }
 .video-thumb iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* The embed replaces the thumbnail button outright, so it sits as a direct
+   child of the card and needs its own sizing. Same for an uploaded clip. */
+.video-card > iframe,
+.video-file {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--radius);
+  background: #000;
+}
+.video-file { object-fit: cover; }
 .play {
   position: absolute;
   inset: 0;

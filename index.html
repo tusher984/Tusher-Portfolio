@@ -6,14 +6,14 @@
 <title>Md. Al Amin Tusher — Investigative &amp; Multimedia Journalist, Dhaka</title>
 <meta name="description" content="Md. Al Amin Tusher is an investigative and multimedia journalist in Dhaka, Bangladesh, reporting on infrastructure, fire safety, rivers and public-interest failures. Staff correspondent at Netra News.">
 <meta name="author" content="Md. Al Amin Tusher">
-<link rel="canonical" href="./">
+<link rel="canonical" href="https://tusher984.github.io/Tusher-Portfolio/">
 
-<!-- Social sharing. Replace YOUR-USERNAME with your GitHub username so the
-     preview image works when the link is shared. See README step 3. -->
+<!-- Social sharing preview. -->
 <meta property="og:type" content="profile">
+<meta property="og:url" content="https://tusher984.github.io/Tusher-Portfolio/">
 <meta property="og:title" content="Md. Al Amin Tusher — Investigative &amp; Multimedia Journalist">
 <meta property="og:description" content="Reporting on infrastructure, fire safety, rivers and public-interest failures in Bangladesh.">
-<meta property="og:image" content="https://YOUR-USERNAME.github.io/assets/img/og.jpg">
+<meta property="og:image" content="https://tusher984.github.io/Tusher-Portfolio/assets/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Alamin984">
 
@@ -78,21 +78,22 @@
   <section class="hero wrap">
     <div class="hero-grid">
       <div>
-        <p class="eyebrow" data-seq>Dhaka, Bangladesh &nbsp;·&nbsp; Staff Correspondent, Netra News</p>
+        <p class="eyebrow" data-seq data-t="hero.eyebrow">Dhaka, Bangladesh &nbsp;·&nbsp; Staff Correspondent, Netra News</p>
         <h1 data-seq>
-          Md. Al Amin Tusher
-          <span class="h1-sub">Investigative &amp; multimedia journalist</span>
+          <span data-t="hero.name">Md. Al Amin Tusher</span>
+          <span class="h1-sub" data-t="hero.tagline">Investigative &amp; multimedia journalist</span>
         </h1>
-        <p class="lead" data-seq>
+        <p class="lead" data-seq data-t="hero.lead" data-rich>
           I report on the systems that are supposed to keep people safe — building codes,
           embankments, river channels, welfare rolls — and what happens when they fail.
           Five years of field reporting, documents and data across Bangladesh.
         </p>
         <div class="hero-actions" data-seq>
           <a class="btn btn--solid" href="#work">
-            See selected work <span class="arrow" aria-hidden="true">→</span>
+            <span data-t="hero.cta_primary">See selected work</span> <span class="arrow" aria-hidden="true">→</span>
           </a>
-          <a class="btn btn--ghost" href="mailto:md.alamintusher@gmail.com">Get in touch</a>
+          <a class="btn btn--ghost" href="mailto:md.alamintusher@gmail.com"
+             data-profile-href="email" data-t="hero.cta_secondary">Get in touch</a>
         </div>
         <ul class="facts" id="facts" data-seq>
           <li>5+ years reporting</li>
@@ -101,7 +102,7 @@
         </ul>
       </div>
       <div class="portrait" data-seq>
-        <img src="assets/img/portrait.jpg"
+        <img id="portrait-img" src="assets/img/portrait.jpg"
              alt="Md. Al Amin Tusher standing outdoors holding a DSLR camera"
              width="900" height="1200" fetchpriority="high">
       </div>
@@ -112,9 +113,9 @@
   <section class="section section--wash section--tight">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">What I cover</p>
+        <p class="eyebrow" data-a="beats_eyebrow">What I cover</p>
       </div>
-      <div class="beats">
+      <div class="beats" id="beats">
         <div class="beat" data-reveal>
           <h3>Infrastructure &amp; safety</h3>
           <p>
@@ -144,9 +145,9 @@
   <section class="section" id="work">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Selected work</p>
-        <h2>Investigations, data reporting and interactives</h2>
-        <p class="lead">
+        <p class="eyebrow" data-t="work.eyebrow">Selected work</p>
+        <h2 data-t="work.heading">Investigations, data reporting and interactives</h2>
+        <p class="lead" data-t="work.lead" data-rich>
           Reported for Netra News, including document-based investigations and interactive
           data projects. Reporting and analysis are my own unless noted.
         </p>
@@ -161,11 +162,11 @@
     <div class="wrap">
       <div class="teaser-head" data-reveal>
         <div>
-          <p class="eyebrow">Photography</p>
-          <h2>Documentary photography</h2>
+          <p class="eyebrow" data-t="photography.eyebrow">Photography</p>
+          <h2 data-t="photography.heading">Documentary photography</h2>
         </div>
         <a class="textlink" href="photos.html">
-          View the gallery <span aria-hidden="true">→</span>
+          <span data-t="photography.link_label">View the gallery</span> <span aria-hidden="true">→</span>
         </a>
       </div>
       <div class="photo-strip" id="photo-strip" data-reveal></div>
@@ -177,25 +178,25 @@
     <div class="wrap">
       <div class="teaser-head" data-reveal>
         <div>
-          <p class="eyebrow">Video</p>
-          <h2>Broadcast &amp; documentary</h2>
+          <p class="eyebrow" data-t="video.eyebrow">Video</p>
+          <h2 data-t="video.heading">Broadcast &amp; documentary</h2>
         </div>
         <a class="textlink" href="videos.html">
-          View all video work <span aria-hidden="true">→</span>
+          <span data-t="video.link_label">View all video work</span> <span aria-hidden="true">→</span>
         </a>
       </div>
       <div class="split" data-reveal>
         <div class="prose">
-          <p>
+          <p data-t="video.blurb" data-rich>
             News packages and documentary work produced end to end — research, scripting,
             field reporting, voice-over and edit.
           </p>
         </div>
         <div>
           <p style="color:var(--muted);font-size:var(--fs-small)">
-            <strong style="font-family:var(--display);color:var(--ink)">Dhaka's Dying Rivers</strong><br>
-            Chronicling the environmental decline of Dhaka's waterways, from encroachment and
-            industrial discharge to the loss of the channels that once defined the city.
+            <strong style="font-family:var(--display);color:var(--ink)" data-t="video.highlight_title">Dhaka's Dying Rivers</strong><br>
+            <span data-t="video.highlight_text" data-rich>Chronicling the environmental decline of Dhaka's waterways, from encroachment and
+            industrial discharge to the loss of the channels that once defined the city.</span>
           </p>
         </div>
       </div>
@@ -207,10 +208,10 @@
     <div class="wrap">
       <div class="split">
         <div data-reveal>
-          <p class="eyebrow">About</p>
-          <h2 style="font-size:var(--fs-h2)">Reporting from Dhaka since 2019</h2>
+          <p class="eyebrow" data-a="eyebrow">About</p>
+          <h2 style="font-size:var(--fs-h2)" data-a="heading">Reporting from Dhaka since 2019</h2>
         </div>
-        <div class="prose" data-reveal>
+        <div class="prose" id="about-prose" data-reveal>
           <p>
             I'm a multimedia journalist with more than five years in digital and broadcast
             newsrooms, working across investigative research, data reporting, video production
@@ -236,10 +237,10 @@
   <section class="section" id="experience">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Experience</p>
-        <h2>Newsrooms &amp; assignments</h2>
+        <p class="eyebrow" data-t="experience.eyebrow">Experience</p>
+        <h2 data-t="experience.heading">Newsrooms &amp; assignments</h2>
       </div>
-      <div class="timeline">
+      <div class="timeline" id="timeline">
         <article class="job job--current" data-reveal>
           <span class="job-date">Dec 2025 — Present</span>
           <h3>Staff Correspondent</h3>
@@ -312,10 +313,10 @@
   <section class="section section--wash">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Skills &amp; tools</p>
-        <h2>How the work gets made</h2>
+        <p class="eyebrow" data-t="skills.eyebrow">Skills &amp; tools</p>
+        <h2 data-t="skills.heading">How the work gets made</h2>
       </div>
-      <div class="skills">
+      <div class="skills" id="skills">
         <div class="skill-group" data-reveal>
           <h3>Journalism &amp; research</h3>
           <ul class="tags">
@@ -360,8 +361,8 @@
     <div class="wrap">
       <div class="cred-grid">
         <div data-reveal>
-          <p class="eyebrow">Education</p>
-          <ul class="cred-list">
+          <p class="eyebrow" data-c="education_label">Education</p>
+          <ul class="cred-list" id="education-list">
             <li>
               <strong>Stamford University Bangladesh</strong>
               <span class="meta">2023 · BSS, Journalism for Electronic &amp; Print Media</span>
@@ -384,8 +385,8 @@
           </ul>
         </div>
         <div data-reveal>
-          <p class="eyebrow">Fellowships &amp; training</p>
-          <ul class="cred-list">
+          <p class="eyebrow" data-c="training_label">Fellowships &amp; training</p>
+          <ul class="cred-list" id="training-list">
             <li>
               <strong>Internews Europe Fellowship</strong>
               <span class="meta">Business &amp; Climate Media Initiative · Aug–Dec 2026</span>
@@ -415,9 +416,9 @@
   <!-- ================= CONTACT ================= -->
   <section class="section contact" id="contact">
     <div class="wrap">
-      <p class="eyebrow">Contact</p>
-      <h2>Working on a story I should know about?</h2>
-      <p class="lead">
+      <p class="eyebrow" data-t="contact.eyebrow">Contact</p>
+      <h2 data-t="contact.heading">Working on a story I should know about?</h2>
+      <p class="lead" data-t="contact.lead" data-rich>
         Available for investigative assignments, commissions, fixing and collaborations
         in Bangladesh. Documents and tips welcome.
       </p>
@@ -431,15 +432,15 @@
 
       <div class="contact-meta">
         <div>
-          <h3>Based in</h3>
+          <h3 data-t="contact.based_in_label">Based in</h3>
           <p>
             <span data-profile="location_line_1">Rampura, Ulon Road</span><br>
             <span data-profile="location_line_2">Dhaka, Bangladesh</span>
           </p>
         </div>
         <div>
-          <h3>Elsewhere</h3>
-          <ul class="socials">
+          <h3 data-t="contact.elsewhere_label">Elsewhere</h3>
+          <ul class="socials" id="socials">
             <li><a href="https://www.linkedin.com/in/md-al-amin-tusher-607138170/" target="_blank" rel="noopener">LinkedIn</a></li>
             <li><a href="https://x.com/Alamin984" target="_blank" rel="noopener">X</a></li>
             <li><a href="https://www.instagram.com/alamin_visuals/" target="_blank" rel="noopener">Instagram</a></li>
@@ -447,7 +448,7 @@
           </ul>
         </div>
         <div>
-          <h3>References</h3>
+          <h3 data-t="contact.references_label">References</h3>
           <p data-profile="references">Editorial references available on request.</p>
         </div>
       </div>

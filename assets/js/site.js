@@ -31,6 +31,48 @@
     return path.replace(/^\/+/, "");
   }
 
+  /**
+   * A deliberately tiny formatting subset for text typed into the dashboard:
+   *   [words](https://example.com)  → a link
+   *   **words**                     → bold
+   * Everything is escaped FIRST, so no HTML typed into the dashboard can ever
+   * reach the page. Only these two patterns are then re-introduced, and links
+   * are restricted to http, https and mailto.
+   */
+  function rich(value) {
+    return esc(value)
+      .replace(
+        /\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener">$1</a>'
+      )
+      .replace(/\[([^\]\n]+)\]\((mailto:[^\s)]+)\)/g, '<a href="$2">$1</a>')
+      .replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
+  }
+
+  /** Read a dotted path like "hero.lead" out of a plain object. */
+  function dig(obj, path) {
+    return path.split(".").reduce((o, k) => (o == null ? o : o[k]), obj);
+  }
+
+  /**
+   * Bind elements to values in a loaded JSON object. Each content file gets its
+   * own attribute so two files can never fight over the same element:
+   *   data-t  → content/site.json      e.g. data-t="hero.lead"
+   *   data-a  → content/about.json     e.g. data-a="heading"
+   * Add data-rich to allow the link/bold syntax above.
+   * Anything missing from the JSON is left exactly as the HTML has it, so a
+   * half-filled file can never blank out the page.
+   */
+  function bindText(attr, obj, scope) {
+    $$("[" + attr + "]", scope || document).forEach((el) => {
+      const key = el.getAttribute(attr);
+      const value = dig(obj, key);
+      if (value == null || value === "") return;
+      if (el.hasAttribute("data-rich")) el.innerHTML = rich(value);
+      else el.textContent = value;
+    });
+  }
+
   function formatDate(iso) {
     if (!iso) return "";
     const d = new Date(iso);
@@ -344,23 +386,40 @@
       }
 
       grid.innerHTML = items
-        .map((v) => {
-          const id = (v.youtube_id || "").trim();
-          const thumb = id
-            ? "https://img.youtube.com/vi/" + encodeURIComponent(id) + "/maxresdefault.jpg"
+        .map((v, i) => {
+          const yt = (v.youtube_id || "").trim();
+          const vim = (v.vimeo_id || "").trim();
+          const file = media((v.video_file || "").trim());
+          const poster = yt
+            ? "https://img.youtube.com/vi/" + encodeURIComponent(yt) + "/maxresdefault.jpg"
             : media(v.thumbnail);
-          const playable = !!id;
           const metaBits =
             '<span class="v-outlet">' + esc(v.outlet || "") + "</span>" +
             (v.year ? " · " + esc(v.year) : "") +
             (v.role ? " · " + esc(v.role) : "");
 
-          const head = playable
-            ? '<button class="video-thumb" type="button" data-yt="' + esc(id) + '" aria-label="Play ' + esc(v.title) + '">' +
-              '<img src="' + esc(thumb) + '" alt="" loading="lazy" decoding="async">' +
-              '<span class="play"><span>' + playSVG() + "</span></span></button>"
-            : '<div class="video-thumb" aria-hidden="true">' +
-              '<img src="' + esc(thumb) + '" alt="" loading="lazy" decoding="async"></div>';
+          // Whichever source is filled in first wins: YouTube, then Vimeo, then
+          // an uploaded file. Nothing filled in leaves a plain still image.
+          let head;
+          if (yt || vim) {
+            head =
+              '<button class="video-thumb" type="button" data-i="' + i + '"' +
+              (yt ? ' data-yt="' + esc(yt) + '"' : ' data-vimeo="' + esc(vim) + '"') +
+              ' aria-label="Play ' + esc(v.title || "video") + '">' +
+              '<img src="' + esc(poster) + '" alt="" loading="lazy" decoding="async">' +
+              '<span class="play"><span>' + playSVG() + "</span></span></button>";
+          } else if (file) {
+            head =
+              '<video class="video-file" controls preload="metadata" playsinline' +
+              (poster ? ' poster="' + esc(poster) + '"' : "") +
+              '><source src="' + esc(file) + '">' +
+              "Your browser cannot play this file." +
+              "</video>";
+          } else {
+            head =
+              '<div class="video-thumb" aria-hidden="true">' +
+              '<img src="' + esc(poster) + '" alt="" loading="lazy" decoding="async"></div>';
+          }
 
           const title = v.url
             ? '<h3><a href="' + esc(v.url) + '" target="_blank" rel="noopener">' + esc(v.title) + "</a></h3>"
@@ -369,21 +428,23 @@
           return (
             '<article class="video-card" data-reveal>' + head + title +
             '<p class="v-meta">' + metaBits + "</p>" +
-            (v.description ? "<p>" + esc(v.description) + "</p>" : "") +
+            (v.description ? "<p>" + rich(v.description) + "</p>" : "") +
             "</article>"
           );
         })
         .join("");
 
       grid.addEventListener("click", (e) => {
-        const btn = e.target.closest(".video-thumb[data-yt]");
+        const btn = e.target.closest(".video-thumb[data-yt], .video-thumb[data-vimeo]");
         if (!btn) return;
-        const id = btn.dataset.yt;
+        const yt = btn.dataset.yt;
+        const vim = btn.dataset.vimeo;
         const frame = document.createElement("iframe");
-        frame.src =
-          "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) +
-          "?autoplay=1&rel=0&modestbranding=1";
-        frame.title = "Video player";
+        frame.src = yt
+          ? "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(yt) +
+            "?autoplay=1&rel=0&modestbranding=1"
+          : "https://player.vimeo.com/video/" + encodeURIComponent(vim) + "?autoplay=1";
+        frame.title = esc(btn.getAttribute("aria-label") || "Video player");
         frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture";
         frame.allowFullscreen = true;
         btn.replaceWith(frame);
@@ -442,6 +503,169 @@
   }
 
   /* ======================================================================
+     Headings, wording and social links — content/site.json
+     ====================================================================== */
+
+  async function renderSite() {
+    let s;
+    try {
+      s = await loadJSON("site");
+    } catch (err) {
+      return; // HTML already holds the real wording
+    }
+
+    bindText("data-t", s);
+
+    const socials = $("#socials");
+    if (socials && Array.isArray(s.socials) && s.socials.length) {
+      socials.innerHTML = s.socials
+        .filter((l) => l && l.label && l.url)
+        .map(
+          (l) =>
+            "<li><a href=\"" + esc(l.url) + '" target="_blank" rel="noopener">' +
+            esc(l.label) + "</a></li>"
+        )
+        .join("");
+    }
+  }
+
+  /* ======================================================================
+     Beats + About — content/about.json
+     ====================================================================== */
+
+  async function renderAbout() {
+    let a;
+    try {
+      a = await loadJSON("about");
+    } catch (err) {
+      return;
+    }
+
+    bindText("data-a", a);
+
+    const beats = $("#beats");
+    if (beats && Array.isArray(a.beats) && a.beats.length) {
+      beats.innerHTML = a.beats
+        .map(
+          (b) =>
+            '<div class="beat" data-reveal><h3>' + esc(b.title || "") + "</h3>" +
+            "<p>" + rich(b.text || "") + "</p></div>"
+        )
+        .join("");
+      observeReveals(beats);
+    }
+
+    const prose = $("#about-prose");
+    if (prose && Array.isArray(a.paragraphs) && a.paragraphs.length) {
+      prose.innerHTML = a.paragraphs
+        .filter(Boolean)
+        .map((p) => "<p>" + rich(p) + "</p>")
+        .join("");
+    }
+
+    const portrait = $("#portrait-img");
+    if (portrait && a.portrait) {
+      portrait.src = media(a.portrait);
+      if (a.portrait_alt) portrait.alt = a.portrait_alt;
+    }
+  }
+
+  /* ======================================================================
+     Experience timeline — content/experience.json
+     ====================================================================== */
+
+  async function renderExperience() {
+    const wrap = $("#timeline");
+    if (!wrap) return;
+    let items;
+    try {
+      items = (await loadJSON("experience")).items || [];
+    } catch (err) {
+      return; // keep the hardcoded timeline
+    }
+    if (!items.length) return;
+
+    wrap.innerHTML = items
+      .map((j) => {
+        const note = j.note
+          ? ' <span style="color:var(--muted);font-weight:400">(' + esc(j.note) + ")</span>"
+          : "";
+        const bullets = (j.bullets || []).filter(Boolean);
+        return (
+          '<article class="job' + (j.current ? " job--current" : "") + '" data-reveal>' +
+          '<span class="job-date">' + esc(j.period || "") + "</span>" +
+          "<h3>" + esc(j.role || "") + note + "</h3>" +
+          '<span class="org">' + esc(j.org || "") + "</span>" +
+          (bullets.length
+            ? "<ul>" + bullets.map((b) => "<li>" + rich(b) + "</li>").join("") + "</ul>"
+            : "") +
+          "</article>"
+        );
+      })
+      .join("");
+    observeReveals(wrap);
+  }
+
+  /* ======================================================================
+     Skills — content/skills.json
+     ====================================================================== */
+
+  async function renderSkills() {
+    const wrap = $("#skills");
+    if (!wrap) return;
+    let groups;
+    try {
+      groups = (await loadJSON("skills")).groups || [];
+    } catch (err) {
+      return;
+    }
+    if (!groups.length) return;
+
+    wrap.innerHTML = groups
+      .map(
+        (g) =>
+          '<div class="skill-group" data-reveal><h3>' + esc(g.title || "") + "</h3>" +
+          '<ul class="tags">' +
+          (g.items || []).filter(Boolean).map((t) => "<li>" + esc(t) + "</li>").join("") +
+          "</ul></div>"
+      )
+      .join("");
+    observeReveals(wrap);
+  }
+
+  /* ======================================================================
+     Education, fellowships and training — content/credentials.json
+     ====================================================================== */
+
+  async function renderCredentials() {
+    const eduList = $("#education-list");
+    const trainList = $("#training-list");
+    if (!eduList && !trainList) return;
+    let c;
+    try {
+      c = await loadJSON("credentials");
+    } catch (err) {
+      return;
+    }
+
+    const rows = (list) =>
+      (list || [])
+        .filter((r) => r && r.title)
+        .map(
+          (r) =>
+            "<li><strong>" + esc(r.title) + "</strong>" +
+            (r.meta ? '<span class="meta">' + esc(r.meta) + "</span>" : "") +
+            (r.result ? '<span class="result">' + esc(r.result) + "</span>" : "") +
+            "</li>"
+        )
+        .join("");
+
+    if (eduList && (c.education || []).length) eduList.innerHTML = rows(c.education);
+    if (trainList && (c.training || []).length) trainList.innerHTML = rows(c.training);
+    bindText("data-c", c);
+  }
+
+  /* ======================================================================
      Footer year + boot
      ====================================================================== */
 
@@ -449,6 +673,11 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   renderProfile();
+  renderSite();
+  renderAbout();
+  renderExperience();
+  renderSkills();
+  renderCredentials();
   renderStories();
   renderPhotoStrip();
   renderGallery();

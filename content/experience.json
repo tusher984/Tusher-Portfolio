@@ -1,0 +1,83 @@
+{
+  "_note": "Your work history. Drag to reorder — they appear on the site in this order.",
+  "items": [
+    {
+      "role": "Staff Correspondent",
+      "org": "Netra News",
+      "period": "Dec 2025 — Present",
+      "current": true,
+      "note": "",
+      "bullets": [
+        "Investigative reporting on infrastructure, fire safety, environmental and public-interest issues.",
+        "Produce data-driven investigations, interactive stories and multimedia reports.",
+        "Field research, interviews, data analysis and document-based investigation."
+      ]
+    },
+    {
+      "role": "Independent Journalism Consultant",
+      "org": "OCCRP",
+      "period": "Dec 2025 — Sep 2026",
+      "current": false,
+      "note": "",
+      "bullets": [
+        "Consulting on cross-border investigative reporting projects."
+      ]
+    },
+    {
+      "role": "Associate Senior Reporter",
+      "org": "Somoy Media Ltd.",
+      "period": "Aug 2023 — Dec 2025",
+      "current": false,
+      "note": "",
+      "bullets": [
+        "Reported breaking news and public-interest stories for television and digital.",
+        "Produced complete news packages: research, scripting, reporting, voice-over and edit.",
+        "Coordinated field and newsroom teams under tight deadlines."
+      ]
+    },
+    {
+      "role": "Digital Team Coordinator & Content Creator",
+      "org": "The Report. Live",
+      "period": "Feb 2022 — Aug 2023",
+      "current": false,
+      "note": "",
+      "bullets": [
+        "Planned and produced digital, video and social content.",
+        "Coordinated creative teams and editorial workflows.",
+        "Used audience data to improve content performance."
+      ]
+    },
+    {
+      "role": "Assistant Director",
+      "org": "BoxOffice",
+      "period": "May 2021 — Jan 2024",
+      "current": false,
+      "note": "part-time",
+      "bullets": [
+        "Coordinated multimedia production and logistics.",
+        "Supported directing, field production and post-production."
+      ]
+    },
+    {
+      "role": "Freelance Feature Writer & Photographer",
+      "org": "The Daily Desh Rupantor",
+      "period": "Dec 2019 — Dec 2022",
+      "current": false,
+      "note": "",
+      "bullets": [
+        "Reported human-interest and feature stories through field research and interviews.",
+        "Produced photography and visual content for publication."
+      ]
+    },
+    {
+      "role": "Intern Content Creator",
+      "org": "Prothom Alo",
+      "period": "Dec 2022 — Feb 2023",
+      "current": false,
+      "note": "",
+      "bullets": [
+        "Digital content production, scripting, video editing and publishing."
+      ]
+    }
+  ]
+}

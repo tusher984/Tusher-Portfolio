@@ -1,63 +1,137 @@
 # =============================================================================
-# Content dashboard configuration (Decap CMS)
+# Content dashboard (Decap CMS) for tusher984.github.io/Tusher-Portfolio
 #
-# EDIT THESE TWO LINES BEFORE THE DASHBOARD WILL WORK:
-#   1. repo:      below — replace YOUR-USERNAME/YOUR-REPO
-#   2. base_url:  below — replace with your login helper address
-# Full instructions are in README.md, "Turning on the dashboard".
+# The only thing still to fill in is base_url, which is the little login helper
+# that lets GitHub sign you in. README section "Turning on the login" explains it.
+# Until then you can run the dashboard on your own computer with no login at all
+# (README, "Option 1"), because local_backend is switched on below.
 # =============================================================================
 
 backend:
   name: github
-  repo: YOUR-USERNAME/YOUR-REPO      # e.g. alamintusher/alamintusher.github.io
+  repo: tusher984/Tusher-Portfolio
   branch: main
   base_url: https://YOUR-LOGIN-HELPER.workers.dev
   auth_endpoint: auth
 
-# If you host the site on Netlify instead, delete the block above and use this
-# one instead — then login is just an email and password, with nothing to set up:
-#
-# backend:
-#   name: git-gateway
-#   branch: main
+# Lets you run the dashboard locally with no login:
+#   npx decap-server        (in one terminal)
+#   python3 -m http.server  (in another, from this folder)
+# then open localhost:8000/admin/ and click "Work with Local Repo".
+local_backend: true
 
-# Where uploaded photos are saved. Paths stay relative so the site works both at
-# username.github.io and username.github.io/repo-name.
+# Where uploaded photos and video clips are saved. Paths stay relative so the
+# site works both at username.github.io and username.github.io/repo-name.
 media_folder: uploads
 public_folder: uploads
 
 publish_mode: simple
-logo_url: /assets/img/headshot.jpg
+logo_url: ../assets/img/headshot.jpg
 
 collections:
-  # ---------------------------------------------------------------- profile
-  - name: profile
-    label: Contact details
-    description: Your email, phone, location and the three short facts under the intro.
+  # ---------------------------------------------------------------- photos
+  - name: photography
+    label: "Photographs"
+    description: Your photo gallery. Drag a photo in, give it a caption, publish.
     files:
-      - name: profile
-        label: Contact details
-        file: content/profile.json
+      - name: photos
+        label: Photo gallery
+        file: content/photos.json
         format: json
         fields:
-          - { name: email, label: Email address, widget: string }
-          - name: phone
-            label: Phone number
-            widget: string
-            hint: Digits only, with country code — used for the tap-to-call link.
-          - { name: phone_display, label: Phone number as shown, widget: string }
-          - { name: location_line_1, label: Address line 1, widget: string }
-          - { name: location_line_2, label: Address line 2, widget: string }
-          - { name: references, label: References line, widget: string }
-          - name: facts
-            label: Facts under the intro
+          - name: intro
+            label: Intro line
+            widget: text
+            hint: One or two sentences at the top of the photography page.
+          - name: categories
+            label: Filter categories
             widget: list
-            field: { name: fact, label: Fact, widget: string }
-            hint: Three short items work best.
+            field: { name: name, label: Category, widget: string }
+            hint: These become the filter buttons above the gallery.
+          - name: items
+            label: Photographs
+            label_singular: Photograph
+            widget: list
+            summary: "{{fields.title}}"
+            hint: >
+              The first four also appear on the homepage, so put your strongest
+              work at the top. Drag the handles to reorder.
+            fields:
+              - name: image
+                label: Photograph
+                widget: image
+                hint: >
+                  Shrink big files before uploading — around 2000px on the long
+                  edge and under 500KB keeps the page fast on mobile data.
+              - { name: title, label: Title, widget: string }
+              - name: caption
+                label: Caption
+                widget: text
+                required: false
+                hint: Also read aloud to people using screen readers, so describe what is happening.
+              - { name: location, label: Location, widget: string, required: false }
+              - { name: year, label: Year, widget: string, required: false }
+              - name: category
+                label: Category
+                widget: string
+                required: false
+                hint: Must match one of the filter categories above, spelled the same way.
+
+  # ---------------------------------------------------------------- videos
+  - name: video
+    label: "Videos"
+    description: Link a YouTube or Vimeo video, or upload a short clip.
+    files:
+      - name: videos
+        label: Video work
+        file: content/videos.json
+        format: json
+        fields:
+          - name: intro
+            label: Intro line
+            widget: text
+          - name: items
+            label: Videos
+            label_singular: Video
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: description, label: Description, widget: text, required: false }
+              - { name: role, label: Your role, widget: string, required: false }
+              - { name: outlet, label: Outlet, widget: string, required: false }
+              - { name: year, label: Year, widget: string, required: false }
+              - name: youtube_id
+                label: YouTube video ID
+                widget: string
+                required: false
+                hint: >
+                  Just the ID, not the whole address. In
+                  youtube.com/watch?v=dQw4w9WgXcQ the ID is dQw4w9WgXcQ.
+                  Fill this in and the thumbnail appears by itself.
+              - name: vimeo_id
+                label: Vimeo video ID
+                widget: string
+                required: false
+                hint: The number at the end of a Vimeo address, e.g. 76979871.
+              - name: video_file
+                label: Or upload a clip
+                widget: file
+                required: false
+                hint: >
+                  MP4 only, and keep it under about 25MB. GitHub is not a video
+                  host — anything longer than a minute or two belongs on YouTube
+                  or Vimeo, or the page will crawl on a phone connection.
+              - name: thumbnail
+                label: Cover image
+                widget: image
+                required: false
+                hint: Needed for uploaded clips. YouTube supplies its own.
+              - { name: url, label: Link out (optional), widget: string, required: false }
 
   # ---------------------------------------------------------------- stories
   - name: work
-    label: Selected work
+    label: "Selected work"
     description: The story list on the homepage.
     files:
       - name: stories
@@ -87,88 +161,241 @@ collections:
                 format: YYYY-MM-DD
                 date_format: YYYY-MM-DD
                 time_format: false
+                hint: Leave empty if you are not sure — the story still shows, just without a date.
               - name: url
                 label: Link to the published story
                 widget: string
                 required: false
-                hint: Paste the full web address. Leave empty and the story shows without a link.
+                hint: Paste the full web address. Leave empty and it shows "Link coming" instead.
               - { name: featured, label: Show on homepage, widget: boolean, default: true }
 
-  # ---------------------------------------------------------------- photos
-  - name: photography
-    label: Photography
-    description: The photo gallery.
+  # ---------------------------------------------------------------- about
+  - name: about
+    label: "About & beats"
+    description: Your bio, the portrait photo, and the three "What I cover" cards.
     files:
-      - name: photos
-        label: Photo gallery
-        file: content/photos.json
+      - name: about
+        label: About section
+        file: content/about.json
         format: json
         fields:
-          - name: intro
-            label: Intro line
-            widget: text
-            hint: One or two sentences at the top of the photography page.
-          - name: categories
-            label: Filter categories
-            widget: list
-            field: { name: name, label: Category, widget: string }
-            hint: These become the filter buttons above the gallery.
-          - name: items
-            label: Photographs
-            label_singular: Photograph
+          - { name: beats_eyebrow, label: Label above the three cards, widget: string }
+          - name: beats
+            label: What I cover
+            label_singular: Card
             widget: list
             summary: "{{fields.title}}"
             fields:
-              - { name: image, label: Photograph, widget: image }
-              - { name: title, label: Title, widget: string }
-              - name: caption
-                label: Caption
-                widget: text
-                required: false
-                hint: Also used as the description for screen readers.
-              - { name: location, label: Location, widget: string, required: false }
-              - { name: year, label: Year, widget: string, required: false }
-              - name: category
-                label: Category
-                widget: string
-                required: false
-                hint: Must match one of the filter categories above, spelled the same way.
+              - { name: title, label: Card title, widget: string }
+              - { name: text, label: Card text, widget: text }
+          - { name: eyebrow, label: Label above the About section, widget: string }
+          - { name: heading, label: About heading, widget: string }
+          - name: portrait
+            label: Portrait photo
+            widget: image
+            required: false
+            hint: The large photo at the top of the homepage. Upright photos look best.
+          - name: portrait_alt
+            label: Description of the portrait
+            widget: string
+            required: false
+            hint: Read aloud to people using screen readers.
+          - name: paragraphs
+            label: Bio paragraphs
+            label_singular: Paragraph
+            widget: list
+            field: { name: text, label: Paragraph, widget: text }
+            hint: >
+              Add a link by writing [Netra News](https://netra.news/).
+              Make words bold with **two stars** either side.
 
-  # ---------------------------------------------------------------- videos
-  - name: video
-    label: Video
-    description: The video page.
+  # ---------------------------------------------------------------- experience
+  - name: experience
+    label: "Experience"
+    description: Your work history timeline.
     files:
-      - name: videos
-        label: Video work
-        file: content/videos.json
+      - name: experience
+        label: Timeline
+        file: content/experience.json
         format: json
         fields:
-          - name: intro
-            label: Intro line
-            widget: text
           - name: items
-            label: Videos
-            label_singular: Video
+            label: Roles
+            label_singular: Role
+            widget: list
+            summary: "{{fields.role}} — {{fields.org}}"
+            hint: Drag to reorder. Newest at the top reads best.
+            fields:
+              - { name: role, label: Job title, widget: string }
+              - { name: org, label: Organisation, widget: string }
+              - { name: period, label: Dates, widget: string, hint: "e.g. Dec 2025 — Present" }
+              - name: current
+                label: This is my current job
+                widget: boolean
+                default: false
+                hint: Marks the entry with the highlighted dot on the timeline.
+              - name: note
+                label: Note beside the title
+                widget: string
+                required: false
+                hint: 'e.g. part-time. Shown in brackets. Leave empty for none.'
+              - name: bullets
+                label: What you did
+                label_singular: Bullet point
+                widget: list
+                field: { name: text, label: Bullet point, widget: string }
+
+  # ---------------------------------------------------------------- skills
+  - name: skills
+    label: "Skills & tools"
+    files:
+      - name: skills
+        label: Skill groups
+        file: content/skills.json
+        format: json
+        fields:
+          - name: groups
+            label: Groups
+            label_singular: Group
             widget: list
             summary: "{{fields.title}}"
             fields:
-              - { name: title, label: Title, widget: string }
-              - { name: description, label: Description, widget: text, required: false }
-              - { name: role, label: Your role, widget: string, required: false }
-              - { name: outlet, label: Outlet, widget: string, required: false }
-              - { name: year, label: Year, widget: string, required: false }
-              - name: youtube_id
-                label: YouTube video ID
-                widget: string
-                required: false
-                hint: >
-                  Just the ID, not the whole address. In
-                  youtube.com/watch?v=dQw4w9WgXcQ the ID is dQw4w9WgXcQ.
-                  Fill this in and the thumbnail appears automatically.
-              - { name: url, label: Link out (optional), widget: string, required: false }
-              - name: thumbnail
-                label: Fallback thumbnail
-                widget: image
-                required: false
-                hint: Only needed if there is no YouTube ID.
+              - { name: title, label: Group title, widget: string }
+              - name: items
+                label: Skills
+                label_singular: Skill
+                widget: list
+                field: { name: name, label: Skill, widget: string }
+
+  # ---------------------------------------------------------------- credentials
+  - name: credentials
+    label: "Education & fellowships"
+    files:
+      - name: credentials
+        label: Education, fellowships and training
+        file: content/credentials.json
+        format: json
+        fields:
+          - { name: education_label, label: Left column heading, widget: string }
+          - name: education
+            label: Education
+            label_singular: Qualification
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Institution or item, widget: string }
+              - { name: meta, label: Year and course, widget: string, required: false }
+              - { name: result, label: Result, widget: string, required: false }
+          - { name: training_label, label: Right column heading, widget: string }
+          - name: training
+            label: Fellowships and training
+            label_singular: Item
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Name, widget: string }
+              - { name: meta, label: Organisation and dates, widget: string, required: false }
+              - { name: result, label: Extra note, widget: string, required: false }
+
+  # ---------------------------------------------------------------- wording
+  - name: site
+    label: "Headings & wording"
+    description: The headline, intro, section headings and your social links.
+    files:
+      - name: site
+        label: Headings and wording
+        file: content/site.json
+        format: json
+        fields:
+          - name: hero
+            label: Top of the homepage
+            widget: object
+            fields:
+              - { name: eyebrow, label: Small line above your name, widget: string }
+              - { name: name, label: Your name, widget: string }
+              - { name: tagline, label: What you do, widget: string }
+              - name: lead
+                label: Opening paragraph
+                widget: text
+                hint: Add a link with [words](https://example.com).
+              - { name: cta_primary, label: First button, widget: string }
+              - { name: cta_secondary, label: Second button, widget: string }
+          - name: work
+            label: Selected work section
+            widget: object
+            fields:
+              - { name: eyebrow, label: Small label, widget: string }
+              - { name: heading, label: Heading, widget: string }
+              - { name: lead, label: Intro paragraph, widget: text }
+          - name: photography
+            label: Photography teaser
+            widget: object
+            fields:
+              - { name: eyebrow, label: Small label, widget: string }
+              - { name: heading, label: Heading, widget: string }
+              - { name: link_label, label: Link text, widget: string }
+          - name: video
+            label: Video teaser
+            widget: object
+            fields:
+              - { name: eyebrow, label: Small label, widget: string }
+              - { name: heading, label: Heading, widget: string }
+              - { name: link_label, label: Link text, widget: string }
+              - { name: blurb, label: Paragraph, widget: text }
+              - { name: highlight_title, label: Featured video title, widget: string }
+              - { name: highlight_text, label: Featured video description, widget: text }
+          - name: experience
+            label: Experience section
+            widget: object
+            fields:
+              - { name: eyebrow, label: Small label, widget: string }
+              - { name: heading, label: Heading, widget: string }
+          - name: skills
+            label: Skills section
+            widget: object
+            fields:
+              - { name: eyebrow, label: Small label, widget: string }
+              - { name: heading, label: Heading, widget: string }
+          - name: contact
+            label: Contact section
+            widget: object
+            fields:
+              - { name: eyebrow, label: Small label, widget: string }
+              - { name: heading, label: Heading, widget: string }
+              - { name: lead, label: Paragraph, widget: text }
+              - { name: based_in_label, label: "Column 1 heading", widget: string }
+              - { name: elsewhere_label, label: "Column 2 heading", widget: string }
+              - { name: references_label, label: "Column 3 heading", widget: string }
+          - name: socials
+            label: Social links
+            label_singular: Link
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { name: label, label: Name, widget: string }
+              - { name: url, label: Address, widget: string }
+
+  # ---------------------------------------------------------------- contact
+  - name: profile
+    label: "Contact details"
+    description: Your email, phone, location and the three short facts under the intro.
+    files:
+      - name: profile
+        label: Contact details
+        file: content/profile.json
+        format: json
+        fields:
+          - { name: email, label: Email address, widget: string }
+          - name: phone
+            label: Phone number
+            widget: string
+            hint: Digits only, with country code — used for the tap-to-call link.
+          - { name: phone_display, label: Phone number as shown, widget: string }
+          - { name: location_line_1, label: Address line 1, widget: string }
+          - { name: location_line_2, label: Address line 2, widget: string }
+          - { name: references, label: References line, widget: string }
+          - name: facts
+            label: Facts under the intro
+            widget: list
+            field: { name: fact, label: Fact, widget: string }
+            hint: Three short items work best.

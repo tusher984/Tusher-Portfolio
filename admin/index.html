@@ -28,20 +28,27 @@
 
 <!-- Shown only if the dashboard fails to start, so the page is never just blank. -->
 <div id="setup">
-  <h1>Dashboard not connected yet</h1>
+  <h1>Almost there — one thing left</h1>
   <p>
-    This is your content dashboard. It needs two things filled in before it can log you in.
+    This is your content dashboard: photos, videos, stories, your bio, experience,
+    skills and every heading on the site. It just needs permission to sign you in.
   </p>
   <div class="box">
-    <p><strong>Open <code>admin/config.yml</code> and set:</strong></p>
+    <p><strong>Open <code>admin/config.yml</code> and replace this one line:</strong></p>
+    <p><code>base_url: https://YOUR-LOGIN-HELPER.workers.dev</code></p>
     <p>
-      1. <code>repo:</code> — your GitHub username and repository name<br>
-      2. <code>base_url:</code> — your login helper address
+      The code you need is already in this folder, in
+      <code>admin/login-helper.js</code>, with the setup steps written at the top.
+      It takes about ten minutes and costs nothing.
     </p>
   </div>
   <p>
-    Step-by-step instructions are in <strong>README.md</strong> in the main folder,
-    under <em>“Turning on the dashboard”</em>.
+    <strong>In a hurry?</strong> You can edit everything right now without any of
+    that. In a terminal, in your site folder, run <code>npx decap-server</code>,
+    then <code>python3 -m http.server</code> in a second terminal, and open
+    <code>localhost:8000/admin/</code>. Your changes save straight to the files on
+    your computer — then <code>git push</code> to publish. Full instructions are in
+    <strong>README.md</strong>.
   </p>
   <p><a href="../">← Back to the site</a></p>
 </div>
