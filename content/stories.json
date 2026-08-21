@@ -1,21 +1,21 @@
 {
   "items": [
     {
-      "title": "The women the Family Card system could not reach",
-      "standfirst": "The newly-elected government's flagship welfare programme designed for the poorest is helping some people but excluding others, and nobody is fully sure why.",
+      "title": "Inferno Cities: Fire incidents and safety compliance in high-rise buildings",
+      "standfirst": "An analysis of fire accidents in Bangladesh shows how these incidents are not isolated but rather a terrifying reality deeply woven into everyday life.",
       "outlet": "Netra News",
-      "format": "Report",
-      "date": "2026-06-14",
-      "url": "",
+      "format": "Interactive",
+      "date": "2025-10-25",
+      "url": "https://interactive.netra.news/bangladesh-fire-incidents/",
       "featured": true
     },
     {
-      "title": "Faced with fuel shortage, Bangladesh's motorists turn to cooking gas",
-      "standfirst": "The economics of the cheaper alternative are compelling. But the risks, experts say, are not.",
+      "title": "The bridge that broke the river",
+      "standfirst": "In 1998, Bangladesh witnessed a milestone: the inauguration of the Jamuna Bridge. The 4.8-kilometre structure across the mighty Jamuna fundamentally transformed connectivity between the northern districts and the capital. But projects of this scale often come with casualties.",
       "outlet": "Netra News",
       "format": "Report",
-      "date": "2026-04-14",
-      "url": "",
+      "date": "2025-12-24",
+      "url": "https://netra.news/2025/the-bridge-that-broke-the-river/",
       "featured": true
     },
     {
@@ -24,35 +24,26 @@
       "outlet": "Netra News",
       "format": "Report",
       "date": "2026-03-22",
-      "url": "",
+      "url": "https://netra.news/2026/dhakas-waterways-matter-more/",
       "featured": true
     },
     {
-      "title": "The bridge that broke the river",
-      "standfirst": "In 1998, Bangladesh witnessed a milestone: the inauguration of the Jamuna Bridge. The 4.8-kilometre structure across the mighty Jamuna fundamentally transformed connectivity between the northern districts and the capital. But projects of this scale often come with casualties.",
+      "title": "Faced with fuel shortage, Bangladesh's motorists turn to cooking gas",
+      "standfirst": "The economics of the cheaper alternative are compelling. But the risks, experts say, are not.",
       "outlet": "Netra News",
       "format": "Report",
-      "date": "",
-      "url": "",
+      "date": "2026-04-14",
+      "url": "https://netra.news/2026/bangladeshs-motorists-turn-to-cooking-gas/",
       "featured": true
     },
     {
-      "title": "Inferno Cities",
-      "standfirst": "An analysis of fire accidents in Bangladesh shows how these incidents are not isolated but rather a terrifying reality deeply woven into everyday life.",
+      "title": "The women the Family Card system could not reach",
+      "standfirst": "The newly-elected government's flagship welfare programme designed for the poorest is helping some people but excluding others, and nobody is fully sure why.",
       "outlet": "Netra News",
-      "format": "Interactive",
-      "date": "2025-10-25",
-      "url": "https://interactive.netra.news/",
+      "format": "Report",
+      "date": "2026-06-14",
+      "url": "https://netra.news/2026/the-women-the-family-card-system-could-not-reach/",
       "featured": true
-    },
-    {
-      "title": "Fire incidents and safety compliance in high-rise buildings",
-      "standfirst": "An in-depth investigation into fire-safety compliance and the systemic risks built into Bangladesh's high-rise construction.",
-      "outlet": "Netra News",
-      "format": "Investigation",
-      "date": "2025-09-01",
-      "url": "https://interactive.netra.news/",
-      "featured": false
     }
   ]
 }
