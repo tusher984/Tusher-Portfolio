@@ -7,134 +7,150 @@ media_folder: "assets/img"
 public_folder: "/assets/img"
 
 collections:
-  - name: "stories"
+  - name: "selected_works"
     label: "1. Selected Works"
-    file: "content/stories.json"
-    description: "Manage your portfolio reports and investigations"
-    fields:
-      - label: "Stories"
-        name: "items"
-        widget: "list"
+    files:
+      - file: "content/stories.json"
+        label: "Stories List"
+        name: "stories"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Standfirst / Description", name: "standfirst", widget: "text"}
-          - {label: "Outlet Name", name: "outlet", widget: "string"}
-          - {label: "Format (e.g. Report, Interactive)", name: "format", widget: "string"}
-          - {label: "Publish Date", name: "date", widget: "date", required: false}
-          - {label: "URL Link", name: "url", widget: "string", required: false}
-          - {label: "Featured", name: "featured", widget: "boolean", default: true}
+          - label: "Stories"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Standfirst / Description", name: "standfirst", widget: "text"}
+              - {label: "Outlet Name", name: "outlet", widget: "string"}
+              - {label: "Format (e.g. Report, Interactive)", name: "format", widget: "string"}
+              - {label: "Publish Date", name: "date", widget: "date", required: false}
+              - {label: "URL Link", name: "url", widget: "string", required: false}
+              - {label: "Featured", name: "featured", widget: "boolean", default: true}
 
-  - name: "photos"
+  - name: "photography"
     label: "2. Photography"
-    file: "content/photos.json"
-    description: "Manage gallery images and captions"
-    fields:
-      - {label: "Gallery Intro", name: "intro", widget: "text"}
-      - label: "Photo Items"
-        name: "items"
-        widget: "list"
+    files:
+      - file: "content/photos.json"
+        label: "Photo Gallery"
+        name: "photos"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Caption", name: "caption", widget: "text"}
-          - {label: "Location", name: "location", widget: "string"}
-          - {label: "Year", name: "year", widget: "string"}
-          - {label: "Category", name: "category", widget: "string"}
-          - {label: "Image Path / URL", name: "image", widget: "string"}
+          - {label: "Gallery Intro", name: "intro", widget: "text"}
+          - label: "Photo Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Caption", name: "caption", widget: "text"}
+              - {label: "Location", name: "location", widget: "string"}
+              - {label: "Year", name: "year", widget: "string"}
+              - {label: "Category", name: "category", widget: "string"}
+              - {label: "Image Path / URL", name: "image", widget: "string"}
 
-  - name: "videos"
+  - name: "video_content"
     label: "3. Videos"
-    file: "content/videos.json"
-    description: "Manage broadcast & video packages"
-    fields:
-      - {label: "Section Intro", name: "intro", widget: "text"}
-      - label: "Video Items"
-        name: "items"
-        widget: "list"
+    files:
+      - file: "content/videos.json"
+        label: "Video Items"
+        name: "videos"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Description", name: "description", widget: "text"}
-          - {label: "YouTube Video ID or URL", name: "youtube_id", widget: "string", required: false}
-          - {label: "URL Link", name: "url", widget: "string", required: false}
-          - {label: "Year", name: "year", widget: "string"}
+          - {label: "Section Intro", name: "intro", widget: "text"}
+          - label: "Video Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "YouTube Video ID or URL", name: "youtube_id", widget: "string", required: false}
+              - {label: "URL Link", name: "url", widget: "string", required: false}
+              - {label: "Year", name: "year", widget: "string"}
 
-  - name: "experience"
+  - name: "work_experience"
     label: "4. Work Experience"
-    file: "content/experience.json"
-    description: "Manage newsrooms & job history"
-    fields:
-      - label: "Job Entries"
-        name: "items"
-        widget: "list"
+    files:
+      - file: "content/experience.json"
+        label: "Experience Items"
+        name: "experience"
         fields:
-          - {label: "Role / Position", name: "role", widget: "string"}
-          - {label: "Organization Name", name: "org", widget: "string"}
-          - {label: "Period (e.g. Dec 2025 — Present)", name: "period", widget: "string"}
-          - {label: "Currently Working Here", name: "current", widget: "boolean", default: false}
-          - {label: "Note (e.g. part-time)", name: "note", widget: "string", required: false}
-          - {label: "Responsibilities / Bullets", name: "bullets", widget: "list", required: false}
+          - label: "Job Entries"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Role / Position", name: "role", widget: "string"}
+              - {label: "Organization Name", name: "org", widget: "string"}
+              - {label: "Period (e.g. Dec 2025 — Present)", name: "period", widget: "string"}
+              - {label: "Currently Working Here", name: "current", widget: "boolean", default: false}
+              - {label: "Note (e.g. part-time)", name: "note", widget: "string", required: false}
+              - {label: "Responsibilities / Bullets", name: "bullets", widget: "list", required: false}
 
-  - name: "profile"
+  - name: "contact_profile"
     label: "5. Profile & Contact Info"
-    file: "content/profile.json"
-    description: "Update contact details and social media links"
-    fields:
-      - {label: "Email Address", name: "email", widget: "string"}
-      - {label: "Phone Display", name: "phone_display", widget: "string"}
-      - {label: "Location Line 1", name: "location_line_1", widget: "string", required: false}
-      - {label: "Location Line 2", name: "location_line_2", widget: "string"}
-      - {label: "References Text", name: "references", widget: "string", required: false}
-      - {label: "Quick Facts", name: "facts", widget: "list", required: false}
-      - {label: "LinkedIn URL", name: "linkedin", widget: "string", required: false}
-      - {label: "X (Twitter) URL", name: "twitter", widget: "string", required: false}
-      - {label: "Instagram URL", name: "instagram", widget: "string", required: false}
-      - {label: "Facebook URL", name: "facebook", widget: "string", required: false}
+    files:
+      - file: "content/profile.json"
+        label: "Contact Details"
+        name: "profile"
+        fields:
+          - {label: "Email Address", name: "email", widget: "string"}
+          - {label: "Phone Display", name: "phone_display", widget: "string"}
+          - {label: "Location Line 1", name: "location_line_1", widget: "string", required: false}
+          - {label: "Location Line 2", name: "location_line_2", widget: "string"}
+          - {label: "References Text", name: "references", widget: "string", required: false}
+          - {label: "Quick Facts", name: "facts", widget: "list", required: false}
+          - {label: "LinkedIn URL", name: "linkedin", widget: "string", required: false}
+          - {label: "X (Twitter) URL", name: "twitter", widget: "string", required: false}
+          - {label: "Instagram URL", name: "instagram", widget: "string", required: false}
+          - {label: "Facebook URL", name: "facebook", widget: "string", required: false}
 
-  - name: "about"
+  - name: "about_section"
     label: "6. About & Beats"
-    file: "content/about.json"
-    description: "Manage bio paragraphs and 'What I cover' cards"
-    fields:
-      - {label: "Section Eyebrow", name: "eyebrow", widget: "string"}
-      - {label: "Main Heading", name: "heading", widget: "string"}
-      - {label: "Beats Eyebrow", name: "beats_eyebrow", widget: "string"}
-      - label: "What I Cover (Beats)"
-        name: "beats"
-        widget: "list"
+    files:
+      - file: "content/about.json"
+        label: "About Details"
+        name: "about"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Description Text", name: "text", widget: "text"}
-      - {label: "Bio Paragraphs", name: "paragraphs", widget: "list"}
+          - {label: "Section Eyebrow", name: "eyebrow", widget: "string"}
+          - {label: "Main Heading", name: "heading", widget: "string"}
+          - {label: "Beats Eyebrow", name: "beats_eyebrow", widget: "string"}
+          - label: "What I Cover (Beats)"
+            name: "beats"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description Text", name: "text", widget: "text"}
+          - {label: "Bio Paragraphs", name: "paragraphs", widget: "list"}
 
-  - name: "skills"
+  - name: "skills_tools"
     label: "7. Skills & Tools"
-    file: "content/skills.json"
-    description: "Manage reporting, technical and media skills"
-    fields:
-      - label: "Skill Groups"
-        name: "groups"
-        widget: "list"
+    files:
+      - file: "content/skills.json"
+        label: "Skills Group"
+        name: "skills"
         fields:
-          - {label: "Group Title", name: "title", widget: "string"}
-          - {label: "Skills List", name: "items", widget: "list"}
+          - label: "Skill Groups"
+            name: "groups"
+            widget: "list"
+            fields:
+              - {label: "Group Title", name: "title", widget: "string"}
+              - {label: "Skills List", name: "items", widget: "list"}
 
-  - name: "credentials"
+  - name: "credentials_section"
     label: "8. Education & Fellowships"
-    file: "content/credentials.json"
-    description: "Manage education background and training"
-    fields:
-      - {label: "Education Heading Label", name: "education_label", widget: "string"}
-      - label: "Education Items"
-        name: "education"
-        widget: "list"
+    files:
+      - file: "content/credentials.json"
+        label: "Credentials Details"
+        name: "credentials"
         fields:
-          - {label: "Institution Name", name: "title", widget: "string"}
-          - {label: "Degree & Year Meta", name: "meta", widget: "string"}
-          - {label: "Result / Grade", name: "result", widget: "string", required: false}
-      - {label: "Training Heading Label", name: "training_label", widget: "string"}
-      - label: "Training & Fellowships"
-        name: "training"
-        widget: "list"
-        fields:
-          - {label: "Fellowship Title", name: "title", widget: "string"}
-          - {label: "Organization & Date Meta", name: "meta", widget: "string"}
-          - {label: "Result / Note", name: "result", widget: "string", required: false}
+          - {label: "Education Heading Label", name: "education_label", widget: "string"}
+          - label: "Education Items"
+            name: "education"
+            widget: "list"
+            fields:
+              - {label: "Institution Name", name: "title", widget: "string"}
+              - {label: "Degree & Year Meta", name: "meta", widget: "string"}
+              - {label: "Result / Grade", name: "result", widget: "string", required: false}
+          - {label: "Training Heading Label", name: "training_label", widget: "string"}
+          - label: "Training & Fellowships"
+            name: "training"
+            widget: "list"
+            fields:
+              - {label: "Fellowship Title", name: "title", widget: "string"}
+              - {label: "Organization & Date Meta", name: "meta", widget: "string"}
+              - {label: "Result / Note", name: "result", widget: "string", required: false}
