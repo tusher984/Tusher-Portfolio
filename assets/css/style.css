@@ -115,7 +115,6 @@ p:last-child { margin-bottom: 0; }
 .hero { padding-block: clamp(3rem, 7vw, 6.5rem) clamp(3.5rem, 7vw, 6rem); }
 .hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; position: relative; z-index: 2;}
 
-/* Fix for layer overlapping buttons */
 .hero-grid > div:first-child { position: relative; z-index: 10; } 
 
 .hero h1 { font-size: var(--fs-hero); font-weight: 700; letter-spacing: -0.035em; margin: 0.5rem 0 1.25rem; }
@@ -182,38 +181,50 @@ a.index-row:hover .index-go, a.index-row:focus-visible .index-go { opacity: 1; t
 .teaser-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: clamp(1.75rem, 3vw, 2.5rem); }
 .teaser-head h2 { font-size: var(--fs-h2); }
 
-/* Photo Masonry Layout — Professional Look */
+/* Photo Masonry Layout — High-End Professional Look */
 .photo-strip {
   display: block !important;
   column-count: 4;
-  column-gap: 1rem;
+  column-gap: 1.25rem; /* Perfect uniform horizontal gap */
 }
 
 .photo-strip a {
-  display: inline-block !important;
+  position: relative;
+  display: block !important; 
   width: 100% !important;
-  margin-bottom: 1rem;
-  border-radius: var(--radius);
+  margin-bottom: 1.25rem; /* Perfect uniform vertical gap */
+  border-radius: 6px; /* Slightly smoother corners for modern feel */
   background: var(--wash-2);
   overflow: hidden;
   break-inside: avoid;
+  transform: translateZ(0); /* Hardware acceleration for smooth zoom */
+  box-shadow: 0 4px 10px rgba(15, 27, 29, 0.05); /* Subtle resting shadow */
+  transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.photo-strip a:hover {
+  box-shadow: 0 12px 30px rgba(15, 27, 29, 0.15); /* Deep shadow on hover */
+  transform: translateY(-4px); /* Professional subtle lift effect */
+  z-index: 2;
 }
 
 .photo-strip img {
   width: 100% !important;
   height: auto !important;
   display: block;
-  transition: transform 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+  transform-origin: center;
 }
 
 .photo-strip a:hover img {
-  transform: scale(1.04);
+  transform: scale(1.04); /* Smooth interior zoom */
 }
 
 /* Tablet (৩ কলাম) */
 @media (max-width: 900px) {
   .photo-strip {
     column-count: 3;
+    column-gap: 1.25rem;
   }
 }
 
@@ -221,6 +232,10 @@ a.index-row:hover .index-go, a.index-row:focus-visible .index-go { opacity: 1; t
 @media (max-width: 600px) {
   .photo-strip {
     column-count: 2;
+    column-gap: 0.85rem;
+  }
+  .photo-strip a {
+    margin-bottom: 0.85rem;
   }
 }
 
