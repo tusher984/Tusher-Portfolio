@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 7. Load SKILLS
   loadJSON('./content/skills.json').then(data => {
     if (!data) return;
-    const skills = document.getElementById('skills');
+    const skills = document.querySelector('.skills'); // Changed from ID to class to match current HTML
     if (skills && data.groups) {
       skills.innerHTML = data.groups.map(grp => `
         <div class="skill-group" data-reveal>
@@ -182,57 +182,64 @@ document.addEventListener('DOMContentLoaded', () => {
           ${story.url ? '<div class="index-go" aria-hidden="true">→</div>' : '<div class="index-pending">Pending</div>'}
         </a>
       `).join('');
+      revealElements();
     }
   });
 
-  // 9. Load PHOTOS
+  // 9. Load PHOTOS (Shows ALL photos with original URL link)
   loadJSON('./content/photos.json').then(data => {
     if (!data) return;
     const photoStrip = document.getElementById('photo-strip');
     if (photoStrip && data.items) {
-      const photos = data.items.slice(0, 4); 
-      photoStrip.innerHTML = photos.map(photo => `
-        <a href="photos.html">
-          <img src="${photo.image}" alt="${photo.title}" loading="lazy">
-        </a>
-      `).join('');
+      const photos = data.items; 
+      photoStrip.innerHTML = photos.map(photo => {
+        const imgUrl = photo.image || photo.src || photo.url;
+        const fullUrl = photo.url || imgUrl;
+        const title = photo.title || photo.caption || 'Photography';
+        return `
+          <a href="${fullUrl}" target="_blank" rel="noopener" title="${title}">
+            <img src="${imgUrl}" alt="${title}" loading="lazy">
+          </a>
+        `;
+      }).join('');
+      revealElements();
+    }
+  });
+
+  // 10. Load VIDEOS (Shows ALL videos with direct YouTube links)
+  loadJSON('./content/videos.json').then(data => {
+    if (!data) return;
+    const videoStrip = document.getElementById('video-strip');
+    if (videoStrip && data.items) {
+      const videos = data.items;
+      
+      videoStrip.innerHTML = videos.map(video => {
+        // Extract YouTube ID if full URL is given
+        const ytMatch = (video.youtube_id || video.url || '').match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+        const ytId = ytMatch ? ytMatch[1] : (video.youtube_id && video.youtube_id.length === 11 ? video.youtube_id : '');
+        
+        // Auto-generate YouTube thumbnail if custom thumbnail is missing
+        const thumbUrl = (video.thumbnail && video.thumbnail.trim() !== '') 
+          ? video.thumbnail 
+          : (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '');
+
+        const videoUrl = video.url || (ytId ? `https://www.youtube.com/watch?v=${ytId}` : '#');
+
+        return `
+          <div class="video-card">
+            <a class="video-thumb" href="${videoUrl}" target="_blank" rel="noopener">
+              <img src="${thumbUrl}" alt="${video.title || 'Video'}" loading="lazy">
+              <div class="play"><span>▶</span></div>
+            </a>
+            <h3>${video.title || ''}</h3>
+            <p class="v-meta">${video.year || ''} ${video.outlet ? '· <span class="v-outlet">' + video.outlet + '</span>' : ''}</p>
+          </div>
+        `;
+      }).join('');
+      revealElements();
     }
   });
 
   // Reveal initial elements
   setTimeout(revealElements, 150);
 });
-// 10. Load Video Teaser (Shows up to 3 video thumbnails)
-  const videoStrip = document.getElementById('video-strip');
-  if (videoStrip) {
-    fetch('./content/videos.json')
-      .then(res => res.json())
-      .then(data => {
-        if (data.items && data.items.length > 0) {
-          const videos = data.items.slice(0, 3);
-          
-          videoStrip.innerHTML = videos.map(video => {
-            // Extract YouTube ID if full URL is given
-            const ytMatch = (video.youtube_id || video.url || '').match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
-            const ytId = ytMatch ? ytMatch[1] : (video.youtube_id && video.youtube_id.length === 11 ? video.youtube_id : '');
-            
-            // Auto-generate YouTube thumbnail if custom thumbnail is missing
-            const thumbUrl = (video.thumbnail && video.thumbnail.trim() !== '') 
-              ? video.thumbnail 
-              : (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '');
-
-            return `
-              <div class="video-card">
-                <a class="video-thumb" href="${video.url || 'videos.html'}" target="_blank" rel="noopener">
-                  <img src="${thumbUrl}" alt="${video.title || 'Video'}" loading="lazy">
-                  <div class="play"><span>▶</span></div>
-                </a>
-                <h3>${video.title || ''}</h3>
-                <p class="v-meta">${video.year || ''} ${video.outlet ? '· <span class="v-outlet">' + video.outlet + '</span>' : ''}</p>
-              </div>
-            `;
-          }).join('');
-        }
-      })
-      .catch(err => console.error('Error fetching videos:', err));
-  }
