@@ -919,16 +919,15 @@ a.index-row:focus-visible .index-go { opacity: 1; transform: translateX(0); }
    ======================================================================== */
 
 [data-reveal] {
-  opacity: 0;
-  transform: translateY(18px);
+  opacity: 1;
+  transform: none;
   transition: opacity 0.7s cubic-bezier(0.2, 0, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0, 0.2, 1);
 }
 [data-reveal].is-in { opacity: 1; transform: none; }
 
 .hero [data-seq] {
-  opacity: 0;
-  transform: translateY(14px);
-  animation: seq 0.8s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+  opacity: 1;
+  transform: none;
 }
 @keyframes seq { to { opacity: 1; transform: none; } }
 
@@ -954,9 +953,4 @@ a.index-row:focus-visible .index-go { opacity: 1; transform: translateX(0); }
   .contact h2, .contact-meta p, .contact-meta a { color: var(--ink); }
   .section { padding-block: 1.5rem; page-break-inside: avoid; }
   a { text-decoration: none; color: var(--ink); }
-}
-[data-reveal], [data-seq] {
-  opacity: 1 !important;
-  transform: none !important;
-  visibility: visible !important;
 }
