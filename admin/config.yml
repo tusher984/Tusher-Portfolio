@@ -69,7 +69,7 @@ collections:
               - {label: "Location", name: "location", widget: "string"}
               - {label: "Year", name: "year", widget: "string"}
               - {label: "Category", name: "category", widget: "string"}
-              - {label: "Image Path", name: "image", widget: "string"}
+              - {label: "Image Upload", name: "image", widget: "image"}
 
       - file: "content/videos.json"
         label: "5. Videos Section"
@@ -83,6 +83,8 @@ collections:
               - {label: "Title", name: "title", widget: "string"}
               - {label: "Description", name: "description", widget: "text"}
               - {label: "YouTube ID / Link", name: "youtube_id", widget: "string", required: false}
+              - {label: "Upload Video File (Optional)", name: "url", widget: "file", required: false}
+              - {label: "Upload Custom Thumbnail", name: "thumbnail", widget: "image", required: false}
               - {label: "Year", name: "year", widget: "string"}
 
       - file: "content/experience.json"
