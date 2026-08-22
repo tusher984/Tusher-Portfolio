@@ -3,23 +3,55 @@
   "groups": [
     {
       "title": "Journalism & research",
-      "items": ["Investigative reporting", "Field research", "Interviewing", "Fact-checking", "Data research", "Document analysis"]
-    },
-    {
-      "title": "Multimedia",
-      "items": ["Video production", "Photography", "Scripting", "Video editing", "Voice-over", "Storytelling"]
-    },
-    {
-      "title": "Digital & audience",
-      "items": ["Content planning", "Digital publishing", "Social content", "Audience engagement"]
-    },
-    {
-      "title": "Code & interactives",
-      "items": ["HTML", "CSS", "JavaScript", "Interactive maps", "Data visualisation", "AI-assisted coding"]
+      "items": [
+        "Investigative reporting",
+        "Field research",
+        "Interviewing",
+        "Fact-checking",
+        "Data research",
+        "Document analysis"
+      ]
     },
     {
       "title": "Software",
-      "items": ["Premiere Pro", "Photoshop", "After Effects", "DaVinci Resolve", "Google Earth Pro"]
+      "items": [
+        "Premiere Pro",
+        "Photoshop",
+        "After Effects",
+        "DaVinci Resolve",
+        "Google Earth Pro"
+      ]
+    },
+    {
+      "title": "Multimedia",
+      "items": [
+        "Video production",
+        "Photography",
+        "Scripting",
+        "Video editing",
+        "Voice-over",
+        "Storytelling"
+      ]
+    },
+    {
+      "title": "Code & interactives",
+      "items": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Interactive maps",
+        "Data visualisation",
+        "AI-assisted coding"
+      ]
+    },
+    {
+      "title": "Digital & audience",
+      "items": [
+        "Content planning",
+        "Digital publishing",
+        "Social content",
+        "Audience engagement"
+      ]
     }
   ]
 }
