@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => console.error('Error loading stories:', error));
   }
 
-  // 4. Load Photography Teaser (Shows first 4 images)
+  // 4. Load Photography Teaser
   const photoStrip = document.getElementById('photo-strip');
   if (photoStrip) {
     fetch('./content/photos.json')
@@ -62,4 +62,27 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(error => console.error('Error loading photos:', error));
   }
+
+  // 5. Load Contact Profile Data
+  fetch('./content/profile.json')
+    .then(response => response.json())
+    .then(data => {
+      // Update text contents (email, phone, location)
+      document.querySelectorAll('[data-profile]').forEach(el => {
+        const key = el.getAttribute('data-profile');
+        if (data[key] && data[key].trim() !== '') {
+          el.textContent = data[key];
+        }
+      });
+
+      // Update actual links for email (mailto) and phone (tel)
+      document.querySelectorAll('[data-profile-href]').forEach(el => {
+        const key = el.getAttribute('data-profile-href');
+        if (data[key] && data[key].trim() !== '') {
+          if (key === 'email') el.href = 'mailto:' + data[key];
+          if (key === 'phone') el.href = 'tel:' + data[key].replace(/\s+/g, '');
+        }
+      });
+    })
+    .catch(error => console.error('Error loading profile:', error));
 });
