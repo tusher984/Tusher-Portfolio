@@ -971,3 +971,96 @@ a.index-row:focus-visible .index-go { opacity: 1; transform: translateX(0); }
   animation: seq 0.8s cubic-bezier(0.2, 0, 0.2, 1) forwards;
 }
 @keyframes seq { to { opacity: 1; transform: none; } }
+/* ========================================================================
+   Contact Section (Pro Dark Theme)
+   ======================================================================== */
+
+.contact {
+  background: var(--accent-deep, #1d4e54);
+  color: #ffffff;
+  padding-block: var(--sec-y, 5rem);
+}
+
+.contact .eyebrow {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.contact .eyebrow::after {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.contact h2 {
+  font-size: var(--fs-h2);
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.contact .lead {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--fs-lead);
+  max-width: 54ch;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.contact-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-meta h3 {
+  font-family: var(--mono);
+  font-size: var(--fs-mono, 0.75rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.75rem;
+}
+
+.contact-meta p {
+  color: #ffffff;
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius, 3px);
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.socials a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
