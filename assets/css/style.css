@@ -955,3 +955,8 @@ a.index-row:focus-visible .index-go { opacity: 1; transform: translateX(0); }
   .section { padding-block: 1.5rem; page-break-inside: avoid; }
   a { text-decoration: none; color: var(--ink); }
 }
+[data-reveal], [data-seq] {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
