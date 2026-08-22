@@ -202,3 +202,37 @@ document.addEventListener('DOMContentLoaded', () => {
   // Reveal initial elements
   setTimeout(revealElements, 150);
 });
+// 10. Load Video Teaser (Shows up to 3 video thumbnails)
+  const videoStrip = document.getElementById('video-strip');
+  if (videoStrip) {
+    fetch('./content/videos.json')
+      .then(res => res.json())
+      .then(data => {
+        if (data.items && data.items.length > 0) {
+          const videos = data.items.slice(0, 3);
+          
+          videoStrip.innerHTML = videos.map(video => {
+            // Extract YouTube ID if full URL is given
+            const ytMatch = (video.youtube_id || video.url || '').match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+            const ytId = ytMatch ? ytMatch[1] : (video.youtube_id && video.youtube_id.length === 11 ? video.youtube_id : '');
+            
+            // Auto-generate YouTube thumbnail if custom thumbnail is missing
+            const thumbUrl = (video.thumbnail && video.thumbnail.trim() !== '') 
+              ? video.thumbnail 
+              : (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '');
+
+            return `
+              <div class="video-card">
+                <a class="video-thumb" href="${video.url || 'videos.html'}" target="_blank" rel="noopener">
+                  <img src="${thumbUrl}" alt="${video.title || 'Video'}" loading="lazy">
+                  <div class="play"><span>▶</span></div>
+                </a>
+                <h3>${video.title || ''}</h3>
+                <p class="v-meta">${video.year || ''} ${video.outlet ? '· <span class="v-outlet">' + video.outlet + '</span>' : ''}</p>
+              </div>
+            `;
+          }).join('');
+        }
+      })
+      .catch(err => console.error('Error fetching videos:', err));
+  }

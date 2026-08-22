@@ -176,18 +176,18 @@
   <!-- ================= VIDEO TEASER ================= -->
   <section class="section">
     <div class="wrap">
-      <div class="teaser-head" data-reveal style="align-items: center;">
+      <div class="teaser-head" data-reveal>
         <div>
           <p class="eyebrow" data-t="video.eyebrow">Video</p>
           <h2 data-t="video.heading">Broadcast &amp; documentary</h2>
-          <p style="margin-top: 0.5rem; color: var(--muted); font-size: var(--fs-small);">
-            Explore video reporting, news packages, and short documentaries.
-          </p>
         </div>
-        <a class="btn btn--solid" href="videos.html">
-          <span>Watch all videos</span> <span class="arrow" aria-hidden="true">→</span>
+        <a class="textlink" href="videos.html">
+          <span data-t="video.link_label">View all video work</span> <span aria-hidden="true">→</span>
         </a>
       </div>
+      
+      <!-- এখানে অটোমেটিক ৩টি ভিডিও থাম্বনেইল লোড হবে -->
+      <div class="video-grid" id="video-strip" data-reveal></div>
     </div>
   </section>
 
