@@ -40,12 +40,20 @@
       "image": "assets/img/al-amin-tusher_01303043314_01.jpg"
     },
     {
-      "image": "/assets/img/dji_20251110120523_0104_d_1.jpg",
+      "image": "/assets/img/dji_fly_20251126_154338_0057_1764150443835_photo.jpg",
       "caption": "\n",
       "location": "  ",
       "title": "  Replace with your photograph",
       "category": "  ",
       "year": "  "
+    },
+    {
+      "image": "/assets/img/dji_20251110120523_0104_d_1.jpg",
+      "title": " ",
+      "caption": " ",
+      "location": " ",
+      "year": " ",
+      "category": " "
     }
   ]
 }
