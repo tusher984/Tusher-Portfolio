@@ -131,13 +131,14 @@ collections:
               - {label: "Meta Details", name: "meta", widget: "string"}
 
       - file: "content/profile.json"
-        label: "9. Contact, Socials & Quick Facts"
+        label: "9. Contact, Socials & Location"
         name: "profile"
         fields:
           - {label: "Email Address", name: "email", widget: "string"}
           - {label: "Phone Display Number", name: "phone_display", widget: "string"}
-          - {label: "Location Line 1", name: "location_line_1", widget: "string", required: false}
-          - {label: "Location Line 2", name: "location_line_2", widget: "string"}
+          - {label: "Address Line 1 (Optional - Leave empty to hide)", name: "location_line_1", widget: "string", required: false}
+          - {label: "Address Line 2 (City, Country)", name: "location_line_2", widget: "string", required: false}
+          - {label: "References Text (Leave empty to hide)", name: "references", widget: "string", required: false}
           - {label: "Quick Facts", name: "facts", widget: "list", required: false}
           - {label: "LinkedIn URL", name: "linkedin", widget: "string", required: false}
           - {label: "X (Twitter) URL", name: "twitter", widget: "string", required: false}
