@@ -51,15 +51,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 3. Load PHOTOS (Shows ALL photos with original URL link)
+  // 3. Load PHOTOS (With broken image path fix)
   loadJSON('./content/photos.json').then(data => {
     if (!data) return;
     const photoStrip = document.getElementById('photo-strip');
     if (photoStrip && data.items) {
-      const photos = data.items; 
-      photoStrip.innerHTML = photos.map(photo => {
-        const imgUrl = photo.image || photo.src || photo.url;
-        const fullUrl = photo.url || imgUrl;
+      photoStrip.innerHTML = data.items.map(photo => {
+        let imgUrl = photo.image || photo.src || photo.url || '';
+        
+        // FIX: If path starts with /, prepend a dot to make it relative
+        if (imgUrl.startsWith('/')) imgUrl = '.' + imgUrl; 
+
+        let fullUrl = photo.url || imgUrl;
+        if (fullUrl.startsWith('/')) fullUrl = '.' + fullUrl;
+
         const title = photo.title || photo.caption || 'Photography';
         return `
           <a href="${fullUrl}" target="_blank" rel="noopener" title="${title}" data-reveal>
@@ -71,18 +76,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 4. Load VIDEOS (Shows ALL videos with direct YouTube links)
+  // 4. Load VIDEOS (With broken image/video path fix)
   loadJSON('./content/videos.json').then(data => {
     if (!data) return;
     const videoStrip = document.getElementById('video-strip');
     if (videoStrip && data.items) {
-      const videos = data.items;
-      
-      videoStrip.innerHTML = videos.map(video => {
+      videoStrip.innerHTML = data.items.map(video => {
         const ytMatch = (video.youtube_id || video.url || '').match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
         const ytId = ytMatch ? ytMatch[1] : (video.youtube_id && video.youtube_id.length === 11 ? video.youtube_id : '');
-        const thumbUrl = (video.thumbnail && video.thumbnail.trim() !== '') ? video.thumbnail : (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '');
-        const videoUrl = video.url || (ytId ? `https://www.youtube.com/watch?v=${ytId}` : '#');
+        
+        let thumbUrl = (video.thumbnail && video.thumbnail.trim() !== '') ? video.thumbnail : (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '');
+        
+        // FIX: If thumbnail path starts with /, prepend a dot
+        if (thumbUrl.startsWith('/')) thumbUrl = '.' + thumbUrl;
+
+        let videoUrl = video.url || (ytId ? `https://www.youtube.com/watch?v=${ytId}` : '#');
+        
+        // FIX: If video file path starts with /, prepend a dot
+        if (videoUrl.startsWith('/')) videoUrl = '.' + videoUrl;
 
         return `
           <div class="video-card" data-reveal>

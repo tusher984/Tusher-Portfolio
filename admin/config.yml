@@ -4,7 +4,7 @@ backend:
   branch: main
 
 media_folder: "assets/img"
-public_folder: "/assets/img"
+public_folder: "assets/img"
 
 collections:
   - name: "website_sections"
