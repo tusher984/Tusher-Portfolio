@@ -63,14 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => console.error('Error loading photos:', error));
   }
 
-  // 5. Load Contact Profile Data
-  fetch('./content/profile.json')
+ // 5. Load Contact Profile Data (With Cache Buster)
+  fetch('./content/profile.json?v=' + new Date().getTime())
     .then(response => response.json())
     .then(data => {
       // Update text contents (email, phone, location)
       document.querySelectorAll('[data-profile]').forEach(el => {
-        const key = el.getAttribute('data-profile');
-        if (data[key] && data[key].trim() !== '') {
+        let key = el.getAttribute('data-profile');
+        
+        // ড্যাশবোর্ডে phone_display এডিট করলে যেন সেটা কাজ করে
+        if (key === 'phone' && data['phone_display']) {
+            el.textContent = data['phone_display'];
+        } else if (data[key] && data[key].trim() !== '') {
           el.textContent = data[key];
         }
       });
@@ -85,4 +89,3 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })
     .catch(error => console.error('Error loading profile:', error));
-});
