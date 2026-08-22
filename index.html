@@ -8,7 +8,7 @@
 <meta name="author" content="Md. Al Amin Tusher">
 <link rel="canonical" href="https://tusher984.github.io/Tusher-Portfolio/">
 
-<!-- Social sharing preview. -->
+<!-- Social sharing preview -->
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://tusher984.github.io/Tusher-Portfolio/">
 <meta property="og:title" content="Md. Al Amin Tusher — Investigative &amp; Multimedia Journalist">
@@ -25,7 +25,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <noscript><style>[data-reveal],.hero [data-seq]{opacity:1!important;transform:none!important;animation:none!important}</style></noscript>
-
 
 <script type="application/ld+json">
 {
@@ -64,8 +63,8 @@
     </button>
     <nav class="nav" id="primary-nav" aria-label="Primary">
       <a href="#work">Work</a>
-      <a href="photos.html">Photography</a>
-      <a href="videos.html">Video</a>
+      <a href="#photography">Photography</a>
+      <a href="#video">Video</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -152,41 +151,28 @@
           data projects. Reporting and analysis are my own unless noted.
         </p>
       </div>
-      <!-- Rows are generated from content/stories.json -->
       <div class="index-list" id="story-index" aria-live="polite"></div>
     </div>
   </section>
 
-  <!-- ================= PHOTOGRAPHY TEASER ================= -->
-  <section class="section section--wash">
+  <!-- ================= PHOTOGRAPHY ================= -->
+  <section class="section section--wash" id="photography">
     <div class="wrap">
-      <div class="teaser-head" data-reveal>
-        <div>
-          <p class="eyebrow" data-t="photography.eyebrow">Photography</p>
-          <h2 data-t="photography.heading">Documentary photography</h2>
-        </div>
-        <a class="textlink" href="photos.html">
-          <span data-t="photography.link_label">View the gallery</span> <span aria-hidden="true">→</span>
-        </a>
+      <div class="section-head" data-reveal>
+        <p class="eyebrow" data-t="photography.eyebrow">Photography</p>
+        <h2 data-t="photography.heading">Documentary photography</h2>
       </div>
       <div class="photo-strip" id="photo-strip" data-reveal></div>
     </div>
   </section>
 
-  <!-- ================= VIDEO TEASER ================= -->
-  <section class="section">
+  <!-- ================= VIDEO ================= -->
+  <section class="section" id="video">
     <div class="wrap">
-      <div class="teaser-head" data-reveal>
-        <div>
-          <p class="eyebrow" data-t="video.eyebrow">Video</p>
-          <h2 data-t="video.heading">Broadcast &amp; documentary</h2>
-        </div>
-        <a class="textlink" href="videos.html">
-          <span data-t="video.link_label">View all video work</span> <span aria-hidden="true">→</span>
-        </a>
+      <div class="section-head" data-reveal>
+        <p class="eyebrow" data-t="video.eyebrow">Video</p>
+        <h2 data-t="video.heading">Broadcast &amp; documentary</h2>
       </div>
-      
-      <!-- এখানে অটোমেটিক ৩টি ভিডিও থাম্বনেইল লোড হবে -->
       <div class="video-grid" id="video-strip" data-reveal></div>
     </div>
   </section>
@@ -298,13 +284,13 @@
   </section>
 
   <!-- ================= SKILLS ================= -->
-  <section class="section section--wash">
+  <section class="section section--wash" id="skills">
     <div class="wrap">
       <div class="section-head" data-reveal>
         <p class="eyebrow" data-t="skills.eyebrow">Skills &amp; tools</p>
         <h2 data-t="skills.heading">How the work gets made</h2>
       </div>
-      <div class="skills" id="skills">
+      <div class="skills" id="skills-grid">
         <div class="skill-group" data-reveal>
           <h3>Journalism &amp; research</h3>
           <ul class="tags">
@@ -343,12 +329,13 @@
       </div>
     </div>
   </section>
-<!-- ================= CREDENTIALS ================= -->
-  <section class="section">
+
+  <!-- ================= CREDENTIALS ================= -->
+  <section class="section" id="credentials">
     <div class="wrap">
       <div class="section-head" data-reveal>
         <p class="eyebrow" data-c="credentials_eyebrow">Credentials</p>
-        <h2 data-c="credentials_heading">Education, fellowships &amp; training</h2>
+        <h2 data-c="credentials_heading">Education, fellowships &amp; Training</h2>
       </div>
       <div class="cred-grid">
         <div data-reveal>
@@ -403,46 +390,45 @@
       </div>
     </div>
   </section>
-<!-- ================= CONTACT ================= -->
-<section class="section contact" id="contact" data-reveal>
-  <div class="wrap">
-    <p class="eyebrow" data-t="contact.eyebrow">Contact</p>
-    <h2 data-t="contact.heading">Working on a story I should know about?</h2>
-    <p class="lead" data-t="contact.lead">
-      Available for investigative assignments, commissions, fixing and collaborations in Bangladesh. Documents and tips welcome.
-    </p>
 
-    <div class="contact-actions">
-      <a class="btn btn--light" href="mailto:md.alamintusher@gmail.com" data-profile-href="email">
-        <span data-profile="email">md.alamintusher@gmail.com</span>
-      </a>
-      <a class="btn btn--outline-light" href="tel:+8801303043314" data-profile-href="phone">
-        <span data-profile="phone">+880 1303 043314</span>
-      </a>
-    </div>
+  <!-- ================= CONTACT ================= -->
+  <section class="section contact" id="contact" data-reveal>
+    <div class="wrap">
+      <p class="eyebrow" data-t="contact.eyebrow">Contact</p>
+      <h2 data-t="contact.heading">Working on a story I should know about?</h2>
+      <p class="lead" data-t="contact.lead">
+        Available for investigative assignments, commissions, fixing and collaborations in Bangladesh. Documents and tips welcome.
+      </p>
 
-    <div class="contact-meta">
-      <div>
-        <h3 data-t="contact.based_in_label">Based in</h3>
-        <p>
-          <span data-profile="location_line_2">Dhaka, Bangladesh</span>
-        </p>
+      <div class="contact-actions">
+        <a class="btn btn--light" href="mailto:md.alamintusher@gmail.com" data-profile-href="email">
+          <span data-profile="email">md.alamintusher@gmail.com</span>
+        </a>
+        <a class="btn btn--outline-light" href="tel:+8801303043314" data-profile-href="phone">
+          <span data-profile="phone">+880 1303 043314</span>
+        </a>
       </div>
 
-      <div>
-        <h3 data-t="contact.elsewhere_label">Social Media</h3>
-        <ul class="socials" id="socials">
-          <li><a href="https://www.linkedin.com/in/md-al-amin-tusher-607138170/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://x.com/Alamin984" target="_blank" rel="noopener">X</a></li>
-          <li><a href="https://www.instagram.com/alamin_visuals/" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.facebook.com/md.alamintusher984/" target="_blank" rel="noopener">Facebook</a></li>
-        </ul>
+      <div class="contact-meta">
+        <div>
+          <h3 data-t="contact.based_in_label">Based in</h3>
+          <p>
+            <span data-profile="location_line_2">Dhaka, Bangladesh</span>
+          </p>
+        </div>
+
+        <div>
+          <h3 data-t="contact.elsewhere_label">Social Media</h3>
+          <ul class="socials" id="socials">
+            <li><a href="https://www.linkedin.com/in/md-al-amin-tusher-607138170/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://x.com/Alamin984" target="_blank" rel="noopener">X</a></li>
+            <li><a href="https://www.instagram.com/alamin_visuals/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/md.alamintusher984/" target="_blank" rel="noopener">Facebook</a></li>
+          </ul>
+        </div>
       </div>
-
-
     </div>
-  </div>
-</section>
+  </section>
 
 </main>
 
