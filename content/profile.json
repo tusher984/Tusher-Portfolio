@@ -1,14 +1,18 @@
 {
-  "_note": "Contact details and the short facts strip on the homepage. The bio, headline and section text live directly in index.html.",
+  "_note": "Contact details and the short facts strip on the homepage.",
   "email": "md.alamintusher@gmail.com",
   "phone": "+880 1521 435491",
   "phone_display": "+880 1303 043314",
   "location_line_1": "",
   "location_line_2": "Dhaka, Bangladesh",
-  "references": "  ",
+  "references": "",
   "facts": [
     "5+ years reporting",
     "Netra News · OCCRP",
     "Bengali & English"
-  ]
+  ],
+  "linkedin": "",
+  "twitter": "",
+  "instagram": "",
+  "facebook": ""
 }
