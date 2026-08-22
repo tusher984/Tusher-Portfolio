@@ -182,13 +182,47 @@ a.index-row:hover .index-go, a.index-row:focus-visible .index-go { opacity: 1; t
 .teaser-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: clamp(1.75rem, 3vw, 2.5rem); }
 .teaser-head h2 { font-size: var(--fs-h2); }
 
-/* Photo Grid Layout — Force Side by Side */
-.photo-strip { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 1rem !important; align-items: start !important; }
-.photo-strip a { display: block !important; width: 100% !important; border-radius: var(--radius); background: var(--wash-2); overflow: hidden; }
-.photo-strip img { width: 100% !important; height: auto !important; display: block; transition: transform 0.4s ease; }
-.photo-strip a:hover img { transform: scale(1.04); }
-@media (max-width: 900px) { .photo-strip { grid-template-columns: repeat(3, 1fr) !important; } }
-@media (max-width: 600px) { .photo-strip { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem !important; } }
+/* Photo Masonry Layout — Professional Look */
+.photo-strip {
+  display: block !important;
+  column-count: 4;
+  column-gap: 1rem;
+}
+
+.photo-strip a {
+  display: inline-block !important;
+  width: 100% !important;
+  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  background: var(--wash-2);
+  overflow: hidden;
+  break-inside: avoid;
+}
+
+.photo-strip img {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.photo-strip a:hover img {
+  transform: scale(1.04);
+}
+
+/* Tablet (৩ কলাম) */
+@media (max-width: 900px) {
+  .photo-strip {
+    column-count: 3;
+  }
+}
+
+/* Mobile (২ কলাম) */
+@media (max-width: 600px) {
+  .photo-strip {
+    column-count: 2;
+  }
+}
 
 /* Video Grid Layout */
 .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(1.5rem, 3vw, 2.5rem); }
