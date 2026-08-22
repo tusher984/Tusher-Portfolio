@@ -9,14 +9,6 @@
   "items": [
     {
       "title": "Replace with your photograph",
-      "caption": "Open the dashboard, upload an image, and write a caption here.",
-      "location": "Dhaka",
-      "year": "2026",
-      "category": "Environment",
-      "image": "assets/img/dsc05711-2.jpg"
-    },
-    {
-      "title": "Replace with your photograph",
       "caption": "Landscape frames sit naturally in the grid alongside vertical ones.",
       "location": "Buriganga",
       "year": "2026",
@@ -46,38 +38,6 @@
       "year": "2025",
       "category": "Reportage",
       "image": "assets/img/gallery/placeholder-05.svg"
-    },
-    {
-      "title": "Replace with your photograph",
-      "caption": "Images load only as the reader scrolls to them, so the page stays fast.",
-      "location": "Rampura",
-      "year": "2024",
-      "category": "Urban life",
-      "image": "assets/img/gallery/placeholder-06.svg"
-    },
-    {
-      "title": "Replace with your photograph",
-      "caption": "Delete any entry you don't need from the dashboard.",
-      "location": "Sundarbans",
-      "year": "2024",
-      "category": "Environment",
-      "image": "assets/img/gallery/placeholder-07.svg"
-    },
-    {
-      "title": "Replace with your photograph",
-      "caption": "Drag entries to reorder how they appear in the gallery.",
-      "location": "Dhaka",
-      "year": "2024",
-      "category": "Reportage",
-      "image": "assets/img/gallery/placeholder-08.svg"
-    },
-    {
-      "title": "Replace with your photograph",
-      "caption": "Add as many photographs as you like — the grid keeps growing.",
-      "location": "Narayanganj",
-      "year": "2023",
-      "category": "Portraits",
-      "image": "assets/img/gallery/placeholder-09.svg"
     }
   ]
 }
