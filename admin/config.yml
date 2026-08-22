@@ -7,14 +7,44 @@ media_folder: "assets/img"
 public_folder: "/assets/img"
 
 collections:
-  - name: "selected_works"
-    label: "1. Selected Works"
+  - name: "website_sections"
+    label: "All Website Content & Pages"
     files:
+      - file: "content/site.json"
+        label: "1. Homepage Titles & Texts"
+        name: "site"
+        fields:
+          - label: "Hero Intro"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Eyebrow Text", name: "eyebrow", widget: "string"}
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Tagline", name: "tagline", widget: "string"}
+              - {label: "Lead Paragraph", name: "lead", widget: "text"}
+              - {label: "Primary Button Text", name: "cta_primary", widget: "string", required: false}
+              - {label: "Secondary Button Text", name: "cta_secondary", widget: "string", required: false}
+
+      - file: "content/about.json"
+        label: "2. About & What I Cover"
+        name: "about"
+        fields:
+          - {label: "Section Eyebrow", name: "eyebrow", widget: "string"}
+          - {label: "Heading", name: "heading", widget: "string"}
+          - {label: "Beats Eyebrow", name: "beats_eyebrow", widget: "string"}
+          - label: "What I Cover (Beats)"
+            name: "beats"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description Text", name: "text", widget: "text"}
+          - {label: "Bio Paragraphs", name: "paragraphs", widget: "list"}
+
       - file: "content/stories.json"
-        label: "Stories List"
+        label: "3. Selected Works (Stories)"
         name: "stories"
         fields:
-          - label: "Stories"
+          - label: "Story Items"
             name: "items"
             widget: "list"
             fields:
@@ -24,16 +54,12 @@ collections:
               - {label: "Format (e.g. Report, Interactive)", name: "format", widget: "string"}
               - {label: "Publish Date", name: "date", widget: "date", required: false}
               - {label: "URL Link", name: "url", widget: "string", required: false}
-              - {label: "Featured", name: "featured", widget: "boolean", default: true}
 
-  - name: "photography"
-    label: "2. Photography"
-    files:
       - file: "content/photos.json"
-        label: "Photo Gallery"
+        label: "4. Photography Section"
         name: "photos"
         fields:
-          - {label: "Gallery Intro", name: "intro", widget: "text"}
+          - {label: "Intro Text", name: "intro", widget: "text"}
           - label: "Photo Items"
             name: "items"
             widget: "list"
@@ -43,13 +69,10 @@ collections:
               - {label: "Location", name: "location", widget: "string"}
               - {label: "Year", name: "year", widget: "string"}
               - {label: "Category", name: "category", widget: "string"}
-              - {label: "Image Path / URL", name: "image", widget: "string"}
+              - {label: "Image Path", name: "image", widget: "string"}
 
-  - name: "video_content"
-    label: "3. Videos"
-    files:
       - file: "content/videos.json"
-        label: "Video Items"
+        label: "5. Videos Section"
         name: "videos"
         fields:
           - {label: "Section Intro", name: "intro", widget: "text"}
@@ -59,15 +82,11 @@ collections:
             fields:
               - {label: "Title", name: "title", widget: "string"}
               - {label: "Description", name: "description", widget: "text"}
-              - {label: "YouTube Video ID or URL", name: "youtube_id", widget: "string", required: false}
-              - {label: "URL Link", name: "url", widget: "string", required: false}
+              - {label: "YouTube ID / Link", name: "youtube_id", widget: "string", required: false}
               - {label: "Year", name: "year", widget: "string"}
 
-  - name: "work_experience"
-    label: "4. Work Experience"
-    files:
       - file: "content/experience.json"
-        label: "Experience Items"
+        label: "6. Work Experience Timeline"
         name: "experience"
         fields:
           - label: "Job Entries"
@@ -78,50 +97,10 @@ collections:
               - {label: "Organization Name", name: "org", widget: "string"}
               - {label: "Period (e.g. Dec 2025 — Present)", name: "period", widget: "string"}
               - {label: "Currently Working Here", name: "current", widget: "boolean", default: false}
-              - {label: "Note (e.g. part-time)", name: "note", widget: "string", required: false}
               - {label: "Responsibilities / Bullets", name: "bullets", widget: "list", required: false}
 
-  - name: "contact_profile"
-    label: "5. Profile & Contact Info"
-    files:
-      - file: "content/profile.json"
-        label: "Contact Details"
-        name: "profile"
-        fields:
-          - {label: "Email Address", name: "email", widget: "string"}
-          - {label: "Phone Display", name: "phone_display", widget: "string"}
-          - {label: "Location Line 1", name: "location_line_1", widget: "string", required: false}
-          - {label: "Location Line 2", name: "location_line_2", widget: "string"}
-          - {label: "References Text", name: "references", widget: "string", required: false}
-          - {label: "Quick Facts", name: "facts", widget: "list", required: false}
-          - {label: "LinkedIn URL", name: "linkedin", widget: "string", required: false}
-          - {label: "X (Twitter) URL", name: "twitter", widget: "string", required: false}
-          - {label: "Instagram URL", name: "instagram", widget: "string", required: false}
-          - {label: "Facebook URL", name: "facebook", widget: "string", required: false}
-
-  - name: "about_section"
-    label: "6. About & Beats"
-    files:
-      - file: "content/about.json"
-        label: "About Details"
-        name: "about"
-        fields:
-          - {label: "Section Eyebrow", name: "eyebrow", widget: "string"}
-          - {label: "Main Heading", name: "heading", widget: "string"}
-          - {label: "Beats Eyebrow", name: "beats_eyebrow", widget: "string"}
-          - label: "What I Cover (Beats)"
-            name: "beats"
-            widget: "list"
-            fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Description Text", name: "text", widget: "text"}
-          - {label: "Bio Paragraphs", name: "paragraphs", widget: "list"}
-
-  - name: "skills_tools"
-    label: "7. Skills & Tools"
-    files:
       - file: "content/skills.json"
-        label: "Skills Group"
+        label: "7. Skills & Tools"
         name: "skills"
         fields:
           - label: "Skill Groups"
@@ -131,26 +110,36 @@ collections:
               - {label: "Group Title", name: "title", widget: "string"}
               - {label: "Skills List", name: "items", widget: "list"}
 
-  - name: "credentials_section"
-    label: "8. Education & Fellowships"
-    files:
       - file: "content/credentials.json"
-        label: "Credentials Details"
+        label: "8. Education & Fellowships"
         name: "credentials"
         fields:
-          - {label: "Education Heading Label", name: "education_label", widget: "string"}
+          - {label: "Education Label", name: "education_label", widget: "string"}
           - label: "Education Items"
             name: "education"
             widget: "list"
             fields:
-              - {label: "Institution Name", name: "title", widget: "string"}
-              - {label: "Degree & Year Meta", name: "meta", widget: "string"}
-              - {label: "Result / Grade", name: "result", widget: "string", required: false}
-          - {label: "Training Heading Label", name: "training_label", widget: "string"}
+              - {label: "Institution", name: "title", widget: "string"}
+              - {label: "Meta Details", name: "meta", widget: "string"}
+              - {label: "Result", name: "result", widget: "string", required: false}
+          - {label: "Training Label", name: "training_label", widget: "string"}
           - label: "Training & Fellowships"
             name: "training"
             widget: "list"
             fields:
-              - {label: "Fellowship Title", name: "title", widget: "string"}
-              - {label: "Organization & Date Meta", name: "meta", widget: "string"}
-              - {label: "Result / Note", name: "result", widget: "string", required: false}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Meta Details", name: "meta", widget: "string"}
+
+      - file: "content/profile.json"
+        label: "9. Contact, Socials & Quick Facts"
+        name: "profile"
+        fields:
+          - {label: "Email Address", name: "email", widget: "string"}
+          - {label: "Phone Display Number", name: "phone_display", widget: "string"}
+          - {label: "Location Line 1", name: "location_line_1", widget: "string", required: false}
+          - {label: "Location Line 2", name: "location_line_2", widget: "string"}
+          - {label: "Quick Facts", name: "facts", widget: "list", required: false}
+          - {label: "LinkedIn URL", name: "linkedin", widget: "string", required: false}
+          - {label: "X (Twitter) URL", name: "twitter", widget: "string", required: false}
+          - {label: "Instagram URL", name: "instagram", widget: "string", required: false}
+          - {label: "Facebook URL", name: "facebook", widget: "string", required: false}
