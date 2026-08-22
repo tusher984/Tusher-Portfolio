@@ -130,6 +130,17 @@ document.addEventListener('DOMContentLoaded', () => {
         </li>
       `).join('');
     }
+
+    const extraList = document.getElementById('extra-list');
+    if (extraList && data.extra) {
+      extraList.innerHTML = data.extra.map(item => `
+        <li>
+          <strong>${item.title}</strong>
+          ${item.meta ? `<span class="meta">${item.meta}</span>` : ''}
+          ${item.result ? `<span class="result">${item.result}</span>` : ''}
+        </li>
+      `).join('');
+    }
   });
 
   // 6. Load EXPERIENCE
@@ -152,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 7. Load SKILLS
   loadJSON('./content/skills.json').then(data => {
     if (!data) return;
-    const skills = document.querySelector('.skills'); // Changed from ID to class to match current HTML
+    const skills = document.querySelector('.skills');
     if (skills && data.groups) {
       skills.innerHTML = data.groups.map(grp => `
         <div class="skill-group" data-reveal>
