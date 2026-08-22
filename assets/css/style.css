@@ -576,35 +576,63 @@ a.index-row:focus-visible .index-go { opacity: 1; transform: translateX(0); }
 .job li::marker { color: var(--accent); }
 
 /* ========================================================================
-   Skills
+   Skills Section (Pro Multi-Column Card Layout)
    ======================================================================== */
 
 .skills {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: clamp(1.5rem, 3vw, 2.25rem);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
 }
+
+.skill-group {
+  background: var(--paper, #ffffff);
+  border: 1px solid var(--rule, #e1e9e9);
+  border-radius: var(--radius, 4px);
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(15, 27, 29, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
 .skill-group h3 {
   font-family: var(--mono);
-  font-size: var(--fs-mono);
-  font-weight: 500;
+  font-size: var(--fs-mono, 0.75rem);
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent, #2f6d74);
+  margin: 0 0 1rem 0;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--rule, #e1e9e9);
 }
-.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; margin: 0; padding: 0; }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .tags li {
   font-size: 0.875rem;
-  color: var(--ink-2);
-  background: var(--wash);
-  border: 1px solid var(--rule);
+  font-weight: 500;
+  color: var(--ink-2, #2c3d40);
+  background: var(--wash, #f3f7f7);
+  border: 1px solid rgba(47, 109, 116, 0.15);
   border-radius: 100px;
-  padding: 0.3rem 0.75rem;
+  padding: 0.35rem 0.85rem;
+  transition: all 0.2s ease;
 }
-.section--wash .tags li { background: var(--paper); }
+
+.tags li:hover {
+  background: var(--accent-soft, #e4efef);
+  color: var(--accent-deep, #1d4e54);
+  border-color: var(--accent, #2f6d74);
+  transform: translateY(-1px);
+}
 
 /* ========================================================================
    Credentials: education + fellowships
