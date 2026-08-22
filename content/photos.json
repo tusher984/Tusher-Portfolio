@@ -1,6 +1,11 @@
 {
   "intro": "Documentary photography from assignments and personal work across Bangladesh — rivers, streets, and the people living alongside both.",
-  "categories": ["Environment", "Portraits", "Urban life", "Reportage"],
+  "categories": [
+    "Environment",
+    "Portraits",
+    "Urban life",
+    "Reportage"
+  ],
   "items": [
     {
       "title": "Replace with your photograph",
@@ -8,7 +13,7 @@
       "location": "Dhaka",
       "year": "2026",
       "category": "Environment",
-      "image": "assets/img/gallery/placeholder-01.svg"
+      "image": "assets/img/dsc05711-2.jpg"
     },
     {
       "title": "Replace with your photograph",
