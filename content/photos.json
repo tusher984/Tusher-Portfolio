@@ -17,27 +17,11 @@
     },
     {
       "title": "Replace with your photograph",
-      "caption": "Captions appear on hover and in the full-screen view.",
-      "location": "Narayanganj",
-      "year": "2025",
-      "category": "Portraits",
-      "image": "assets/img/img_9482.jpg"
-    },
-    {
-      "title": "Replace with your photograph",
       "caption": "Square crops work too — the layout adapts to whatever you upload.",
       "location": "Dhaka",
       "year": "2025",
       "category": "Urban life",
       "image": "assets/img/dsc04267.jpg"
-    },
-    {
-      "title": "Replace with your photograph",
-      "caption": "Set a category and the filter buttons above will sort by it.",
-      "location": "Jamuna",
-      "year": "2025",
-      "category": "Reportage",
-      "image": "assets/img/al-amin-tusher_01303043314_01.jpg"
     },
     {
       "image": "/assets/img/dji_fly_20251126_154338_0057_1764150443835_photo.jpg",
@@ -65,6 +49,14 @@
     },
     {
       "title": "Replace with your photograph",
+      "caption": "Captions appear on hover and in the full-screen view.",
+      "location": "Narayanganj",
+      "year": "2025",
+      "category": "Portraits",
+      "image": "assets/img/img_9482.jpg"
+    },
+    {
+      "title": "Replace with your photograph",
       "image": "/assets/img/ca11c107-ab37-4a41-a453-47734d0172db01.jpg",
       "caption": " ",
       "location": " ",
@@ -86,6 +78,30 @@
       "year": " ",
       "location": " ",
       "caption": " "
+    },
+    {
+      "title": "Replace with your photograph",
+      "caption": "Set a category and the filter buttons above will sort by it.",
+      "location": "Jamuna",
+      "year": "2025",
+      "category": "Reportage",
+      "image": "assets/img/al-amin-tusher_01303043314_01.jpg"
+    },
+    {
+      "image": "assets/img/found_21147936_1336632-1-.jpg",
+      "title": " ",
+      "caption": " ",
+      "location": " ",
+      "year": " ",
+      "category": " "
+    },
+    {
+      "image": "assets/img/dsc00258.jpg",
+      "title": " ",
+      "caption": " ",
+      "location": " ",
+      "year": " ",
+      "category": " "
     }
   ]
 }
