@@ -181,61 +181,57 @@ a.index-row:hover .index-go, a.index-row:focus-visible .index-go { opacity: 1; t
 .teaser-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: clamp(1.75rem, 3vw, 2.5rem); }
 .teaser-head h2 { font-size: var(--fs-h2); }
 
-/* Photo Masonry Layout — High-End Professional Look */
+/* Photo Grid Layout — Strict Uniform Alignment (Perfect Aligned Grid) */
 .photo-strip {
-  display: block !important;
-  column-count: 4;
-  column-gap: 1.25rem; /* Perfect uniform horizontal gap */
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 1.25rem !important; /* Perfect uniform gap */
 }
 
 .photo-strip a {
   position: relative;
-  display: block !important; 
+  display: block !important;
   width: 100% !important;
-  margin-bottom: 1.25rem; /* Perfect uniform vertical gap */
-  border-radius: 6px; /* Slightly smoother corners for modern feel */
+  aspect-ratio: 4 / 5; /* Forces all images into the same vertical rectangle shape */
+  border-radius: 6px; 
   background: var(--wash-2);
   overflow: hidden;
-  break-inside: avoid;
-  transform: translateZ(0); /* Hardware acceleration for smooth zoom */
-  box-shadow: 0 4px 10px rgba(15, 27, 29, 0.05); /* Subtle resting shadow */
+  transform: translateZ(0);
+  box-shadow: 0 4px 10px rgba(15, 27, 29, 0.05);
   transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
 .photo-strip a:hover {
-  box-shadow: 0 12px 30px rgba(15, 27, 29, 0.15); /* Deep shadow on hover */
-  transform: translateY(-4px); /* Professional subtle lift effect */
+  box-shadow: 0 12px 30px rgba(15, 27, 29, 0.15);
+  transform: translateY(-4px); 
   z-index: 2;
 }
 
 .photo-strip img {
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
+  object-fit: cover !important; /* This is the magic! It perfectly fills the box without distortion */
   display: block;
   transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1);
-  transform-origin: center;
 }
 
 .photo-strip a:hover img {
-  transform: scale(1.04); /* Smooth interior zoom */
+  transform: scale(1.05);
 }
 
 /* Tablet (৩ কলাম) */
 @media (max-width: 900px) {
   .photo-strip {
-    column-count: 3;
-    column-gap: 1.25rem;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.25rem !important;
   }
 }
 
 /* Mobile (২ কলাম) */
 @media (max-width: 600px) {
   .photo-strip {
-    column-count: 2;
-    column-gap: 0.85rem;
-  }
-  .photo-strip a {
-    margin-bottom: 0.85rem;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.85rem !important;
   }
 }
 
