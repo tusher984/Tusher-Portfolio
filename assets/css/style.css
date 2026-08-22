@@ -911,58 +911,74 @@ a.index-row:focus-visible .index-go {
 }
 
 /* ========================================================================
-   12. Skills Section (Rounded Pills)
+   12. Skills Section (3-Column Editorial Grid)
    ======================================================================== */
 
 .skills {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem 2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4rem 3rem;
 }
 
 .skill-group {
+  min-width: 0;
   display: flex;
   flex-direction: column;
 }
 
 .skill-group h3 {
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.75rem;
   font-family: var(--mono);
-  font-size: var(--fs-mono);
+  font-size: var(--fs-mono, 0.75rem);
   font-weight: 600;
   letter-spacing: 0.12em;
+  line-height: 1.4;
   text-transform: uppercase;
-  color: var(--accent);
-  margin: 0 0 1rem 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--rule);
+  color: var(--accent, #2f6d74);
+  border-bottom: 1px solid var(--rule, #d7e0e0);
 }
 
 .tags {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .tags li {
-  font-size: 0.85rem;
-  color: var(--ink-2);
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 50px;
-  padding: 0.4rem 0.95rem;
-  line-height: 1.3;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.25;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  color: var(--ink-2, #2c3d40);
+  background: var(--paper, #ffffff);
+  border: 1px solid var(--rule, #d7e0e0);
+  border-radius: 999px;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
 .tags li:hover {
-  border-color: var(--accent);
-  color: var(--accent-deep);
-  background: var(--wash);
+  color: var(--accent-deep, #1d4e54);
+  background: var(--wash, #f3f7f7);
+  border-color: var(--accent, #2f6d74);
   transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .skills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .skills {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
 }
 
 /* ========================================================================
