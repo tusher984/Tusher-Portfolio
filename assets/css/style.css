@@ -664,22 +664,36 @@ a.index-row:focus-visible .index-go { opacity: 1; transform: translateX(0); }
 .contact-meta a { text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.35); }
 .contact-meta a:hover { color: #fff; border-bottom-color: #fff; }
 
-.socials { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+.socials {
+  display: flex;
+  flex-wrap: nowrap; /* বাটনগুলোকে এক লাইনে রাখবে */
+  gap: 0.4rem;        /* বাটনগুলোর মাঝের গ্যাপ সামান্য কমানো হলো */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .socials a {
+  white-space: nowrap; /* লেখা ভেঙ্গে নিচে নামবে না */
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
   font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
+  font-size: 0.72rem;  /* ফন্ট সাইজ সামান্য সামঞ্জস্য করা হলো */
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 0.4rem 0.7rem;
+  padding: 0.45rem 0.65rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 2px;
+  border-radius: var(--radius, 3px);
+  color: #ffffff;
   text-decoration: none;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: all 0.2s ease;
 }
-.socials a:hover { background: rgba(255, 255, 255, 0.14); border-color: #fff; }
+
+.socials a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
 
 /* ========================================================================
    Footer
