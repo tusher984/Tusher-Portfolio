@@ -10,22 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Scroll Animation Observer
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-in');
-        observer.unobserve(entry.target);
-      }
+  // Animation Revealer Function
+  const revealElements = () => {
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      el.classList.add('is-in');
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  };
 
-  document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
-
-  // Cache Buster to always fetch fresh data after CMS publish
   const cacheBuster = '?v=' + new Date().getTime();
 
-  // Helper Function to Load JSON
   const loadJSON = async (url) => {
     try {
       const res = await fetch(url + cacheBuster);
@@ -37,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // 3. Load SITE DATA (Headings, Video Text, etc.)
+  // 2. Load SITE DATA
   loadJSON('./content/site.json').then(data => {
     if (!data) return;
     document.querySelectorAll('[data-t]').forEach(el => {
@@ -48,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 4. Load ABOUT & BEATS (What I cover)
+  // 3. Load ABOUT & BEATS
   loadJSON('./content/about.json').then(data => {
     if (!data) return;
     document.querySelectorAll('[data-a]').forEach(el => {
@@ -64,18 +57,18 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>${beat.text}</p>
         </div>
       `).join('');
-      beatsCont.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
     }
 
     const aboutProse = document.getElementById('about-prose');
     if (aboutProse && data.paragraphs) {
       aboutProse.innerHTML = data.paragraphs.map(p => 
-        `<p>${p.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>')}</p>`
+        `<p>${p.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')}</p>`
       ).join('');
     }
+    revealElements();
   });
 
-  // 5. Load PROFILE (Contact, Phone, Email, Facts)
+  // 4. Load PROFILE (Contact, Socials, Phone, Email)
   loadJSON('./content/profile.json').then(data => {
     if (!data) return;
     document.querySelectorAll('[data-profile]').forEach(el => {
@@ -96,9 +89,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (factsCont && data.facts) {
       factsCont.innerHTML = data.facts.map(f => `<li>${f}</li>`).join('');
     }
+
+    const socialsCont = document.getElementById('socials');
+    if (socialsCont) {
+      let html = '';
+      if (data.linkedin) html += `<li><a href="${data.linkedin}" target="_blank" rel="noopener">LinkedIn</a></li>`;
+      if (data.twitter) html += `<li><a href="${data.twitter}" target="_blank" rel="noopener">X</a></li>`;
+      if (data.instagram) html += `<li><a href="${data.instagram}" target="_blank" rel="noopener">Instagram</a></li>`;
+      if (data.facebook) html += `<li><a href="${data.facebook}" target="_blank" rel="noopener">Facebook</a></li>`;
+      if (html !== '') socialsCont.innerHTML = html;
+    }
   });
 
-  // 6. Load CREDENTIALS (Education & Fellowships)
+  // 5. Load CREDENTIALS
   loadJSON('./content/credentials.json').then(data => {
     if (!data) return;
     document.querySelectorAll('[data-c]').forEach(el => {
@@ -129,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 7. Load EXPERIENCE
+  // 6. Load EXPERIENCE
   loadJSON('./content/experience.json').then(data => {
     if (!data) return;
     const timeline = document.getElementById('timeline');
@@ -142,11 +145,11 @@ document.addEventListener('DOMContentLoaded', () => {
           ${job.bullets ? `<ul>${job.bullets.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
         </article>
       `).join('');
-      timeline.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+      revealElements();
     }
   });
 
-  // 8. Load SKILLS
+  // 7. Load SKILLS
   loadJSON('./content/skills.json').then(data => {
     if (!data) return;
     const skills = document.getElementById('skills');
@@ -157,11 +160,11 @@ document.addEventListener('DOMContentLoaded', () => {
           <ul class="tags">${grp.items.map(item => `<li>${item}</li>`).join('')}</ul>
         </div>
       `).join('');
-      skills.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+      revealElements();
     }
   });
 
-  // 9. Load STORIES (Selected works)
+  // 8. Load STORIES
   loadJSON('./content/stories.json').then(data => {
     if (!data) return;
     const storyIndex = document.getElementById('story-index');
@@ -182,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 10. Load PHOTOS (Teaser)
+  // 9. Load PHOTOS
   loadJSON('./content/photos.json').then(data => {
     if (!data) return;
     const photoStrip = document.getElementById('photo-strip');
@@ -196,4 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Reveal initial elements
+  setTimeout(revealElements, 150);
 });
