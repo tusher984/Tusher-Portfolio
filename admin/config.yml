@@ -13,6 +13,21 @@ backend:
   name: github
   repo: tusher984/Tusher-Portfolio
   branch: main
+  # -----------------------------------------------------------------------
+  # "Log in with GitHub" needs one small helper service of its own, because
+  # GitHub Pages is only files — it cannot keep a password secret, and
+  # GitHub will not hand out a login without one.
+  #
+  # While the line below stays commented out, that button is switched off
+  # and the sign-in screen uses a GitHub token instead. A token needs no
+  # service anywhere and works today; see admin/guide.html.
+  #
+  # To switch the button on: follow the five steps written at the top of
+  # admin/login-helper.js, then remove the "# " from the line below and put
+  # your own worker address in it. Nothing else in this file changes.
+  #
+  # base_url: https://your-login-helper.tusher984.workers.dev
+  # -----------------------------------------------------------------------
 
 site_url: https://tusher984.github.io/Tusher-Portfolio/
 display_url: https://tusher984.github.io/Tusher-Portfolio/

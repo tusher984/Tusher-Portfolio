@@ -43,13 +43,17 @@
   }
 
   /* ---------------------------------------------------------- sign-in card */
+  /* Centred with auto margins rather than place-items, because the second
+     step is taller than a laptop screen: auto margins collapse to nothing
+     when there is no room, so the top of the card stays reachable. */
   #gate {
-    position: fixed; inset: 0; z-index: 80; display: grid; place-items: center;
+    position: fixed; inset: 0; z-index: 80; display: flex;
     background: var(--wash); font-family: var(--body); color: var(--ink);
     padding: 1.5rem; overflow: auto;
   }
   .gate-card {
-    width: min(23rem, 100%); background: var(--paper);
+    width: min(23rem, 100%); flex: 0 0 auto; margin: auto;
+    box-sizing: border-box; background: var(--paper);
     border: 1px solid var(--rule); border-radius: 4px;
     padding: 2.25rem 2rem 1.75rem; text-align: left;
     box-shadow: 0 18px 50px rgba(15, 27, 29, 0.07);
@@ -106,7 +110,9 @@
     background: var(--paper); border-color: var(--rule); color: var(--ink);
   }
   .gate-btn--ghost:hover { background: var(--wash); border-color: var(--muted); }
-  .gate-btn--ghost svg { width: 18px; height: 18px; fill: currentColor; }
+  /* On every button, not only the ghost one: an unsized inline SVG grows to
+     fill whatever box it is given. */
+  .gate-btn svg { width: 18px; height: 18px; flex: 0 0 auto; fill: currentColor; }
 
   .gate-or {
     position: relative; text-align: center; margin: 1.15rem 0;
@@ -121,6 +127,36 @@
   .gate-foot {
     color: var(--muted); font-size: 0.75rem; line-height: 1.5;
     text-align: center; margin: 1.1rem 0 0;
+  }
+
+  /* ------------------------------------------------------ two-step sign-in */
+  /* Step 1 is the lock on this page. Step 2 is GitHub, which is what
+     actually lets a change be saved. */
+  /* The browser's own rule for [hidden] is display:none at the weakest
+     possible strength, so any class that sets display — .gate-btn does —
+     would quietly override it. This puts it back. */
+  #gate [hidden] { display: none; }
+  .gate-note {
+    color: var(--muted); font-size: 0.8125rem; line-height: 1.55; margin: 0 0 1.1rem;
+  }
+  .gate-note a { color: var(--accent); }
+  .gate-token input {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+  }
+  .gate-check {
+    display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;
+    font-size: 0.8125rem; color: var(--ink-2); margin: 0 0 1.1rem;
+  }
+  .gate-check input { margin: 0.15rem 0 0; accent-color: var(--accent-deep); }
+  .gate-back {
+    display: inline-block; background: none; border: 0; padding: 0;
+    margin: 1.1rem 0 0; font: inherit; font-size: 0.8125rem; color: var(--muted);
+    cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+  }
+  .gate-back:hover { color: var(--ink); }
+  .gate-btn--small {
+    font-size: 0.875rem; padding: 0.55rem 1rem; width: auto;
   }
 
   /* ---------------------------------------------------------- boot screen */
@@ -174,12 +210,13 @@
     opacity: 0.75; transition: opacity 0.2s ease;
   }
   #shortcuts:hover, #shortcuts:focus-within { opacity: 1; }
-  #shortcuts a {
+  #shortcuts a, #shortcuts button {
     color: var(--ink); text-decoration: none; padding: 0.32rem 0.8rem;
     border-radius: 999px; white-space: nowrap;
+    background: none; border: 0; font: inherit; cursor: pointer;
   }
-  #shortcuts a:hover { background: var(--wash); color: var(--accent-deep); }
-  #shortcuts a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  #shortcuts a:hover, #shortcuts button:hover { background: var(--wash); color: var(--accent-deep); }
+  #shortcuts a:focus-visible, #shortcuts button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   @media print { #shortcuts { display: none; } }
 </style>
 
@@ -198,34 +235,78 @@
   <div id="gate">
     <form class="gate-card" id="gate-form">
       <p class="gate-name">Md. Al Amin Tusher<span class="dot">.</span></p>
-      <h1 class="gate-title">Dashboard</h1>
-      <p class="gate-sub">Sign in to edit the site.</p>
 
-      <label class="field">
-        <span>Admin</span>
-        <input id="gate-user" name="username" type="text" required
-               autocomplete="username" spellcheck="false" autocapitalize="none">
-      </label>
-      <label class="field">
-        <span>Password</span>
-        <input id="gate-pass" name="password" type="password" required
-               autocomplete="current-password">
-      </label>
+      <!-- Step 1 — the lock on this page. Nothing is downloaded until it
+           passes, so a stranger who finds this address sees only this card. -->
+      <div class="gate-step" id="step-lock">
+        <h1 class="gate-title">Dashboard</h1>
+        <p class="gate-sub">Sign in to edit the site.</p>
 
-      <p class="gate-error" id="gate-error" role="alert" hidden>
-        That name and password do not match.
-      </p>
+        <label class="field">
+          <span>Admin</span>
+          <input id="gate-user" name="username" type="text" required
+                 autocomplete="username" spellcheck="false" autocapitalize="none">
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <input id="gate-pass" name="password" type="password" required
+                 autocomplete="current-password">
+        </label>
 
-      <button class="gate-btn" type="submit" id="gate-submit">Sign in</button>
+        <p class="gate-error" id="gate-error" role="alert" hidden>
+          That name and password do not match.
+        </p>
 
-      <div class="gate-or"><span>or</span></div>
+        <button class="gate-btn" type="submit" id="gate-submit">Sign in</button>
 
-      <button class="gate-btn gate-btn--ghost" type="button" id="gate-github">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.4 1.24-3.24-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.92 1.24 3.24 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 22.3 24 17.8 24 12.5 24 5.87 18.63.5 12 .5z"/></svg>
-        Log in with GitHub
-      </button>
+        <div class="gate-or"><span>or</span></div>
 
-      <p class="gate-foot">Publishing a change always goes through GitHub.</p>
+        <button class="gate-btn gate-btn--ghost" type="button" id="gate-github">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.4 1.24-3.24-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.92 1.24 3.24 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 22.3 24 17.8 24 12.5 24 5.87 18.63.5 12 .5z"/></svg>
+          Log in with GitHub
+        </button>
+
+        <p class="gate-foot">Publishing a change always goes through GitHub.</p>
+      </div>
+
+      <!-- Step 2 — GitHub. Saving a change means writing to the repository,
+           so this is the permission that actually matters. -->
+      <div class="gate-step" id="step-github" hidden>
+        <h1 class="gate-title">Connect GitHub</h1>
+        <p class="gate-sub">One more step, then the editor opens.</p>
+
+        <p class="gate-note" id="github-note"></p>
+
+        <button class="gate-btn gate-btn--ghost" type="button" id="github-oauth" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.4 1.24-3.24-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.92 1.24 3.24 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 22.3 24 17.8 24 12.5 24 5.87 18.63.5 12 .5z"/></svg>
+          Log in with GitHub
+        </button>
+        <div class="gate-or" id="github-or" hidden><span>or</span></div>
+
+        <label class="field gate-token">
+          <span>GitHub token</span>
+          <input id="gate-token" type="password" autocomplete="off"
+                 spellcheck="false" autocapitalize="none" placeholder="github_pat_…">
+        </label>
+
+        <p class="gate-note">
+          <a id="token-new" href="https://github.com/settings/personal-access-tokens/new"
+             target="_blank" rel="noopener">Make one on GitHub &#8599;</a> — this
+          repository only, permission <strong>Contents: read and write</strong>.
+          <a href="guide.html#signing-in">Step by step &#8599;</a>
+        </p>
+
+        <label class="gate-check">
+          <input type="checkbox" id="gate-keep">
+          <span>Stay signed in on this device</span>
+        </label>
+
+        <p class="gate-error" id="token-error" role="alert" hidden></p>
+
+        <button class="gate-btn" type="submit" id="token-submit">Open the editor</button>
+
+        <button class="gate-back" type="button" id="gate-restart">&larr; Back</button>
+      </div>
     </form>
   </div>
 
@@ -247,37 +328,64 @@
   <div id="shortcuts">
     <a href="guide.html">Guide</a>
     <a href="../index.html" target="_blank" rel="noopener">View site &#8599;</a>
+    <button type="button" id="sign-out">Sign out</button>
   </div>
 
   <script>
   /* =======================================================================
-     Sign-in
+     Sign-in — two steps, doing two different jobs
      -----------------------------------------------------------------------
-     Two ways in, and they do different jobs:
+     Step 1 · Admin + password. A lock on the door of this page. Because the
+       site is plain files on GitHub Pages there is no server to check a
+       password, so the check happens here in the browser. It keeps other
+       people out of your editor — it is a latch, not a safe — and the
+       dashboard itself is not even downloaded until it is passed.
 
-       · Admin + password — a lock on the door of this page. The CMS is not
-         even downloaded until it is passed. Because this site is plain files
-         on GitHub Pages there is no server to check a password, so the check
-         happens here in the browser: it keeps other people out of your
-         dashboard, but it is a latch, not a safe.
+     Step 2 · GitHub. Saving a change means writing to your repository, so
+       nothing can be published without GitHub's permission. There are two
+       ways to give it:
 
-       · Log in with GitHub — the real authority. Nothing can ever be saved
-         to the site without it, whichever door you came through.
+         · Log in with GitHub — the ordinary button. It needs one small
+           helper service, because GitHub will not hand out a login to a
+           site that cannot keep a secret, and GitHub Pages cannot. The
+           service is free and the code for it is in admin/login-helper.js;
+           its address goes in the base_url line of config.yml. Until that
+           line exists this button stays switched off rather than opening a
+           page that cannot work.
 
-     The password is stored below as a SHA-256 fingerprint rather than as
-     itself, so it is not sitting in plain sight in a public repository.
+         · A GitHub token — a long password you make on GitHub yourself and
+           paste in once. No service anywhere, works today, works from a
+           phone. The cost is that the token then sits in this browser, so
+           make it reach one repository only, and untick "stay signed in" on
+           a computer that is not yours.
+
+     The site password is stored below as a SHA-256 fingerprint rather than
+     as itself, so it is not sitting in plain sight in a public repository.
      To change it, run this in a terminal and paste the result over HASH:
 
        node -e "console.log(require('crypto').createHash('sha256').update('newname:newpassword').digest('hex'))"
 
      The name is lower-cased before checking, so capitals in it do not matter.
+     Checking needs crypto.subtle, which browsers only offer over https or on
+     localhost. Anywhere else the card says it cannot check rather than letting
+     anyone through — there is deliberately no plain-text copy to fall back on.
+     A GitHub token must never be written into this file — it is typed into
+     your own browser and stays there.
      ======================================================================= */
   (function () {
     var HASH = '7b9f504a6464015d8456d46445e2828a0ec5c3aee787e93eb21c8d77cda9ccfd';
-    /* Used only where crypto.subtle is missing — an old browser, or the page
-       opened over plain http on another machine. */
-    var PLAIN_B64 = 'dHVzaGVyOTg0OmFsYW1pbnR1c2hlcg==';
     var KEY = 'tusher-admin-unlocked';
+
+    /* Where the token lives. USER_KEY is the CMS's own slot — it reads this
+       on start-up and signs itself in, which is the whole trick. The two
+       SESSION keys are how "stay signed in" is honoured: when it is off, the
+       token is mirrored into sessionStorage (which a refresh survives and
+       closing the browser does not) and wiped from the CMS's slot on the way
+       out. MODE_KEY is the note we leave ourselves so that a browser which
+       crashed before it could tidy up gets tidied on the next visit. */
+    var USER_KEY = 'decap-cms-user';
+    var SESSION_KEY = 'tusher-admin-token';
+    var MODE_KEY = 'tusher-admin-token-session';
 
     var gate = document.getElementById('gate');
     var form = document.getElementById('gate-form');
@@ -288,6 +396,23 @@
     var github = document.getElementById('gate-github');
     var card = form;
     var started = false;
+
+    var stepLock = document.getElementById('step-lock');
+    var stepGit = document.getElementById('step-github');
+    var note = document.getElementById('github-note');
+    var oauth = document.getElementById('github-oauth');
+    var oauthOr = document.getElementById('github-or');
+    var token = document.getElementById('gate-token');
+    var keep = document.getElementById('gate-keep');
+    var tokenError = document.getElementById('token-error');
+    var tokenSubmit = document.getElementById('token-submit');
+    var restart = document.getElementById('gate-restart');
+    var signOut = document.getElementById('sign-out');
+
+    /* ?token=new asks for the token door even when the GitHub button works;
+       ?token=stale is watchToken sending us back after a refusal. Both are
+       the way in if that button ever stops behaving. */
+    var wantsToken = /(^|[?&])token=(new|stale)(&|$)/.test(window.location.search);
 
     function fingerprint(text) {
       if (!window.crypto || !window.crypto.subtle || !window.TextEncoder) {
@@ -303,10 +428,14 @@
         .catch(function () { return null; });
     }
 
+    /* null means "could not check", which is not the same as "wrong". The only
+       way that happens is a browser without crypto.subtle — in practice, this
+       page opened over plain http from another machine's address. There is no
+       plain-text copy of the password here to fall back on, by design: base64
+       or anything like it in a public repository is the password itself. */
     function correct(pair) {
       return fingerprint(pair).then(function (hex) {
-        if (hex) return hex === HASH;
-        try { return window.btoa(pair) === PLAIN_B64; } catch (err) { return false; }
+        return hex === null ? null : hex === HASH;
       });
     }
 
@@ -318,8 +447,66 @@
       try { return window.sessionStorage.getItem(KEY) === '1'; } catch (err) { return false; }
     }
 
-    function refuse() {
-      if (error) error.hidden = false;
+    /* ------------------------------------------------------------ the token */
+    /* Every storage call is wrapped, because a private-browsing window throws
+       rather than politely refusing. */
+    function get(store, key) {
+      try { return window[store].getItem(key); } catch (err) { return null; }
+    }
+    function set(store, key, value) {
+      try { window[store].setItem(key, value); return true; } catch (err) { return false; }
+    }
+    function drop(store, key) {
+      try { window[store].removeItem(key); } catch (err) { /* nothing to undo */ }
+    }
+
+    function storedToken() {
+      var raw = get('localStorage', USER_KEY);
+      if (!raw) return null;
+      try {
+        var parsed = JSON.parse(raw);
+        return parsed && parsed.token ? parsed.token : null;
+      } catch (err) { return null; }
+    }
+
+    /* Hand the token over in the shape the CMS expects: it looks for a
+       backend name and a token, then asks GitHub who you are itself. */
+    function saveToken(value, staySignedIn) {
+      set('localStorage', USER_KEY, JSON.stringify({ backendName: 'github', token: value }));
+      if (staySignedIn) {
+        drop('localStorage', MODE_KEY);
+        drop('sessionStorage', SESSION_KEY);
+      } else {
+        set('localStorage', MODE_KEY, '1');
+        set('sessionStorage', SESSION_KEY, value);
+      }
+    }
+
+    function clearToken() {
+      drop('localStorage', USER_KEY);
+      drop('localStorage', MODE_KEY);
+      drop('sessionStorage', SESSION_KEY);
+    }
+
+    /* Runs before anything else: puts a session-only token back after a
+       refresh, and clears one left behind by a browser that closed badly. */
+    function tidyToken() {
+      if (get('localStorage', MODE_KEY) !== '1') return;
+      var mirrored = get('sessionStorage', SESSION_KEY);
+      if (mirrored) {
+        set('localStorage', USER_KEY, JSON.stringify({ backendName: 'github', token: mirrored }));
+      } else {
+        clearToken();
+      }
+    }
+
+    var REFUSED = 'That name and password do not match.';
+
+    function refuse(message) {
+      if (error) {
+        error.textContent = message || REFUSED;
+        error.hidden = false;
+      }
       if (submit) { submit.disabled = false; submit.textContent = 'Sign in'; }
       if (card) {
         card.classList.remove('gate-shake');
@@ -327,6 +514,79 @@
         card.classList.add('gate-shake');
       }
       if (pass) { pass.value = ''; pass.focus(); }
+    }
+
+    function refuseToken(message) {
+      if (tokenError) { tokenError.textContent = message; tokenError.hidden = false; }
+      if (tokenSubmit) { tokenSubmit.disabled = false; tokenSubmit.textContent = 'Open the editor'; }
+      if (card) {
+        card.classList.remove('gate-shake');
+        void card.offsetWidth;
+        card.classList.add('gate-shake');
+      }
+    }
+
+    /* If GitHub later stops accepting a saved token — it expired, or it was
+       withdrawn — the CMS quietly throws it away and falls back to its own
+       login button, which goes nowhere while no helper service exists. Watch
+       for that and bring this card back instead, saying why. */
+    function watchToken() {
+      if (!storedToken()) return;
+      var checks = 0;
+      var timer = window.setInterval(function () {
+        checks += 1;
+        if (storedToken()) {
+          if (checks > 20) window.clearInterval(timer);
+          return;
+        }
+        window.clearInterval(timer);
+        clearToken();
+        window.location.replace('?token=stale');
+      }, 1000);
+    }
+
+    /* --------------------------------------------------------- the settings */
+    /* One read of config.yml answers two questions: which repository a token
+       has to reach, and whether the GitHub button has a helper service to
+       talk to. A commented-out base_url does not count, which is why the
+       match has to begin at the start of a line. */
+    var settings = null;
+    function readSettings() {
+      if (settings) return settings;
+      settings = fetch('config.yml?ts=' + Date.now())
+        .then(function (response) { return response.ok ? response.text() : ''; })
+        .catch(function () { return ''; })
+        .then(function (text) {
+          var repo = text.match(/^\s{2,}repo:\s*(\S+)/m);
+          return {
+            repo: repo ? repo[1].replace(/['"]/g, '') : 'tusher984/Tusher-Portfolio',
+            proxy: /^\s{2,}base_url:\s*\S+/m.test(text)
+          };
+        });
+      return settings;
+    }
+
+    function showStep(which) {
+      var toGitHub = which === 'github';
+      if (stepLock) stepLock.hidden = toGitHub;
+      if (stepGit) stepGit.hidden = !toGitHub;
+      if (!toGitHub) { if (user) user.focus(); return; }
+      readSettings().then(function (config) {
+        if (config.proxy) {
+          note.innerHTML = 'Press the button and GitHub will ask whether to allow it. ' +
+            'Or paste a token instead, if you would rather not leave this page.';
+          oauth.hidden = false;
+          oauthOr.hidden = false;
+        } else {
+          note.innerHTML = '<strong>Log in with GitHub</strong> needs a helper ' +
+            'service that has not been set up yet. A token does the same job ' +
+            'with nothing to install — <a href="guide.html#signing-in">how both ' +
+            'work</a>.';
+          oauth.hidden = true;
+          oauthOr.hidden = true;
+        }
+        if (token) token.focus();
+      });
     }
 
     /* --------------------------------------------------------- loading the CMS */
@@ -350,6 +610,7 @@
       };
       document.body.appendChild(cms);
       watchBoot();
+      watchToken();
     }
 
     /* ----------------------------------------------- hide the loading screen */
@@ -393,34 +654,146 @@
       setTimeout(finish, 8000);
     }
 
+    /* Ask GitHub the same two questions the CMS is about to ask, so a token
+       that cannot do the job is refused here, in plain words, instead of
+       failing later somewhere inside the editor. */
+    function checkToken(value, repo) {
+      var headers = { Authorization: 'Bearer ' + value, Accept: 'application/vnd.github+json' };
+      return fetch('https://api.github.com/user', { headers: headers })
+        .then(function (who) {
+          if (who.status === 401) {
+            throw 'GitHub did not accept that token. Check it was copied whole, and that it has not expired.';
+          }
+          if (!who.ok) throw 'GitHub answered with an error (' + who.status + '). Try again in a moment.';
+          return fetch('https://api.github.com/repos/' + repo, { headers: headers });
+        })
+        .then(function (where) {
+          if (where.status === 404) {
+            throw 'That token cannot see ' + repo + '. When you make it, give it access to that repository.';
+          }
+          if (!where.ok) throw 'GitHub answered with an error (' + where.status + ') for ' + repo + '.';
+          return where.json();
+        })
+        .then(function (data) {
+          if (!data.permissions || !data.permissions.push) {
+            throw 'That token can read ' + repo + ' but not write to it. It needs Contents: read and write.';
+          }
+          return true;
+        })
+        .catch(function (err) {
+          if (typeof err === 'string') throw err;
+          throw 'Could not reach GitHub. Check the connection and try again.';
+        });
+    }
+
+    /* Past the latch: straight in if GitHub is already settled, otherwise ask. */
+    function proceed() {
+      if (storedToken()) { start(); return; }
+      readSettings().then(function (config) {
+        /* With a helper service configured the CMS puts up its own GitHub
+           button, so there is nothing more for this card to do — unless the
+           address asked for the token door on purpose, which is the way back
+           in if that button ever misbehaves. */
+        if (config.proxy && !wantsToken) { start(); return; }
+        showStep('github');
+      });
+    }
+
+    function connect() {
+      var value = (token.value || '').trim();
+      if (tokenError) tokenError.hidden = true;
+      if (!value) { refuseToken('Paste the token GitHub gave you.'); return; }
+      tokenSubmit.disabled = true;
+      tokenSubmit.textContent = 'Checking with GitHub…';
+      readSettings()
+        .then(function (config) { return checkToken(value, config.repo); })
+        .then(function () {
+          saveToken(value, !!(keep && keep.checked));
+          token.value = '';
+          remember();
+          start();
+        })
+        .catch(function (message) {
+          refuseToken(typeof message === 'string' ? message : 'That token was refused.');
+        });
+    }
+
     /* ------------------------------------------------------------- wiring up */
+    /* One form holds both steps, so the Enter key has to be routed. */
     if (form) {
       form.addEventListener('submit', function (event) {
         event.preventDefault();
+        if (stepGit && !stepGit.hidden) { connect(); return; }
+
         if (error) error.hidden = true;
         if (submit) { submit.disabled = true; submit.textContent = 'Checking…'; }
 
         var pair = (user.value || '').trim().toLowerCase() + ':' + (pass.value || '');
         correct(pair).then(function (ok) {
+          if (ok === null) {
+            refuse('This browser cannot check the password here. Open the https '
+                 + 'address of the dashboard instead.');
+            return;
+          }
           if (!ok) { refuse(); return; }
           remember();
-          start();
+          if (submit) { submit.disabled = false; submit.textContent = 'Sign in'; }
+          if (pass) pass.value = '';
+          proceed();
         });
       });
     }
 
     if (github) {
       github.addEventListener('click', function () {
-        /* GitHub does the checking on this route, so no password is needed. */
+        /* GitHub is the stronger of the two checks, so it may skip the latch. */
         remember();
-        start();
+        readSettings().then(function (config) {
+          if (config.proxy) { start(); return; }
+          showStep('github');
+        });
       });
     }
 
-    /* Already signed in this session — a refresh, or coming back from the
-       guide — so go straight through. */
+    if (oauth) {
+      oauth.addEventListener('click', function () { remember(); start(); });
+    }
+
+    if (restart) {
+      restart.addEventListener('click', function () {
+        if (token) token.value = '';
+        if (tokenError) tokenError.hidden = true;
+        showStep('lock');
+      });
+    }
+
+    if (signOut) {
+      signOut.addEventListener('click', function () {
+        clearToken();
+        drop('sessionStorage', KEY);
+        /* Back to the plain address, so a ?token= left in it does not decide
+           what the next visit looks like. */
+        window.location.replace('./');
+      });
+    }
+
+    /* On the way out, take a session-only token with us. */
+    window.addEventListener('pagehide', function () {
+      if (get('localStorage', MODE_KEY) === '1') drop('localStorage', USER_KEY);
+    });
+
+    tidyToken();
+
+    /* Sent back here by watchToken, so say what happened before asking again. */
+    if (/(^|[?&])token=stale(&|$)/.test(window.location.search) && tokenError) {
+      tokenError.textContent = 'GitHub stopped accepting the saved token — it has ' +
+        'probably expired or been withdrawn. Make a new one and paste it here.';
+      tokenError.hidden = false;
+    }
+
+    /* Already past the latch — a refresh, or coming back from the guide. */
     if (unlocked()) {
-      start();
+      proceed();
     } else if (user) {
       user.focus();
     }
