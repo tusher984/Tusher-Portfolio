@@ -1,148 +1,446 @@
+# ===========================================================================
+# Dashboard configuration — https://tusher984.github.io/Tusher-Portfolio/admin/
+#
+# Every field below is wired to something you can see on the site. If a field
+# exists here, editing it changes the page. If you empty a field, the site
+# keeps the text it already has — except the ones marked "leave empty to
+# remove", which disappear.
+#
+# The order of the entries matches the order of the sections on the homepage.
+# ===========================================================================
+
 backend:
   name: github
   repo: tusher984/Tusher-Portfolio
   branch: main
 
+site_url: https://tusher984.github.io/Tusher-Portfolio/
+display_url: https://tusher984.github.io/Tusher-Portfolio/
+logo_url: https://tusher984.github.io/Tusher-Portfolio/assets/img/favicon.svg
+
 media_folder: "assets/img"
 public_folder: "assets/img"
 
 collections:
-  - name: "website_sections"
-    label: "All Website Content & Pages"
+  - name: "website"
+    label: "Website content"
+    label_singular: "Section"
+    description: "Nine sections, in the order they appear on the page."
     files:
+      # ---------------------------------------------------------------------
       - file: "content/site.json"
-        label: "1. Homepage Titles & Texts"
         name: "site"
+        label: "1 · Header, hero & section titles"
+        description: >-
+          The name in the top bar, the big opening block, the small title above
+          every section, the footer, and the title Google shows.
+        editor:
+          preview: true
         fields:
-          - label: "Hero Intro"
+          - label: "Header & menu"
+            name: "brand"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Name in the top bar", name: "name", widget: "string"}
+              - {label: "Menu label — Work", name: "nav_work", widget: "string", required: false}
+              - {label: "Menu label — Photography", name: "nav_photography", widget: "string", required: false}
+              - {label: "Menu label — Video", name: "nav_video", widget: "string", required: false}
+              - {label: "Menu label — Skills", name: "nav_skills", widget: "string", required: false}
+              - {label: "Menu label — About", name: "nav_about", widget: "string", required: false}
+              - {label: "Menu label — Contact", name: "nav_contact", widget: "string", required: false}
+
+          - label: "Hero — the first thing visitors see"
             name: "hero"
             widget: "object"
             fields:
-              - {label: "Eyebrow Text", name: "eyebrow", widget: "string"}
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "Tagline", name: "tagline", widget: "string"}
-              - {label: "Lead Paragraph", name: "lead", widget: "text"}
-              - {label: "Primary Button Text", name: "cta_primary", widget: "string", required: false}
-              - {label: "Secondary Button Text", name: "cta_secondary", widget: "string", required: false}
+              - {label: "Small line above your name", name: "eyebrow", widget: "string", required: false}
+              - {label: "Your name", name: "name", widget: "string"}
+              - {label: "One line under your name", name: "tagline", widget: "string", required: false}
+              - {label: "Opening paragraph", name: "lead", widget: "text", required: false}
+              - label: "First button — text"
+                name: "cta_primary"
+                widget: "string"
+                required: false
+                hint: "Leave empty to remove the button."
+              - {label: "First button — link", name: "cta_primary_url", widget: "string", required: false, hint: "#work jumps to the Selected work section."}
+              - label: "Second button — text"
+                name: "cta_secondary"
+                widget: "string"
+                required: false
+                hint: "Leave empty to remove the button."
+              - label: "Second button — link"
+                name: "cta_secondary_url"
+                widget: "string"
+                required: false
+                hint: "Leave empty and it opens an email to the address in section 9."
 
+          - label: "Selected work — section title"
+            name: "work"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Small title above the heading", name: "eyebrow", widget: "string", required: false}
+              - {label: "Heading", name: "heading", widget: "string", required: false}
+              - {label: "Intro paragraph", name: "lead", widget: "text", required: false}
+
+          - label: "Photography — section title"
+            name: "photography"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Small title above the heading", name: "eyebrow", widget: "string", required: false}
+              - {label: "Heading", name: "heading", widget: "string", required: false}
+              - label: "\"See all\" link text"
+                name: "link_label"
+                widget: "string"
+                required: false
+                hint: "Leave empty to hide the link. Write something to show a link under the intro."
+              - {label: "\"See all\" link goes to", name: "link_url", widget: "string", required: false, default: "photos.html"}
+
+          - label: "Video — section title"
+            name: "video"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Small title above the heading", name: "eyebrow", widget: "string", required: false}
+              - {label: "Heading", name: "heading", widget: "string", required: false}
+              - label: "\"See all\" link text"
+                name: "link_label"
+                widget: "string"
+                required: false
+                hint: "Leave empty to hide the link."
+              - {label: "\"See all\" link goes to", name: "link_url", widget: "string", required: false, default: "videos.html"}
+
+          - label: "Experience — section title"
+            name: "experience"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Small title above the heading", name: "eyebrow", widget: "string", required: false}
+              - {label: "Heading", name: "heading", widget: "string", required: false}
+
+          - label: "Skills — section title"
+            name: "skills"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Small title above the heading", name: "eyebrow", widget: "string", required: false}
+              - {label: "Heading", name: "heading", widget: "string", required: false}
+
+          - label: "Credentials — section title"
+            name: "credentials"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Small title above the heading", name: "eyebrow", widget: "string", required: false}
+              - {label: "Heading", name: "heading", widget: "string", required: false}
+
+          - label: "Contact — titles & column labels"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Small title above the heading", name: "eyebrow", widget: "string", required: false}
+              - {label: "Heading", name: "heading", widget: "string", required: false}
+              - {label: "Intro paragraph", name: "lead", widget: "text", required: false}
+              - {label: "Label above your location", name: "based_in_label", widget: "string", required: false}
+              - {label: "Label above the social links", name: "elsewhere_label", widget: "string", required: false}
+              - {label: "Label above references", name: "references_label", widget: "string", required: false}
+
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Left side (after the © year)", name: "left", widget: "string", required: false}
+              - {label: "Right side", name: "right", widget: "string", required: false}
+
+          - label: "Google & sharing"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Browser tab / Google title"
+                name: "title"
+                widget: "string"
+                required: false
+                hint: "Around 60 characters reads best in search results."
+              - label: "Google description"
+                name: "description"
+                widget: "text"
+                required: false
+                hint: "The grey text under your title in Google. Around 155 characters."
+
+      # ---------------------------------------------------------------------
       - file: "content/about.json"
-        label: "2. About & What I Cover"
         name: "about"
+        label: "2 · About & what I cover"
+        description: "Your portrait, the three cards under the hero, and the About paragraphs."
+        editor:
+          preview: true
         fields:
-          - {label: "Section Eyebrow", name: "eyebrow", widget: "string"}
-          - {label: "Heading", name: "heading", widget: "string"}
-          - {label: "Beats Eyebrow", name: "beats_eyebrow", widget: "string"}
-          - label: "What I Cover (Beats)"
+          - label: "Portrait photograph"
+            name: "portrait"
+            widget: "image"
+            required: false
+            hint: "A tall photograph works best. Shown beside the hero text."
+          - label: "Portrait description"
+            name: "portrait_alt"
+            widget: "string"
+            required: false
+            hint: "Describes the photo for screen readers and for Google."
+          - {label: "\"What I cover\" small title", name: "beats_eyebrow", widget: "string", required: false}
+          - label: "What I cover — cards"
             name: "beats"
             widget: "list"
+            collapsed: false
+            summary: "{{fields.title}}"
             fields:
               - {label: "Title", name: "title", widget: "string"}
-              - {label: "Description Text", name: "text", widget: "text"}
-          - {label: "Bio Paragraphs", name: "paragraphs", widget: "list"}
+              - {label: "Text", name: "text", widget: "text"}
 
+          - {label: "About — small title", name: "eyebrow", widget: "string", required: false}
+          - {label: "About — heading", name: "heading", widget: "string", required: false}
+          - label: "About — paragraphs"
+            name: "paragraphs"
+            widget: "list"
+            hint: "One entry per paragraph. Links are written as [words](https://example.com)."
+
+      # ---------------------------------------------------------------------
       - file: "content/stories.json"
-        label: "3. Selected Works (Stories)"
         name: "stories"
+        label: "3 · Selected work"
+        description: "The list of published stories. Drag the handles to reorder."
+        editor:
+          preview: true
         fields:
-          - label: "Story Items"
+          - label: "Stories"
             name: "items"
             widget: "list"
+            collapsed: true
+            summary: "{{fields.title}} — {{fields.outlet}}"
             fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Standfirst / Description", name: "standfirst", widget: "text"}
-              - {label: "Outlet Name", name: "outlet", widget: "string"}
-              - {label: "Format (e.g. Report, Interactive)", name: "format", widget: "string"}
-              - {label: "Publish Date", name: "date", widget: "date", required: false}
-              - {label: "URL Link", name: "url", widget: "string", required: false}
+              - {label: "Headline", name: "title", widget: "string"}
+              - {label: "Standfirst / summary", name: "standfirst", widget: "text"}
+              - {label: "Outlet", name: "outlet", widget: "string", required: false}
+              - label: "Format"
+                name: "format"
+                widget: "string"
+                required: false
+                hint: "Shown in the small box — Report, Interactive, Investigation…"
+              - {label: "Published", name: "date", widget: "date", required: false, format: "YYYY-MM-DD"}
+              - label: "Link"
+                name: "url"
+                widget: "string"
+                required: false
+                hint: "Leave empty and the story shows a \"Pending\" tag instead of a link."
 
+      # ---------------------------------------------------------------------
       - file: "content/photos.json"
-        label: "4. Photography Section"
         name: "photos"
+        label: "4 · Photography"
+        description: >-
+          The grid on the homepage and the full gallery page. Upload a photo,
+          give it a caption, and it appears in both.
+        editor:
+          preview: true
         fields:
-          - {label: "Intro Text", name: "intro", widget: "text"}
-          - label: "Photo Items"
+          - {label: "Intro paragraph", name: "intro", widget: "text", required: false}
+          - label: "Filter buttons (gallery page)"
+            name: "categories"
+            widget: "list"
+            required: false
+            hint: "A button only appears if at least one photograph below uses that exact category."
+
+          - label: "Photographs"
             name: "items"
             widget: "list"
+            collapsed: true
+            summary: "{{fields.title}} — {{fields.location}} {{fields.year}}"
             fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Caption", name: "caption", widget: "text"}
-              - {label: "Location", name: "location", widget: "string"}
-              - {label: "Year", name: "year", widget: "string"}
-              - {label: "Category", name: "category", widget: "string"}
-              - {label: "Image Upload", name: "image", widget: "image"}
+              - label: "Photograph"
+                name: "image"
+                widget: "image"
+                hint: "Upload from your computer, or pick one you already uploaded."
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                required: false
+                hint: "Also read aloud by screen readers. Describe what is in the frame."
+              - label: "Caption"
+                name: "caption"
+                widget: "text"
+                required: false
+                hint: "Shown on hover and under the full-screen photo."
+              - {label: "Place", name: "location", widget: "string", required: false}
+              - {label: "Year", name: "year", widget: "string", required: false}
+              - label: "Category"
+                name: "category"
+                widget: "string"
+                required: false
+                hint: "Must match one of the filter buttons above, letter for letter."
 
+      # ---------------------------------------------------------------------
       - file: "content/videos.json"
-        label: "5. Videos Section"
         name: "videos"
+        label: "5 · Video"
+        description: "YouTube films for the homepage row and the video page."
+        editor:
+          preview: true
         fields:
-          - {label: "Section Intro", name: "intro", widget: "text"}
-          - label: "Video Items"
+          - {label: "Intro paragraph", name: "intro", widget: "text", required: false}
+          - label: "Films"
             name: "items"
             widget: "list"
+            collapsed: true
+            summary: "{{fields.title}}"
             fields:
+              - label: "YouTube link"
+                name: "youtube_id"
+                widget: "string"
+                hint: "Paste the whole address from the browser — youtube.com/watch?v=…, youtu.be/… and Shorts all work."
               - {label: "Title", name: "title", widget: "string"}
-              - {label: "Description", name: "description", widget: "text"}
-              - {label: "YouTube ID / Link", name: "youtube_id", widget: "string", required: false}
-              - {label: "Upload Video File (Optional)", name: "url", widget: "file", required: false}
-              - {label: "Upload Custom Thumbnail", name: "thumbnail", widget: "image", required: false}
-              - {label: "Year", name: "year", widget: "string"}
+              - {label: "Description", name: "description", widget: "text", required: false}
+              - {label: "Year", name: "year", widget: "string", required: false}
 
+      # ---------------------------------------------------------------------
       - file: "content/experience.json"
-        label: "6. Work Experience Timeline"
         name: "experience"
+        label: "6 · Experience"
+        description: "Your jobs, newest first. Drag to reorder."
+        editor:
+          preview: true
         fields:
-          - label: "Job Entries"
+          - label: "Positions"
             name: "items"
             widget: "list"
+            collapsed: true
+            summary: "{{fields.role}} — {{fields.org}}"
             fields:
-              - {label: "Role / Position", name: "role", widget: "string"}
-              - {label: "Organization Name", name: "org", widget: "string"}
-              - {label: "Period (e.g. Dec 2025 — Present)", name: "period", widget: "string"}
-              - {label: "Currently Working Here", name: "current", widget: "boolean", default: false}
-              - {label: "Responsibilities / Bullets", name: "bullets", widget: "list", required: false}
+              - {label: "Job title", name: "role", widget: "string"}
+              - {label: "Newsroom / organisation", name: "org", widget: "string"}
+              - {label: "Dates", name: "period", widget: "string", required: false}
+              - label: "This is my current job"
+                name: "current"
+                widget: "boolean"
+                default: false
+                required: false
+                hint: "Adds a green dot beside the job title."
+              - label: "Note after the job title"
+                name: "note"
+                widget: "string"
+                required: false
+                hint: "Something like part-time or contract. Leave empty for nothing."
+              - label: "What you did"
+                name: "bullets"
+                widget: "list"
+                required: false
+                hint: "One entry per bullet point."
 
+      # ---------------------------------------------------------------------
       - file: "content/skills.json"
-        label: "7. Skills & Tools"
         name: "skills"
+        label: "7 · Skills & tools"
+        description: "The boxes of skills. Each box is a group with a list inside."
+        editor:
+          preview: true
         fields:
-          - label: "Skill Groups"
+          - label: "Skill groups"
             name: "groups"
             widget: "list"
+            collapsed: true
+            summary: "{{fields.title}}"
             fields:
-              - {label: "Group Title", name: "title", widget: "string"}
-              - {label: "Skills List", name: "items", widget: "list"}
+              - {label: "Box title", name: "title", widget: "string"}
+              - {label: "Skills in this box", name: "items", widget: "list", hint: "One entry per skill."}
 
+      # ---------------------------------------------------------------------
       - file: "content/credentials.json"
-        label: "8. Education & Fellowships"
         name: "credentials"
+        label: "8 · Credentials"
+        description: "Education, fellowships & training, and extracurricular activities."
+        editor:
+          preview: true
         fields:
-          - {label: "Education Label", name: "education_label", widget: "string"}
-          - label: "Education Items"
+          - {label: "Education — column title", name: "education_label", widget: "string", required: false}
+          - label: "Education"
             name: "education"
             widget: "list"
+            collapsed: true
+            summary: "{{fields.title}}"
             fields:
-              - {label: "Institution", name: "title", widget: "string"}
-              - {label: "Meta Details", name: "meta", widget: "string"}
+              - {label: "Institution or item", name: "title", widget: "string"}
+              - label: "Line underneath"
+                name: "meta"
+                widget: "string"
+                required: false
+                hint: "Year, degree, subject. Links are written as [words](https://example.com)."
               - {label: "Result", name: "result", widget: "string", required: false}
-          - {label: "Training Label", name: "training_label", widget: "string"}
-          - label: "Training & Fellowships"
+
+          - {label: "Fellowships — column title", name: "training_label", widget: "string", required: false}
+          - label: "Fellowships & training"
             name: "training"
             widget: "list"
+            collapsed: true
+            summary: "{{fields.title}}"
             fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Meta Details", name: "meta", widget: "string"}
+              - {label: "Name", name: "title", widget: "string"}
+              - {label: "Line underneath", name: "meta", widget: "string", required: false}
+              - {label: "Result", name: "result", widget: "string", required: false}
 
+          - {label: "Extracurriculars — column title", name: "extras_label", widget: "string", required: false}
+          - label: "Extracurricular activities"
+            name: "extras"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.title}}"
+            fields:
+              - {label: "Role or activity", name: "title", widget: "string"}
+              - {label: "Line underneath", name: "meta", widget: "string", required: false}
+              - {label: "Result", name: "result", widget: "string", required: false}
+
+      # ---------------------------------------------------------------------
       - file: "content/profile.json"
-        label: "9. Contact, Socials & Location"
         name: "profile"
+        label: "9 · Contact details & social links"
+        description: >-
+          Everything in the Contact block at the bottom of the page — and the
+          address the "Get in touch" button writes to.
+        editor:
+          preview: true
         fields:
-          - {label: "Email Address", name: "email", widget: "string"}
-          - {label: "Phone Display Number", name: "phone_display", widget: "string"}
-          - {label: "Address Line 1 (Optional - Leave empty to hide)", name: "location_line_1", widget: "string", required: false}
-          - {label: "Address Line 2 (City, Country)", name: "location_line_2", widget: "string", required: false}
-          - {label: "References Text (Leave empty to hide)", name: "references", widget: "string", required: false}
-          - {label: "Quick Facts", name: "facts", widget: "list", required: false}
-          - {label: "LinkedIn URL", name: "linkedin", widget: "string", required: false}
-          - {label: "X (Twitter) URL", name: "twitter", widget: "string", required: false}
-          - {label: "Instagram URL", name: "instagram", widget: "string", required: false}
-          - {label: "Facebook URL", name: "facebook", widget: "string", required: false}
+          - {label: "Email address", name: "email", widget: "string"}
+          - label: "Phone number — for the link"
+            name: "phone"
+            widget: "string"
+            required: false
+            hint: "Digits only, with the country code: +8801303043314"
+          - label: "Phone number — as shown"
+            name: "phone_display"
+            widget: "string"
+            required: false
+            hint: "How it should look on the page: +880 1303 043314"
+          - label: "Address — first line"
+            name: "location_line_1"
+            widget: "string"
+            required: false
+            hint: "Street or area. Leave empty to show only the line below."
+          - {label: "Address — second line", name: "location_line_2", widget: "string", required: false}
+          - label: "References"
+            name: "references"
+            widget: "text"
+            required: false
+            hint: "Leave empty and the References column disappears completely."
+          - label: "Three short facts"
+            name: "facts"
+            widget: "list"
+            required: false
+            hint: "The small pills under the hero. Three reads best; leave empty to hide them."
+
+          - {label: "LinkedIn", name: "linkedin", widget: "string", required: false, hint: "Full address. Leave empty to hide."}
+          - {label: "X / Twitter", name: "twitter", widget: "string", required: false, hint: "Full address. Leave empty to hide."}
+          - {label: "Instagram", name: "instagram", widget: "string", required: false, hint: "Full address. Leave empty to hide."}
+          - {label: "Facebook", name: "facebook", widget: "string", required: false, hint: "Full address. Leave empty to hide."}
+          - {label: "YouTube", name: "youtube", widget: "string", required: false, hint: "Full address. Leave empty to hide."}
+          - {label: "Other website", name: "website", widget: "string", required: false, hint: "Full address. Leave empty to hide."}

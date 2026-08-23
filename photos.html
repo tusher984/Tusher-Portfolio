@@ -18,11 +18,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=10">
 <noscript><style>[data-reveal],.hero [data-seq]{opacity:1!important;transform:none!important;animation:none!important}</style></noscript>
 
 </head>
-<body>
+<body data-page="photos">
 
 <a class="skip" href="#main">Skip to content</a>
 
@@ -30,7 +30,7 @@
   <div class="wrap">
     <a class="brand" href="./">
       <span class="brand-dot" aria-hidden="true"></span>
-      Al Amin Tusher
+      <span id="brand-name">Al Amin Tusher</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
@@ -38,11 +38,11 @@
       </svg>
     </button>
     <nav class="nav" id="primary-nav" aria-label="Primary">
-      <a href="index.html#work">Work</a>
-      <a href="photos.html" aria-current="page">Photography</a>
-      <a href="videos.html">Video</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="index.html#work" data-nav="work">Work</a>
+      <a href="photos.html" aria-current="page" data-nav="photography">Photography</a>
+      <a href="videos.html" data-nav="video">Video</a>
+      <a href="index.html#about" data-nav="about">About</a>
+      <a href="index.html#contact" data-nav="contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -86,7 +86,9 @@
     </svg>
   </button>
   <figure>
-    <img class="lb-img" src="" alt="">
+    <!-- No src until a photograph is opened: an empty one would make the
+         browser request this page again as if it were an image. -->
+    <img class="lb-img" alt="">
     <figcaption>
       <span class="lb-title"></span>
       <span class="lb-meta"></span>
@@ -97,11 +99,11 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>© <span id="year">2026</span> Md. Al Amin Tusher</span>
+    <span>© <span id="year">2026</span> <span id="footer-left">Md. Al Amin Tusher</span></span>
     <span><a href="index.html">Back to portfolio</a></span>
   </div>
 </footer>
 
-<script src="assets/js/site.js"></script>
+<script src="assets/js/site.js?v=10"></script>
 </body>
 </html>

@@ -1,45 +1,66 @@
 {
+  "brand": {
+    "name": "Al Amin Tusher",
+    "nav_work": "Work",
+    "nav_photography": "Photography",
+    "nav_video": "Video",
+    "nav_skills": "Skills",
+    "nav_about": "About",
+    "nav_contact": "Contact"
+  },
+  "seo": {
+    "title": "Md. Al Amin Tusher — Investigative & Multimedia Journalist, Dhaka",
+    "description": "Md. Al Amin Tusher is an investigative and multimedia journalist in Dhaka, Bangladesh, reporting on infrastructure, fire safety, rivers and public-interest failures. Staff correspondent at Netra News."
+  },
   "hero": {
-    "name": "Al-Amin Tusher",
-    "eyebrow": "Dhaka, Bangladesh  ·  Staff Correspondent, Netra News",
-    "lead": "I report on the systems that are supposed to keep people safe — building codes, embankments, river channels, welfare rolls — and what happens when they fail. Five years of field reporting, documents and data across Bangladesh.\n\n",
+    "eyebrow": "Dhaka, Bangladesh · Staff Correspondent, Netra News",
+    "name": "Md. Al Amin Tusher",
     "tagline": "Investigative & multimedia journalist",
-    "cta_primary": " ",
-    "cta_secondary": " "
+    "lead": "I report on the systems that are supposed to keep people safe — building codes, embankments, river channels, welfare rolls — and what happens when they fail. Five years of field reporting, documents and data across Bangladesh.",
+    "cta_primary": "See selected work",
+    "cta_primary_url": "#work",
+    "cta_secondary": "Get in touch",
+    "cta_secondary_url": ""
   },
   "work": {
-    "eyebrow": " ",
-    "heading": " ",
-    "lead": " "
+    "eyebrow": "Selected work",
+    "heading": "Investigations, data reporting and interactives",
+    "lead": "Reported for Netra News, including document-based investigations and interactive data projects. Reporting and analysis are my own unless noted."
   },
   "photography": {
-    "eyebrow": " ",
-    "heading": " ",
-    "link_label": " "
+    "eyebrow": "Photography",
+    "heading": "Documentary photography",
+    "link_label": "",
+    "link_url": "photos.html"
   },
   "video": {
-    "eyebrow": " ",
-    "heading": " ",
-    "link_label": " ",
-    "blurb": " ",
-    "highlight_title": "  ",
-    "highlight_text": " "
+    "eyebrow": "Video",
+    "heading": "Broadcast & documentary",
+    "link_label": "",
+    "link_url": "videos.html"
   },
   "experience": {
-    "eyebrow": " ",
-    "heading": " "
+    "eyebrow": "Experience",
+    "heading": "Newsrooms & assignments"
   },
   "skills": {
-    "eyebrow": " ",
-    "heading": " "
+    "eyebrow": "Skills & Tools",
+    "heading": "How the work gets made"
+  },
+  "credentials": {
+    "eyebrow": "Credentials",
+    "heading": "Education, fellowships & extra-curriculars"
   },
   "contact": {
-    "eyebrow": " ",
-    "heading": " ",
-    "lead": " ",
-    "based_in_label": " ",
-    "elsewhere_label": " ",
-    "references_label": " "
+    "eyebrow": "Contact",
+    "heading": "Working on a story I should know about?",
+    "lead": "Available for investigative assignments, commissions, fixing and collaborations in Bangladesh. Documents and tips welcome.",
+    "based_in_label": "Based in",
+    "elsewhere_label": "Social Media",
+    "references_label": "References"
   },
-  "socials": []
+  "footer": {
+    "left": "Md. Al Amin Tusher",
+    "right": "Dhaka, Bangladesh"
+  }
 }

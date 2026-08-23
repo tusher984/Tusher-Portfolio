@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dashboard guide · Md. Al Amin Tusher</title>
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .guide { max-width: 46rem; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5rem) 1.5rem 6rem; }
+  .guide h2 { font-size: 1.35rem; margin: 3rem 0 0.85rem; }
+  .guide h2:first-of-type { margin-top: 2rem; }
+  .guide p, .guide li { color: var(--ink-2); }
+  .guide ul, .guide ol { padding-left: 1.15rem; }
+  .guide li { margin-bottom: 0.4rem; }
+  .rule-box {
+    background: var(--wash); border-left: 2px solid var(--accent);
+    padding: 1.15rem 1.35rem; margin: 1.5rem 0; border-radius: 0 3px 3px 0;
+  }
+  .rule-box p { margin-bottom: 0.65rem; }
+  .rule-box p:last-child { margin-bottom: 0; }
+  table.map { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: var(--fs-small); }
+  table.map th, table.map td { text-align: left; vertical-align: top; padding: 0.6rem 0.75rem 0.6rem 0; border-bottom: 1px solid var(--rule); }
+  table.map th { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+  table.map td:first-child { white-space: nowrap; font-weight: 500; color: var(--ink); padding-right: 1.5rem; }
+  .guide-foot { margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); font-size: var(--fs-small); }
+</style>
+</head>
+
+<body>
+<main class="guide">
+  <p class="eyebrow">Dashboard</p>
+  <h1 style="font-size: clamp(2rem, 5vw, 2.75rem);">How this dashboard works</h1>
+  <p class="lead">
+    Nine sections, in the order they appear on the page. Everything a visitor
+    can read is in one of them.
+  </p>
+
+  <div class="rule-box">
+    <p><strong>Emptying a field never blanks the page.</strong> If you clear a
+      heading and save, the page keeps the words it already had. You cannot
+      accidentally wipe the site by deleting text.</p>
+    <p><strong>Except the optional things.</strong> The two hero buttons, the
+      two &ldquo;see all&rdquo; links, References, and the first address line
+      are meant to be removable — empty their label and they disappear from
+      the page. Every field like that says so underneath.</p>
+  </div>
+
+  <h2>Signing in</h2>
+  <p>
+    The dashboard asks for your <strong>Admin</strong> name and
+    <strong>password</strong> first. That is a lock on the door of the page —
+    it keeps other people out of the editor, and nothing loads until it is
+    passed. It lasts until you close the browser.
+  </p>
+  <p>
+    <strong>Log in with GitHub</strong> is the one that actually matters.
+    Saving a change means writing to your repository, so every publish goes
+    through your GitHub account whichever door you came in by. If GitHub still
+    remembers you from last time, you land straight in the editor.
+  </p>
+
+  <h2>Saving and publishing</h2>
+  <ol>
+    <li>Open a section, change what you want.</li>
+    <li>Press <strong>Save</strong>. Nothing is live yet.</li>
+    <li>Press <strong>Publish &rarr; Publish now</strong>.</li>
+    <li>Wait about a minute, then refresh the site. GitHub rebuilds the
+      page after every publish, which is what takes the minute.</li>
+  </ol>
+
+  <h2>What each section changes</h2>
+  <table class="map">
+    <tr><th>Section</th><th>What it controls on the page</th></tr>
+    <tr>
+      <td>1 · Header, hero &amp; section titles</td>
+      <td>Your name in the top bar, the six menu labels, the big opening block
+        and its two buttons, the small title and heading above every section,
+        the footer, and the title and description Google shows.</td>
+    </tr>
+    <tr>
+      <td>2 · About &amp; what I cover</td>
+      <td>Your portrait beside the hero, the three cards under it, and the
+        About paragraphs.</td>
+    </tr>
+    <tr>
+      <td>3 · Selected work</td>
+      <td>The list of stories. A story with no link shows a
+        <em>Pending</em> tag instead.</td>
+    </tr>
+    <tr>
+      <td>4 · Photography</td>
+      <td>The row of photographs on the homepage <em>and</em> the full gallery
+        page, from the same list.</td>
+    </tr>
+    <tr>
+      <td>5 · Video</td>
+      <td>The films on the homepage and on the video page.</td>
+    </tr>
+    <tr><td>6 · Experience</td><td>Your jobs, newest first.</td></tr>
+    <tr><td>7 · Skills &amp; tools</td><td>The boxes of skills.</td></tr>
+    <tr>
+      <td>8 · Credentials</td>
+      <td>Education, fellowships &amp; training, and extracurricular
+        activities — three columns.</td>
+    </tr>
+    <tr>
+      <td>9 · Contact details &amp; social links</td>
+      <td>Email, phone, address, References, the three short facts under the
+        hero, and every social link. The &ldquo;Get in touch&rdquo; button
+        writes to the email address here.</td>
+    </tr>
+  </table>
+
+  <h2>Adding a photograph</h2>
+  <p>
+    Open <strong>4 · Photography</strong>, press <strong>Add Photographs</strong>,
+    upload the picture, and write a caption. It appears in the homepage row and
+    on the gallery page at the same time.
+  </p>
+  <p>
+    The <strong>Category</strong> field is what the filter buttons on the
+    gallery page sort by, so it has to match one of the buttons letter for
+    letter — <em>Environment</em> and <em>environment</em> are two different
+    things. A button with no photographs behind it stays hidden, and the
+    preview on the right will tell you when that happens.
+  </p>
+
+  <h2>Adding a film</h2>
+  <p>
+    Open <strong>5 · Video</strong> and paste the whole YouTube address from
+    your browser — <code>youtube.com/watch?v=…</code>, <code>youtu.be/…</code>
+    and Shorts links all work. The still picture is pulled from YouTube
+    automatically; if the preview shows no picture, the link could not be read.
+  </p>
+
+  <h2>Links inside text</h2>
+  <p>
+    In the About paragraphs, the &ldquo;what I cover&rdquo; cards, the job
+    bullet points and the lines under a credential, you can write a link as
+    <code>[the words](https://example.com)</code>. Everywhere else, plain text
+    is safest.
+  </p>
+
+  <h2>If something looks wrong</h2>
+  <ul>
+    <li><strong>An edit has not appeared.</strong> Give it a minute, then
+      refresh. The page reads fresh content every time, so a hard refresh is
+      rarely needed.</li>
+    <li><strong>A photograph is missing.</strong> Check the preview on the
+      right — an entry with no picture uploaded is skipped.</li>
+    <li><strong>A whole block vanished.</strong> One of the optional labels was
+      emptied. Write the label back in and it returns.</li>
+  </ul>
+
+  <p class="guide-foot">
+    <a class="textlink" href="./">&larr; Back to the dashboard</a> &nbsp;·&nbsp;
+    <a class="textlink" href="../index.html">View the site</a> &nbsp;·&nbsp;
+    <a class="textlink" href="../README-bn.md">বাংলা নির্দেশিকা</a>
+  </p>
+</main>
+</body>
+</html>
