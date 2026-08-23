@@ -23,11 +23,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=9">
+<link rel="stylesheet" href="assets/css/style.css?v=10">
 <noscript><style>[data-reveal],.hero [data-seq]{opacity:1!important;transform:none!important;animation:none!important}</style></noscript>
 
 </head>
-<body>
+<body data-page="home">
 
 <a class="skip" href="#main">Skip to content</a>
 
@@ -35,7 +35,7 @@
   <div class="wrap">
     <a class="brand" href="./">
       <span class="brand-dot" aria-hidden="true"></span>
-      Al Amin Tusher
+      <span id="brand-name">Al Amin Tusher</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
@@ -43,12 +43,12 @@
       </svg>
     </button>
     <nav class="nav" id="primary-nav" aria-label="Primary">
-      <a href="#work">Work</a>
-      <a href="#photography">Photography</a>
-      <a href="#video">Video</a>
-      <a href="#skills">Skills</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#work" data-nav="work">Work</a>
+      <a href="#photography" data-nav="photography">Photography</a>
+      <a href="#video" data-nav="video">Video</a>
+      <a href="#skills" data-nav="skills">Skills</a>
+      <a href="#about" data-nav="about">About</a>
+      <a href="#contact" data-nav="contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -59,22 +59,24 @@
   <section class="hero wrap">
     <div class="hero-grid">
       <div>
-        <p class="eyebrow" data-seq>Dhaka, Bangladesh &nbsp;·&nbsp; Staff Correspondent, Netra News</p>
+        <p class="eyebrow" id="hero-eyebrow" data-seq>Dhaka, Bangladesh &nbsp;·&nbsp; Staff Correspondent, Netra News</p>
         <h1 data-seq>
-          <span>Md. Al Amin Tusher</span>
-          <span class="h1-sub">Investigative &amp; multimedia journalist</span>
+          <span id="hero-name">Md. Al Amin Tusher</span>
+          <span class="h1-sub" id="hero-tagline">Investigative &amp; multimedia journalist</span>
         </h1>
-        <p class="lead" data-seq>
+        <p class="lead" id="hero-lead" data-seq>
           I report on the systems that are supposed to keep people safe — building codes,
           embankments, river channels, welfare rolls — and what happens when they fail.
           Five years of field reporting, documents and data across Bangladesh.
         </p>
-        
+
         <div class="hero-actions" data-seq>
-          <a class="btn btn--solid" href="#work">
-            <span>See selected work</span> <span class="arrow" aria-hidden="true">→</span>
+          <a class="btn btn--solid" id="cta-primary" href="#work">
+            <span data-label>See selected work</span> <span class="arrow" aria-hidden="true">→</span>
           </a>
-          <a class="btn btn--outline" href="mailto:md.alamintusher@gmail.com">Get in touch</a>
+          <a class="btn btn--outline" id="cta-secondary" href="mailto:md.alamintusher@gmail.com">
+            <span data-label>Get in touch</span>
+          </a>
         </div>
         
         <div class="hero-divider" data-seq></div>
@@ -97,7 +99,7 @@
   <section class="section section--wash section--tight">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">What I cover</p>
+        <p class="eyebrow" id="beats-eyebrow">What I cover</p>
       </div>
       <div class="beats" id="beats">
         <div class="beat" data-reveal>
@@ -129,9 +131,9 @@
   <section class="section" id="work">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Selected work</p>
-        <h2>Investigations, data reporting and interactives</h2>
-        <p class="lead">
+        <p class="eyebrow" id="work-eyebrow">Selected work</p>
+        <h2 id="work-heading">Investigations, data reporting and interactives</h2>
+        <p class="lead" id="work-lead">
           Reported for Netra News, including document-based investigations and interactive
           data projects. Reporting and analysis are my own unless noted.
         </p>
@@ -144,11 +146,14 @@
   <section class="section section--wash" id="photography">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Photography</p>
-        <h2>Documentary photography</h2>
-        <p class="lead">
+        <p class="eyebrow" id="photo-eyebrow">Photography</p>
+        <h2 id="photo-heading">Documentary photography</h2>
+        <p class="lead" id="photo-lead">
           Documentary photography from assignments and personal work across Bangladesh — rivers, streets, and the people living alongside both.
         </p>
+        <a class="textlink section-link" id="photo-link" href="photos.html" hidden>
+          <span data-label>See all photographs</span> <span class="arrow" aria-hidden="true">→</span>
+        </a>
       </div>
       <div class="photo-strip" id="photo-strip" data-reveal></div>
     </div>
@@ -158,11 +163,14 @@
   <section class="section" id="video">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Video</p>
-        <h2>Broadcast &amp; documentary</h2>
-        <p class="lead">
+        <p class="eyebrow" id="video-eyebrow">Video</p>
+        <h2 id="video-heading">Broadcast &amp; documentary</h2>
+        <p class="lead" id="video-lead">
           Field reporting, document-backed video stories, and environmental investigations across Bangladesh.
         </p>
+        <a class="textlink section-link" id="video-link" href="videos.html" hidden>
+          <span data-label>See all video work</span> <span class="arrow" aria-hidden="true">→</span>
+        </a>
       </div>
       <div class="video-grid" id="video-strip" data-reveal></div>
     </div>
@@ -173,8 +181,8 @@
     <div class="wrap">
       <div class="split">
         <div data-reveal>
-          <p class="eyebrow">About</p>
-          <h2 style="font-size:var(--fs-h2)">Reporting from Dhaka since 2019</h2>
+          <p class="eyebrow" id="about-eyebrow">About</p>
+          <h2 style="font-size:var(--fs-h2)" id="about-heading">Reporting from Dhaka since 2019</h2>
         </div>
         <div class="prose" id="about-prose" data-reveal>
           <p>
@@ -202,8 +210,8 @@
   <section class="section" id="experience">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Experience</p>
-        <h2>Newsrooms &amp; assignments</h2>
+        <p class="eyebrow" id="exp-eyebrow">Experience</p>
+        <h2 id="exp-heading">Newsrooms &amp; assignments</h2>
       </div>
       <div class="timeline" id="timeline">
         <article class="job job--current" data-reveal>
@@ -278,10 +286,10 @@
   <section class="section section--wash" id="skills">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Skills &amp; Tools</p>
-        <h2>How the work gets made</h2>
+        <p class="eyebrow" id="skills-eyebrow">Skills &amp; Tools</p>
+        <h2 id="skills-heading">How the work gets made</h2>
       </div>
-      <div class="skills">
+      <div class="skills" id="skills-grid">
         <div class="skill-group" data-reveal>
           <h3>Journalism &amp; Research</h3>
           <ul class="tags">
@@ -342,12 +350,12 @@
   <section class="section" id="credentials">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Credentials</p>
-        <h2>Education, fellowships &amp; extra-curriculars</h2>
+        <p class="eyebrow" id="cred-eyebrow">Credentials</p>
+        <h2 id="cred-heading">Education, fellowships &amp; extra-curriculars</h2>
       </div>
       <div class="cred-grid">
         <div data-reveal>
-          <p class="eyebrow">Education</p>
+          <p class="eyebrow" id="education-label">Education</p>
           <ul class="cred-list" id="education-list">
             <li>
               <strong>Stamford University Bangladesh</strong>
@@ -375,7 +383,7 @@
           </ul>
         </div>
         <div data-reveal>
-          <p class="eyebrow">Fellowships &amp; training</p>
+          <p class="eyebrow" id="training-label">Fellowships &amp; training</p>
           <ul class="cred-list" id="training-list">
             <li>
               <strong>Internews Europe Fellowship</strong>
@@ -400,8 +408,8 @@
           </ul>
         </div>
         <div data-reveal>
-          <p class="eyebrow">Extracurricular activities</p>
-          <ul class="cred-list" id="extra-list">
+          <p class="eyebrow" id="extras-label">Extracurricular activities</p>
+          <ul class="cred-list" id="extras-list">
             <li>
               <strong>Executive Body Member, JRN VISUALS</strong>
               <span class="meta">Organized photo walks, designed promotional materials, and mentored junior club members.</span>
@@ -423,37 +431,42 @@
   <!-- ================= CONTACT ================= -->
   <section class="section contact" id="contact" data-reveal>
     <div class="wrap">
-      <p class="eyebrow">Contact</p>
-      <h2>Working on a story I should know about?</h2>
-      <p class="lead">
+      <p class="eyebrow" id="contact-eyebrow">Contact</p>
+      <h2 id="contact-heading">Working on a story I should know about?</h2>
+      <p class="lead" id="contact-lead">
         Available for investigative assignments, commissions, fixing and collaborations in Bangladesh. Documents and tips welcome.
       </p>
 
       <div class="contact-actions">
-        <a class="btn btn--light" href="mailto:md.alamintusher@gmail.com">
-          <span>md.alamintusher@gmail.com</span>
+        <a class="btn btn--light" id="contact-email" href="mailto:md.alamintusher@gmail.com">
+          <span data-label>md.alamintusher@gmail.com</span>
         </a>
-        <a class="btn btn--outline-light" href="tel:+8801303043314">
-          <span>+880 1303 043314</span>
+        <a class="btn btn--outline-light" id="contact-phone" href="tel:+8801303043314">
+          <span data-label>+880 1303 043314</span>
         </a>
       </div>
 
       <div class="contact-meta">
         <div>
-          <h3>Based in</h3>
-          <p>
+          <h3 id="based-label">Based in</h3>
+          <p id="based-text">
             <span>Dhaka, Bangladesh</span>
           </p>
         </div>
 
         <div>
-          <h3>Social Media</h3>
+          <h3 id="elsewhere-label">Social Media</h3>
           <ul class="socials" id="socials">
             <li><a href="https://www.linkedin.com/in/md-al-amin-tusher-607138170/" target="_blank" rel="noopener">LinkedIn</a></li>
             <li><a href="https://x.com/Alamin984" target="_blank" rel="noopener">X</a></li>
             <li><a href="https://www.instagram.com/alamin_visuals/" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://www.facebook.com/md.alamintusher984/" target="_blank" rel="noopener">Facebook</a></li>
           </ul>
+        </div>
+
+        <div id="references-block" hidden>
+          <h3 id="references-label">References</h3>
+          <p id="references-text"></p>
         </div>
       </div>
     </div>
@@ -463,11 +476,11 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>© <span id="year">2026</span> Md. Al Amin Tusher</span>
-    <span>Dhaka, Bangladesh</span>
+    <span>© <span id="year">2026</span> <span id="footer-left">Md. Al Amin Tusher</span></span>
+    <span id="footer-right">Dhaka, Bangladesh</span>
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=9"></script>
+<script src="assets/js/site.js?v=10"></script>
 </body>
 </html>

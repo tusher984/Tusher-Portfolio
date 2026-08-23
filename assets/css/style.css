@@ -332,3 +332,83 @@ a.index-row:hover .index-go, a.index-row:focus-visible .index-go { opacity: 1; t
   .section { padding-block: 1.5rem; page-break-inside: avoid; }
   a { text-decoration: none; color: var(--ink); }
 }
+
+/* ========================================================================
+   17. Dashboard-driven bits
+   Anything the dashboard can switch off uses [hidden]; the !important is
+   needed because .btn sets its own display.
+   ======================================================================== */
+[hidden] { display: none !important; }
+
+.section-head .section-link { margin-top: 1.5rem; }
+.job h3 .job-note { color: var(--muted); font-weight: 400; }
+.video-card .v-desc { color: var(--muted); font-size: var(--fs-small); margin: 0; }
+
+/* ========================================================================
+   18. Photography & Video pages
+   ======================================================================== */
+.page-hero { padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(1.75rem, 4vw, 3rem); }
+.page-hero h1 { font-size: var(--fs-h2); margin: 0.35rem 0 1rem; }
+.page-hero .lead { font-size: var(--fs-lead); color: var(--ink-2); max-width: 60ch; margin: 0; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+.filter {
+  font-family: var(--mono); font-size: var(--fs-mono); letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.5rem 0.9rem; background: var(--paper); color: var(--ink-2);
+  border: 1px solid var(--rule); border-radius: 999px; cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.filter:hover { border-color: var(--accent); color: var(--accent-deep); }
+.filter.is-on { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+
+/* True masonry: CSS columns keep each photograph at its own natural height. */
+.masonry { columns: 3 260px; column-gap: 1.25rem; }
+.masonry-item {
+  position: relative; display: block; width: 100%; margin: 0 0 1.25rem;
+  padding: 0; border: 0; background: var(--wash-2); border-radius: 6px;
+  overflow: hidden; cursor: zoom-in; break-inside: avoid;
+  box-shadow: 0 4px 10px rgba(15, 27, 29, 0.05);
+  transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.2, 0, 0.2, 1);
+}
+.masonry-item:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(15, 27, 29, 0.16); }
+.masonry-item img { width: 100%; height: auto; display: block; transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1); }
+.masonry-item:hover img { transform: scale(1.03); }
+.masonry-cap {
+  position: absolute; inset: auto 0 0 0; display: block; text-align: left;
+  padding: 2.5rem 1rem 0.9rem; color: #ffffff;
+  background: linear-gradient(transparent, rgba(15, 27, 29, 0.82));
+  opacity: 0; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.masonry-item:hover .masonry-cap, .masonry-item:focus-visible .masonry-cap { opacity: 1; transform: none; }
+.masonry-cap .cap-title { display: block; font-size: var(--fs-small); line-height: 1.4; }
+.masonry-cap .cap-meta { display: block; margin-top: 0.25rem; font-family: var(--mono); font-size: var(--fs-mono); letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255, 255, 255, 0.78); }
+@media (max-width: 600px) { .masonry { columns: 2 130px; column-gap: 0.85rem; } .masonry-item { margin-bottom: 0.85rem; } }
+
+/* ========================================================================
+   19. Full-screen photo viewer
+   ======================================================================== */
+.lightbox {
+  position: fixed; inset: 0; z-index: 300; display: none;
+  place-items: center; padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(9, 17, 18, 0.94); backdrop-filter: blur(6px);
+}
+.lightbox.is-open { display: grid; }
+.lightbox figure { margin: 0; max-width: min(100%, 1100px); max-height: 100%; display: flex; flex-direction: column; gap: 0.9rem; }
+.lightbox .lb-img { max-width: 100%; max-height: 78vh; margin-inline: auto; object-fit: contain; border-radius: 3px; }
+.lightbox figcaption { text-align: center; color: rgba(255, 255, 255, 0.9); font-size: var(--fs-small); }
+.lightbox .lb-title { display: block; }
+.lightbox .lb-meta { display: block; margin-top: 0.3rem; font-family: var(--mono); font-size: var(--fs-mono); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.6); }
+.lb-btn {
+  position: absolute; display: grid; place-items: center; width: 44px; height: 44px;
+  background: rgba(255, 255, 255, 0.1); color: #ffffff; cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 50%;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.lb-btn:hover { background: rgba(255, 255, 255, 0.22); border-color: #ffffff; }
+.lb-close { top: clamp(1rem, 3vw, 2rem); right: clamp(1rem, 3vw, 2rem); }
+.lb-prev { left: clamp(0.5rem, 3vw, 2rem); top: 50%; transform: translateY(-50%); }
+.lb-next { right: clamp(0.5rem, 3vw, 2rem); top: 50%; transform: translateY(-50%); }
+.lb-count {
+  position: absolute; bottom: clamp(1rem, 3vw, 2rem); left: 50%; transform: translateX(-50%);
+  font-family: var(--mono); font-size: var(--fs-mono); letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.65);
+}

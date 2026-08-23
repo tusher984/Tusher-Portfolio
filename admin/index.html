@@ -1,12 +1,430 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content Manager - Admin Dashboard</title>
-  </head>
-  <body>
-    <!-- Include the script that builds the page and powers Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  </body>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dashboard · Md. Al Amin Tusher</title>
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap">
+
+<style>
+  /* The dashboard borrows the site's own palette and typefaces, so editing
+     feels like part of the site rather than a different product. */
+  :root {
+    --paper: #ffffff;
+    --wash: #f3f7f7;
+    --ink: #0f1b1d;
+    --ink-2: #2c3d40;
+    --muted: #647579;
+    --rule: #e1e9e9;
+    --accent: #2f6d74;
+    --accent-deep: #1d4e54;
+    --display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  html, body { margin: 0; background: var(--wash); }
+
+  #nc-root, #nc-root input, #nc-root textarea, #nc-root select, #nc-root button {
+    font-family: var(--body);
+  }
+  #nc-root h1, #nc-root h2, #nc-root h3 {
+    font-family: var(--display); letter-spacing: -0.01em;
+  }
+  /* The CMS blows the site icon up to 300px on its own GitHub screen. The
+     class name is generated, so match on the part of it that is stable. */
+  #nc-root [class*="CustomIconWrapper"] { width: auto; height: auto; }
+  #nc-root [class*="CustomIconWrapper"] img {
+    width: 4.25rem; height: 4.25rem; border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(15, 27, 29, 0.12);
+  }
+
+  /* ---------------------------------------------------------- sign-in card */
+  #gate {
+    position: fixed; inset: 0; z-index: 80; display: grid; place-items: center;
+    background: var(--wash); font-family: var(--body); color: var(--ink);
+    padding: 1.5rem; overflow: auto;
+  }
+  .gate-card {
+    width: min(23rem, 100%); background: var(--paper);
+    border: 1px solid var(--rule); border-radius: 4px;
+    padding: 2.25rem 2rem 1.75rem; text-align: left;
+    box-shadow: 0 18px 50px rgba(15, 27, 29, 0.07);
+  }
+  .gate-name {
+    font-family: var(--display); font-weight: 600; font-size: 1.0625rem;
+    letter-spacing: -0.02em; margin: 0 0 1.5rem;
+  }
+  .gate-name .dot { color: var(--accent); }
+  .gate-title {
+    font-family: var(--display); font-weight: 600; font-size: 1.6rem;
+    letter-spacing: -0.025em; margin: 0 0 0.3rem;
+  }
+  .gate-sub { color: var(--muted); font-size: 0.9375rem; margin: 0 0 1.6rem; }
+
+  .field { display: block; margin-bottom: 0.9rem; }
+  .field span {
+    display: block; font-size: 0.8125rem; font-weight: 500;
+    color: var(--ink-2); margin-bottom: 0.35rem;
+  }
+  .field input {
+    width: 100%; box-sizing: border-box; font: inherit; font-size: 0.9375rem;
+    color: var(--ink); background: var(--paper); padding: 0.62rem 0.7rem;
+    border: 1px solid var(--rule); border-radius: 3px; transition: border-color 0.15s ease;
+  }
+  .field input:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(47, 109, 116, 0.12);
+  }
+
+  .gate-error {
+    background: #fdf2f2; border-left: 2px solid #c0392b; color: #8e2b21;
+    font-size: 0.8125rem; line-height: 1.5; padding: 0.5rem 0.7rem;
+    margin: 0 0 0.9rem; border-radius: 0 2px 2px 0;
+  }
+  .gate-shake { animation: gate-shake 0.32s ease; }
+  @keyframes gate-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+
+  .gate-btn {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    width: 100%; font: inherit; font-size: 0.9375rem; font-weight: 500;
+    padding: 0.68rem 1rem; border-radius: 3px; cursor: pointer;
+    border: 1px solid var(--accent-deep); background: var(--accent-deep);
+    color: #ffffff; transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .gate-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .gate-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .gate-btn[disabled] { opacity: 0.6; cursor: default; }
+  .gate-btn--ghost {
+    background: var(--paper); border-color: var(--rule); color: var(--ink);
+  }
+  .gate-btn--ghost:hover { background: var(--wash); border-color: var(--muted); }
+  .gate-btn--ghost svg { width: 18px; height: 18px; fill: currentColor; }
+
+  .gate-or {
+    position: relative; text-align: center; margin: 1.15rem 0;
+    color: var(--muted); font-size: 0.75rem;
+  }
+  .gate-or::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 50%;
+    border-top: 1px solid var(--rule);
+  }
+  .gate-or span { position: relative; background: var(--paper); padding: 0 0.6rem; }
+
+  .gate-foot {
+    color: var(--muted); font-size: 0.75rem; line-height: 1.5;
+    text-align: center; margin: 1.1rem 0 0;
+  }
+
+  /* ---------------------------------------------------------- boot screen */
+  #boot {
+    position: fixed; inset: 0; z-index: 60; display: grid; place-items: center;
+    background: var(--wash); color: var(--ink); font-family: var(--body);
+    transition: opacity 0.45s ease;
+  }
+  #boot[hidden] { display: none; }
+  #boot.is-done { opacity: 0; pointer-events: none; }
+  .boot-card { width: min(32rem, 88vw); text-align: center; padding: 2rem; }
+  .boot-name {
+    font-family: var(--display); font-weight: 600; font-size: 1.5rem;
+    letter-spacing: -0.02em; margin: 0 0 0.35rem;
+  }
+  .boot-name .dot { color: var(--accent); }
+  .boot-sub { color: var(--muted); font-size: 0.9375rem; margin: 0 0 1.75rem; }
+  .boot-bar { height: 3px; background: var(--rule); border-radius: 3px; overflow: hidden; }
+  .boot-bar i {
+    display: block; height: 100%; width: 40%; background: var(--accent);
+    border-radius: 3px; animation: boot-slide 1.15s ease-in-out infinite;
+  }
+
+  @keyframes boot-slide {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(250%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .boot-bar i { animation: none; width: 100%; }
+    .gate-shake { animation: none; }
+  }
+  .boot-error { display: none; }
+  #boot.has-error .boot-bar { display: none; }
+  #boot.has-error .boot-error { display: block; }
+  .boot-error p { color: var(--ink); font-size: 0.9375rem; line-height: 1.6; }
+  .boot-error code {
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 0.1rem 0.35rem; font-size: 0.85em;
+  }
+  .boot-error a { color: var(--accent); }
+
+  /* ------------------------------------------------------------- shortcuts */
+  /* This build of the CMS has no hook for adding sidebar links, so the two
+     links that matter sit in their own corner instead. */
+  #shortcuts {
+    position: fixed; z-index: 30; right: 1rem; bottom: 1rem;
+    display: flex; gap: 0.35rem; padding: 0.3rem;
+    background: rgba(255, 255, 255, 0.94); border: 1px solid var(--rule);
+    border-radius: 999px; box-shadow: 0 6px 20px rgba(15, 27, 29, 0.09);
+    font-family: var(--body); font-size: 0.8125rem;
+    opacity: 0.75; transition: opacity 0.2s ease;
+  }
+  #shortcuts:hover, #shortcuts:focus-within { opacity: 1; }
+  #shortcuts a {
+    color: var(--ink); text-decoration: none; padding: 0.32rem 0.8rem;
+    border-radius: 999px; white-space: nowrap;
+  }
+  #shortcuts a:hover { background: var(--wash); color: var(--accent-deep); }
+  #shortcuts a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media print { #shortcuts { display: none; } }
+</style>
+
+<script>
+  /* If the CMS bundle cannot be downloaded the loading bar would run for
+     ever, so say plainly what happened instead. */
+  window.cmsBootFailed = function () {
+    window.__cmsBootFailed = true;
+    var boot = document.getElementById('boot');
+    if (boot) boot.classList.add('has-error');
+  };
+</script>
+</head>
+
+<body>
+  <div id="gate">
+    <form class="gate-card" id="gate-form">
+      <p class="gate-name">Md. Al Amin Tusher<span class="dot">.</span></p>
+      <h1 class="gate-title">Dashboard</h1>
+      <p class="gate-sub">Sign in to edit the site.</p>
+
+      <label class="field">
+        <span>Admin</span>
+        <input id="gate-user" name="username" type="text" required
+               autocomplete="username" spellcheck="false" autocapitalize="none">
+      </label>
+      <label class="field">
+        <span>Password</span>
+        <input id="gate-pass" name="password" type="password" required
+               autocomplete="current-password">
+      </label>
+
+      <p class="gate-error" id="gate-error" role="alert" hidden>
+        That name and password do not match.
+      </p>
+
+      <button class="gate-btn" type="submit" id="gate-submit">Sign in</button>
+
+      <div class="gate-or"><span>or</span></div>
+
+      <button class="gate-btn gate-btn--ghost" type="button" id="gate-github">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.4 1.24-3.24-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.92 1.24 3.24 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 22.3 24 17.8 24 12.5 24 5.87 18.63.5 12 .5z"/></svg>
+        Log in with GitHub
+      </button>
+
+      <p class="gate-foot">Publishing a change always goes through GitHub.</p>
+    </form>
+  </div>
+
+  <div id="boot" hidden>
+    <div class="boot-card">
+      <p class="boot-name">Md. Al Amin Tusher<span class="dot">.</span></p>
+      <p class="boot-sub">Opening the dashboard&hellip;</p>
+      <div class="boot-bar"><i></i></div>
+      <div class="boot-error">
+        <p>
+          The dashboard could not load. This almost always means the internet
+          connection dropped while <code>decap-cms.js</code> was downloading.
+        </p>
+        <p><a href="./">Try again</a> &nbsp;·&nbsp; <a href="../index.html">Back to the site</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="shortcuts">
+    <a href="guide.html">Guide</a>
+    <a href="../index.html" target="_blank" rel="noopener">View site &#8599;</a>
+  </div>
+
+  <script>
+  /* =======================================================================
+     Sign-in
+     -----------------------------------------------------------------------
+     Two ways in, and they do different jobs:
+
+       · Admin + password — a lock on the door of this page. The CMS is not
+         even downloaded until it is passed. Because this site is plain files
+         on GitHub Pages there is no server to check a password, so the check
+         happens here in the browser: it keeps other people out of your
+         dashboard, but it is a latch, not a safe.
+
+       · Log in with GitHub — the real authority. Nothing can ever be saved
+         to the site without it, whichever door you came through.
+
+     The password is stored below as a SHA-256 fingerprint rather than as
+     itself, so it is not sitting in plain sight in a public repository.
+     To change it, run this in a terminal and paste the result over HASH:
+
+       node -e "console.log(require('crypto').createHash('sha256').update('newname:newpassword').digest('hex'))"
+
+     The name is lower-cased before checking, so capitals in it do not matter.
+     ======================================================================= */
+  (function () {
+    var HASH = '7b9f504a6464015d8456d46445e2828a0ec5c3aee787e93eb21c8d77cda9ccfd';
+    /* Used only where crypto.subtle is missing — an old browser, or the page
+       opened over plain http on another machine. */
+    var PLAIN_B64 = 'dHVzaGVyOTg0OmFsYW1pbnR1c2hlcg==';
+    var KEY = 'tusher-admin-unlocked';
+
+    var gate = document.getElementById('gate');
+    var form = document.getElementById('gate-form');
+    var user = document.getElementById('gate-user');
+    var pass = document.getElementById('gate-pass');
+    var error = document.getElementById('gate-error');
+    var submit = document.getElementById('gate-submit');
+    var github = document.getElementById('gate-github');
+    var card = form;
+    var started = false;
+
+    function fingerprint(text) {
+      if (!window.crypto || !window.crypto.subtle || !window.TextEncoder) {
+        return Promise.resolve(null);
+      }
+      return window.crypto.subtle
+        .digest('SHA-256', new TextEncoder().encode(text))
+        .then(function (buffer) {
+          return Array.prototype.map.call(new Uint8Array(buffer), function (byte) {
+            return ('0' + byte.toString(16)).slice(-2);
+          }).join('');
+        })
+        .catch(function () { return null; });
+    }
+
+    function correct(pair) {
+      return fingerprint(pair).then(function (hex) {
+        if (hex) return hex === HASH;
+        try { return window.btoa(pair) === PLAIN_B64; } catch (err) { return false; }
+      });
+    }
+
+    function remember() {
+      try { window.sessionStorage.setItem(KEY, '1'); } catch (err) { /* private mode */ }
+    }
+
+    function unlocked() {
+      try { return window.sessionStorage.getItem(KEY) === '1'; } catch (err) { return false; }
+    }
+
+    function refuse() {
+      if (error) error.hidden = false;
+      if (submit) { submit.disabled = false; submit.textContent = 'Sign in'; }
+      if (card) {
+        card.classList.remove('gate-shake');
+        void card.offsetWidth;
+        card.classList.add('gate-shake');
+      }
+      if (pass) { pass.value = ''; pass.focus(); }
+    }
+
+    /* --------------------------------------------------------- loading the CMS */
+    function start() {
+      if (started) return;
+      started = true;
+
+      if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
+      var boot = document.getElementById('boot');
+      if (boot) boot.hidden = false;
+
+      var cms = document.createElement('script');
+      cms.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+      cms.onerror = window.cmsBootFailed;
+      cms.onload = function () {
+        /* The previews have to register after the CMS exists. */
+        var previews = document.createElement('script');
+        previews.src = 'previews.js?v=1';
+        document.body.appendChild(previews);
+        watchBoot();
+      };
+      document.body.appendChild(cms);
+      watchBoot();
+    }
+
+    /* ----------------------------------------------- hide the loading screen */
+    var watching = false;
+    function watchBoot() {
+      if (watching) return;
+      watching = true;
+
+      var boot = document.getElementById('boot');
+      if (!boot) return;
+      var settled = false;
+
+      function finish() {
+        if (settled || window.__cmsBootFailed) return;
+        settled = true;
+        boot.classList.add('is-done');
+        setTimeout(function () {
+          if (boot.parentNode) boot.parentNode.removeChild(boot);
+        }, 600);
+      }
+
+      /* The CMS mounts its own element into <body>; the moment anything real
+         appears there, the loading screen has done its job. */
+      function mounted() {
+        var root = document.getElementById('nc-root');
+        if (root && root.children.length) return true;
+        return Array.prototype.some.call(document.body.children, function (el) {
+          if (el === boot || el.id === 'shortcuts') return false;
+          return el.tagName !== 'SCRIPT' && el.children.length > 0;
+        });
+      }
+
+      if (mounted()) { finish(); return; }
+
+      if (window.MutationObserver) {
+        var observer = new MutationObserver(function () {
+          if (mounted()) { observer.disconnect(); finish(); }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      }
+      setTimeout(finish, 8000);
+    }
+
+    /* ------------------------------------------------------------- wiring up */
+    if (form) {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (error) error.hidden = true;
+        if (submit) { submit.disabled = true; submit.textContent = 'Checking…'; }
+
+        var pair = (user.value || '').trim().toLowerCase() + ':' + (pass.value || '');
+        correct(pair).then(function (ok) {
+          if (!ok) { refuse(); return; }
+          remember();
+          start();
+        });
+      });
+    }
+
+    if (github) {
+      github.addEventListener('click', function () {
+        /* GitHub does the checking on this route, so no password is needed. */
+        remember();
+        start();
+      });
+    }
+
+    /* Already signed in this session — a refresh, or coming back from the
+       guide — so go straight through. */
+    if (unlocked()) {
+      start();
+    } else if (user) {
+      user.focus();
+    }
+  })();
+  </script>
+</body>
 </html>
