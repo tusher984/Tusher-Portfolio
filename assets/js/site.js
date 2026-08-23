@@ -559,6 +559,29 @@
   }
 
   /* -------------------------------------------------------------------- boot */
+  /* Opening a page at a #section — the way every "Work" or "About" link in the
+     menu does from the photography and video pages — is meant to land on that
+     section. Chrome quietly skips that jump when the document scrolls smoothly,
+     and even a jump that worked would land in the wrong place here, because the
+     sections above the target are still empty until the JSON arrives. So the
+     jump is made again, instantly, once the content is in — unless the reader
+     has already started scrolling, in which case leave them where they are. */
+  let userScrolled = false;
+  ['wheel', 'touchmove', 'keydown'].forEach((type) => {
+    addEventListener(type, () => { userScrolled = true; }, { passive: true, once: true });
+  });
+
+  function landOnHash() {
+    if (userScrolled || !location.hash) return;
+    const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (!target) return;
+    const root = document.documentElement;
+    const smooth = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';   /* an animated jump on load is not a jump */
+    target.scrollIntoView();
+    root.style.scrollBehavior = smooth;
+  }
+
   const whichPage = () => {
     if (document.body.dataset.page) return document.body.dataset.page;
     if ($('#masonry')) return 'photos';
@@ -598,6 +621,7 @@
     }
 
     reveal();
+    landOnHash();
   }
 
   if (document.readyState === 'loading') {
@@ -605,4 +629,7 @@
   } else {
     boot();
   }
+
+  /* Pictures settle after the text does, which moves everything below them. */
+  addEventListener('load', landOnHash);
 })();

@@ -11,9 +11,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="../assets/css/style.css">
 <style>
+  /* The site scrolls smoothly, which Chrome sometimes takes as licence to skip
+     the jump to a #section when a page is *opened* at one. The dashboard links
+     straight to #signing-in, so on this page the jump is instant instead. */
+  html { scroll-behavior: auto; }
   .guide { max-width: 46rem; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5rem) 1.5rem 6rem; }
   .guide h2 { font-size: 1.35rem; margin: 3rem 0 0.85rem; }
   .guide h2:first-of-type { margin-top: 2rem; }
+  .guide h3 { font-size: 1.0625rem; margin: 2rem 0 0.6rem; }
   .guide p, .guide li { color: var(--ink-2); }
   .guide ul, .guide ol { padding-left: 1.15rem; }
   .guide li { margin-bottom: 0.4rem; }
@@ -50,18 +55,77 @@
       the page. Every field like that says so underneath.</p>
   </div>
 
-  <h2>Signing in</h2>
+  <h2 id="signing-in">Signing in</h2>
+  <p>Two steps, and they do different jobs.</p>
   <p>
-    The dashboard asks for your <strong>Admin</strong> name and
-    <strong>password</strong> first. That is a lock on the door of the page —
-    it keeps other people out of the editor, and nothing loads until it is
-    passed. It lasts until you close the browser.
+    <strong>Step 1 — Admin and password.</strong> A lock on the door of this
+    page. It keeps other people out of the editor, and the dashboard is not
+    even downloaded until it is passed. It lasts until you close the browser.
   </p>
   <p>
-    <strong>Log in with GitHub</strong> is the one that actually matters.
-    Saving a change means writing to your repository, so every publish goes
-    through your GitHub account whichever door you came in by. If GitHub still
-    remembers you from last time, you land straight in the editor.
+    <strong>Step 2 — GitHub.</strong> Saving a change means writing to your
+    repository, so nothing is ever published without GitHub's permission.
+    There are two ways to give it, and the sign-in card offers whichever is
+    available.
+  </p>
+
+  <h3>With a token</h3>
+  <p>
+    This is the way that works today, from any computer or phone, with nothing
+    to install anywhere. A token is a long password you make on GitHub and
+    paste in once.
+  </p>
+  <ol>
+    <li>On GitHub open <strong>Settings &rarr; Developer settings &rarr;
+      Personal access tokens &rarr; Fine-grained tokens</strong> and press
+      <strong>Generate new token</strong>.</li>
+    <li>Under <strong>Repository access</strong> choose <em>Only select
+      repositories</em> and pick <strong>Tusher-Portfolio</strong>.</li>
+    <li>Under <strong>Repository permissions</strong> set
+      <strong>Contents</strong> to <em>Read and write</em>. Nothing else is
+      needed.</li>
+    <li>Choose how long it should last, generate it, and copy it — GitHub
+      shows it once and never again.</li>
+    <li>Paste it into the dashboard and press <strong>Open the editor</strong>.</li>
+  </ol>
+  <p>
+    A token that cannot do the job is refused on the spot, with the reason: it
+    has expired, or it cannot see this repository, or it can read but not
+    write. Nothing is saved until one passes.
+  </p>
+
+  <div class="rule-box">
+    <p><strong>Tick &ldquo;stay signed in&rdquo; only on your own computer.</strong>
+      Ticked, the token is remembered until you sign out. Left unticked it is
+      forgotten the moment the browser closes — which is what you want on a
+      borrowed laptop.</p>
+    <p><strong>A token never goes into a file.</strong> It belongs in the
+      browser and nowhere else. If one ever escapes, delete it on GitHub — the
+      same page you made it on — and make another.</p>
+    <p><strong>Sign out</strong>, bottom right of the dashboard, forgets the
+      token and the password together.</p>
+  </div>
+  <p>
+    Tokens can be given an expiry date. If GitHub stops accepting a saved one,
+    the dashboard says so and asks for a new one; no work is lost.
+  </p>
+
+  <h3>Switching the GitHub button on</h3>
+  <p>
+    <strong>Log in with GitHub</strong> is the tidier way in — no token to
+    keep, nothing stored in the browser — but it needs one small service of its
+    own. GitHub will not hand out a login to a site that cannot keep a secret,
+    and a site made only of files cannot keep one. That service is free and the
+    code for it is already written: open <code>admin/login-helper.js</code> and
+    follow the five steps at the top of the file. The last step puts its
+    address on the <code>base_url</code> line in
+    <code>admin/config.yml</code>, and the button switches itself on as soon as
+    that line is there.
+  </p>
+  <p>
+    Until then the button stays hidden rather than opening a page that cannot
+    work. If it is ever set up and later misbehaves, the address
+    <code>/admin/?token=new</code> asks for the token door instead.
   </p>
 
   <h2>Saving and publishing</h2>
@@ -155,6 +219,9 @@
       right — an entry with no picture uploaded is skipped.</li>
     <li><strong>A whole block vanished.</strong> One of the optional labels was
       emptied. Write the label back in and it returns.</li>
+    <li><strong>You were sent back to the sign-in card.</strong> GitHub stopped
+      accepting the saved token — it expired, or it was withdrawn. Make a new
+      one and paste it in. The card says when that is what happened.</li>
   </ul>
 
   <p class="guide-foot">
