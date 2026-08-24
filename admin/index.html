@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,64 +8,157 @@
 <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-  :root { --paper:#fff; --wash:#f3f7f7; --ink:#0f1b1d; --ink-2:#2c3d40; --muted:#647579; --rule:#e1e9e9; --accent:#2f6d74; --accent-deep:#1d4e54; --display:"Schibsted Grotesk",Arial,sans-serif; --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace; }
+  :root { --paper:#fff; --wash:#f3f7f7; --wash-deep:#e9f0f0; --ink:#0f1b1d; --ink-2:#2c3d40; --muted:#647579; --rule:#dce5e5; --accent:#2f6d74; --accent-deep:#1d4e54; --accent-soft:#e4efef; --display:"Schibsted Grotesk",Arial,sans-serif; --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace; }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--wash); color:var(--ink); font-family:var(--body); }
-  #local-start { min-height:100vh; display:flex; padding:1.5rem; }
-  .card { width:min(42rem,100%); margin:auto; background:var(--paper); border:1px solid var(--rule); border-radius:4px; padding:clamp(1.75rem,5vw,3rem); box-shadow:0 18px 50px rgba(15,27,29,.07); }
-  .name { font-family:var(--display); font-weight:600; margin:0 0 2rem; font-size:1.15rem; letter-spacing:-.02em; }
-  .name i { color:var(--accent); font-style:normal; }
-  h1 { font:600 clamp(2rem,5vw,3rem)/1.05 var(--display); letter-spacing:-.035em; margin:0 0 .7rem; }
-  .lead { max-width:42ch; color:var(--ink-2); font-size:1.1rem; line-height:1.55; margin:0 0 2rem; }
-  .steps { display:grid; gap:1rem; margin:0; padding:0; list-style:none; }
-  .steps li { display:grid; grid-template-columns:2rem 1fr; gap:.85rem; align-items:start; }
-  .number { display:grid; place-items:center; width:2rem; height:2rem; border-radius:50%; background:#e4efef; color:var(--accent-deep); font:500 .8rem var(--mono); }
-  .steps strong { display:block; margin:.2rem 0 .35rem; }
-  .steps p { margin:0; color:var(--muted); font-size:.94rem; line-height:1.55; }
-  pre { margin:.75rem 0 0; padding:.85rem 1rem; overflow:auto; border-radius:3px; background:#102124; color:#eef5f5; font:.8rem/1.6 var(--mono); }
-  code { font-family:var(--mono); font-size:.88em; }
-  .tip { margin:2rem 0 0; padding:1rem 1.1rem; background:var(--wash); border-left:2px solid var(--accent); color:var(--ink-2); font-size:.9rem; line-height:1.55; }
-  .links { margin:1.5rem 0 0; font-size:.9rem; }
-  a { color:var(--accent); text-underline-offset:3px; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--wash); color:var(--ink); font-family:var(--body); line-height:1.55; }
+  #local-start { min-height:100vh; }
+  .wrap { width:min(1120px,100%); margin:0 auto; padding:0 clamp(1.25rem,4vw,3rem); }
+  .topbar { background:var(--paper); border-bottom:1px solid var(--rule); }
+  .topbar .wrap { min-height:4.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+  .brand { font:600 1.05rem var(--display); letter-spacing:-.02em; }
+  .brand i { color:var(--accent); font-style:normal; }
+  .live-link { color:var(--muted); font-size:.85rem; text-decoration:none; }
+  .live-link:hover { color:var(--accent); }
+  .hero { padding:clamp(3.5rem,8vw,6.5rem) 0 clamp(2.75rem,6vw,5rem); background:linear-gradient(120deg,var(--wash) 0%,#fbfdfd 72%,var(--accent-soft) 100%); }
+  .eyebrow { display:flex; gap:.55rem; align-items:center; margin:0 0 1.1rem; color:var(--accent); font:500 .71rem var(--mono); letter-spacing:.14em; text-transform:uppercase; }
+  .eyebrow::before { content:""; display:block; width:2.25rem; height:1px; background:currentColor; }
+  h1 { max-width:15ch; margin:0; font:600 clamp(2.55rem,6vw,5.2rem)/.98 var(--display); letter-spacing:-.055em; }
+  .hero p { max-width:58ch; margin:1.35rem 0 0; color:var(--ink-2); font-size:clamp(1rem,1.6vw,1.18rem); }
+  .status { display:inline-flex; align-items:center; gap:.55rem; margin-top:1.5rem; padding:.55rem .8rem; border:1px solid #cfe0df; border-radius:999px; color:var(--accent-deep); background:rgba(255,255,255,.65); font-size:.82rem; }
+  .status::before { content:""; width:.5rem; height:.5rem; border-radius:50%; background:#2f8b72; box-shadow:0 0 0 3px rgba(47,139,114,.14); }
+  .section { padding:clamp(3rem,6vw,5rem) 0; }
+  .section--white { background:var(--paper); }
+  .section-title { margin:0 0 .55rem; font:600 clamp(1.8rem,3vw,2.65rem)/1.05 var(--display); letter-spacing:-.04em; }
+  .section-lead { max-width:58ch; margin:0 0 2.25rem; color:var(--muted); }
+  .setup-grid { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr); gap:clamp(1.5rem,4vw,4rem); align-items:start; }
+  .steps { display:grid; gap:1.1rem; margin:0; padding:0; list-style:none; }
+  .step { display:grid; grid-template-columns:2.2rem 1fr; gap:1rem; padding-bottom:1.1rem; border-bottom:1px solid var(--rule); }
+  .step:last-child { padding-bottom:0; border-bottom:0; }
+  .number { display:grid; place-items:center; width:2.2rem; height:2.2rem; margin-top:.05rem; border-radius:50%; background:var(--accent-soft); color:var(--accent-deep); font:500 .8rem var(--mono); }
+  .step h3 { margin:0 0 .35rem; font:600 1.05rem var(--display); letter-spacing:-.015em; }
+  .step p { margin:0; color:var(--muted); font-size:.94rem; }
+  .command { position:relative; margin-top:.8rem; border-radius:5px; background:#102124; overflow:hidden; }
+  .command pre { margin:0; padding:1rem 4.5rem 1rem 1rem; overflow:auto; color:#eff8f8; font:.78rem/1.65 var(--mono); white-space:pre-wrap; }
+  .copy { position:absolute; top:.55rem; right:.55rem; padding:.3rem .5rem; border:1px solid rgba(255,255,255,.2); border-radius:3px; background:transparent; color:#cae0e0; font:500 .67rem var(--mono); cursor:pointer; }
+  .copy:hover { color:#fff; border-color:rgba(255,255,255,.55); }
+  .panel { padding:1.5rem; border:1px solid var(--rule); border-radius:5px; background:var(--paper); box-shadow:0 8px 26px rgba(15,27,29,.04); }
+  .panel h3 { margin:0 0 1rem; font:600 1.15rem var(--display); letter-spacing:-.02em; }
+  .checklist { display:grid; gap:.9rem; padding:0; margin:0; list-style:none; }
+  .checklist li { display:grid; grid-template-columns:1.2rem 1fr; gap:.7rem; color:var(--ink-2); font-size:.91rem; }
+  .checklist li::before { content:"✓"; display:grid; place-items:center; width:1.2rem; height:1.2rem; margin-top:.08rem; color:var(--accent-deep); background:var(--accent-soft); border-radius:50%; font-size:.72rem; font-weight:700; }
+  .small-note { margin:1.25rem 0 0; padding-top:1.15rem; border-top:1px solid var(--rule); color:var(--muted); font-size:.82rem; }
+  .publish-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .publish-card { padding:1.25rem; border:1px solid var(--rule); background:var(--paper); }
+  .publish-card .kicker { color:var(--accent); font:500 .68rem var(--mono); letter-spacing:.12em; text-transform:uppercase; }
+  .publish-card h3 { margin:.65rem 0 .45rem; font:600 1.08rem var(--display); letter-spacing:-.02em; }
+  .publish-card p { margin:0; color:var(--muted); font-size:.9rem; }
+  .publish-command { margin-top:1rem; }
+  .faq { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; border:1px solid var(--rule); background:var(--rule); }
+  .faq article { padding:1.4rem; background:var(--paper); }
+  .faq h3 { margin:0 0 .45rem; font:600 1rem var(--display); letter-spacing:-.015em; }
+  .faq p { margin:0; color:var(--muted); font-size:.9rem; }
+  .footer { padding:2rem 0; background:var(--ink); color:#c7d1d2; font-size:.86rem; }
+  .footer .wrap { display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  .footer a { color:#e8f1f1; text-underline-offset:3px; }
   #nc-root, #nc-root input, #nc-root textarea, #nc-root select, #nc-root button { font-family:var(--body); }
   #nc-root h1, #nc-root h2, #nc-root h3 { font-family:var(--display); letter-spacing:-.01em; }
   #nc-root [class*="CustomIconWrapper"] { width:auto; height:auto; }
   #nc-root [class*="CustomIconWrapper"] img { width:4.25rem; height:4.25rem; border-radius:14px; box-shadow:0 10px 30px rgba(15,27,29,.12); }
+  @media (max-width:760px) { .setup-grid,.publish-grid,.faq { grid-template-columns:1fr; } .hero { padding-top:3.75rem; } .topbar .wrap { min-height:4rem; } }
 </style>
 </head>
 <body>
 <main id="local-start">
-  <section class="card" aria-labelledby="local-title">
-    <p class="name">Md. Al Amin Tusher<i>.</i></p>
-    <h1 id="local-title">Open the dashboard locally</h1>
-    <p class="lead">The editor runs on your own computer. There is no online login, token, or Netlify connection.</p>
-    <ol class="steps">
-      <li><span class="number">1</span><div><strong>Open Terminal in this project folder</strong><p>Use the folder containing <code>index.html</code> and <code>admin</code>.</p><pre>cd ~/Documents/GitHub/Tusher-Portfolio</pre></div></li>
-      <li><span class="number">2</span><div><strong>Start the local CMS</strong><p>Leave this Terminal window running.</p><pre>npx decap-server</pre></div></li>
-      <li><span class="number">3</span><div><strong>Open a second Terminal window</strong><p>Run the local website server and leave it running too.</p><pre>cd ~/Documents/GitHub/Tusher-Portfolio
-python3 -m http.server 8000</pre></div></li>
-      <li><span class="number">4</span><div><strong>Open the local dashboard</strong><p>Then choose <strong>Work with Local Repo</strong>. Your edits save straight into this folder.</p><pre>http://localhost:8000/admin/</pre></div></li>
-    </ol>
-    <p class="tip"><strong>To publish:</strong> after editing, return to Terminal and run <code>git add -A &amp;&amp; git commit -m "Update portfolio" &amp;&amp; git push</code>. GitHub Pages updates in about a minute.</p>
-    <p class="links"><a href="guide.html">Dashboard guide</a> &nbsp;·&nbsp; <a href="../index.html">View live site</a></p>
+  <header class="topbar">
+    <div class="wrap"><span class="brand">Md. Al Amin Tusher<i>.</i></span><a class="live-link" href="../index.html">লাইভ সাইট দেখুন ↗</a></div>
+  </header>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Portfolio dashboard</p>
+      <h1>নিজের কম্পিউটার থেকেই সাইট সম্পাদনা করুন।</h1>
+      <p>এই dashboard সম্পূর্ণ local। কোনো GitHub token, Netlify login বা online password লাগবে না। লেখাগুলো, ছবি ও ভিডিও বদলালে সেগুলো সরাসরি আপনার project folder-এ সেভ হবে।</p>
+      <span class="status">Local editing is ready</span>
+    </div>
   </section>
+  <section class="section section--white">
+    <div class="wrap setup-grid">
+      <div>
+        <p class="eyebrow">শুরু করার নিয়ম</p>
+        <h2 class="section-title">দুটি Terminal, চারটি ছোট ধাপ।</h2>
+        <p class="section-lead">প্রথমবার <code>npx</code> Decap CMS download করতে ইন্টারনেট লাগতে পারে। পরেরবার সাধারণত শুধু command দুটো চালালেই হবে।</p>
+        <ol class="steps">
+          <li class="step"><span class="number">1</span><div><h3>Terminal খুলুন</h3><p>Mac-এ Spotlight থেকে <strong>Terminal</strong> খুলে project folder-এ যান।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio</pre><button class="copy" type="button" data-copy="cd ~/Documents/GitHub/Tusher-Portfolio">Copy</button></div></div></li>
+          <li class="step"><span class="number">2</span><div><h3>Local CMS চালু করুন</h3><p>এই Terminal window খোলা রাখুন। এটি আপনার ফাইলগুলো edit করার অনুমতি দেয়।</p><div class="command"><pre>npx decap-server</pre><button class="copy" type="button" data-copy="npx decap-server">Copy</button></div></div></li>
+          <li class="step"><span class="number">3</span><div><h3>আরেকটি Terminal খুলুন</h3><p>নতুন window-তে একই folder থেকে local website চালু করুন। এটিও খোলা রাখবেন।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio
+python3 -m http.server 8000</pre><button class="copy" type="button" data-copy="cd ~/Documents/GitHub/Tusher-Portfolio\npython3 -m http.server 8000">Copy</button></div></div></li>
+          <li class="step"><span class="number">4</span><div><h3>Local editor খুলুন</h3><p>নিচের address browser-এ খুলুন, তারপর <strong>Work with Local Repo</strong> চাপুন। এখানেই সব content edit করবেন।</p><div class="command"><pre>http://localhost:8000/admin/</pre><button class="copy" type="button" data-copy="http://localhost:8000/admin/">Copy</button></div></div></li>
+        </ol>
+      </div>
+      <aside class="panel">
+        <h3>কাজ শুরু করার আগে</h3>
+        <ul class="checklist">
+          <li>দুটি Terminal window চালু আছে</li>
+          <li>Address-এ <code>localhost:8000/admin/</code> লেখা আছে</li>
+          <li><strong>Work with Local Repo</strong> button চাপা হয়েছে</li>
+          <li>সাইটের সব ৯টি section editor-এ দেখা যাচ্ছে</li>
+        </ul>
+        <p class="small-note">Live <code>/admin/</code> page শুধুই এই নির্দেশনা দেখায়। Editor সবসময় <code>localhost</code> address থেকে খুলবেন।</p>
+      </aside>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">সম্পাদনা শেষে</p>
+      <h2 class="section-title">Local থেকে live site-এ প্রকাশ করুন।</h2>
+      <p class="section-lead">Editor-এ <strong>Save</strong> চাপলে পরিবর্তন আপনার computer-এ সেভ হয়। Public website বদলাতে নিচের তিনটি Git command চালাতে হবে।</p>
+      <div class="publish-grid">
+        <article class="publish-card"><p class="kicker">01 · Check</p><h3>কী বদলেছে দেখুন</h3><p>Terminal-এ <code>git status</code> লিখে বদলানো ফাইলের তালিকা দেখুন।</p></article>
+        <article class="publish-card"><p class="kicker">02 · Commit</p><h3>পরিবর্তন সংরক্ষণ করুন</h3><p>একটি ছোট message দিয়ে পরিবর্তনগুলো Git history-তে রাখুন।</p></article>
+        <article class="publish-card"><p class="kicker">03 · Push</p><h3>লাইভ করুন</h3><p>GitHub Pages সাধারণত এক মিনিটের মধ্যে নতুন version প্রকাশ করে।</p></article>
+      </div>
+      <div class="command publish-command"><pre>git add -A
+git commit -m "Update portfolio"
+git push</pre><button class="copy" type="button" data-copy="git add -A\ngit commit -m &quot;Update portfolio&quot;\ngit push">Copy</button></div>
+    </div>
+  </section>
+  <section class="section section--white">
+    <div class="wrap">
+      <p class="eyebrow">সহায়তা</p>
+      <h2 class="section-title">কোনো সমস্যা হলে</h2>
+      <div class="faq">
+        <article><h3>“Work with Local Repo” দেখা যাচ্ছে না</h3><p>প্রথম Terminal-এ <code>npx decap-server</code> চলতে আছে কি না দেখুন। তারপর browser refresh করুন।</p></article>
+        <article><h3>Page খুলছে না</h3><p>দ্বিতীয় Terminal-এ <code>python3 -m http.server 8000</code> চলছে কি না দেখুন এবং address ঠিক আছে কি না দেখুন।</p></article>
+        <article><h3>ছবি upload হচ্ছে না</h3><p>Editor local mode-এ খোলা আছে কি না নিশ্চিত করুন। Live site-এর address থেকে ছবি upload করা যাবে না।</p></article>
+        <article><h3>Live site-এ change নেই</h3><p><code>git push</code> চালানোর পরে প্রায় এক মিনিট অপেক্ষা করে live site refresh করুন।</p></article>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><div class="wrap"><span>Local dashboard · Md. Al Amin Tusher</span><span><a href="guide.html">বিস্তারিত guide</a> &nbsp;·&nbsp; <a href="../README-bn.md">বাংলা নির্দেশিকা</a></span></div></footer>
 </main>
 <div id="nc-root"></div>
 <script>
   (function () {
     var local = /^(localhost|127\.0\.0\.1|\[::1\])$/i.test(window.location.hostname);
-    if (!local) return;
-    document.getElementById('local-start').hidden = true;
-    var cms = document.createElement('script');
-    cms.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
-    cms.onload = function () {
-      var previews = document.createElement('script');
-      previews.src = 'previews.js?v=1';
-      document.body.appendChild(previews);
-    };
-    document.body.appendChild(cms);
+    if (local) {
+      document.getElementById('local-start').hidden = true;
+      var cms = document.createElement('script');
+      cms.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+      cms.onload = function () { var previews = document.createElement('script'); previews.src = 'previews.js?v=1'; document.body.appendChild(previews); };
+      document.body.appendChild(cms);
+    }
+    document.querySelectorAll('[data-copy]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var text = button.getAttribute('data-copy').replace(/&quot;/g, '"');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function () {
+          var old = button.textContent; button.textContent = 'Copied';
+          window.setTimeout(function () { button.textContent = old; }, 1500);
+        });
+      });
+    });
   }());
 </script>
 </body>
