@@ -55,78 +55,18 @@
       the page. Every field like that says so underneath.</p>
   </div>
 
-  <h2 id="signing-in">Signing in</h2>
-  <p>Two steps, and they do different jobs.</p>
-  <p>
-    <strong>Step 1 — Admin and password.</strong> A lock on the door of this
-    page. It keeps other people out of the editor, and the dashboard is not
-    even downloaded until it is passed. It lasts until you close the browser.
-  </p>
-  <p>
-    <strong>Step 2 — GitHub.</strong> Saving a change means writing to your
-    repository, so nothing is ever published without GitHub's permission.
-    There are two ways to give it, and the sign-in card offers whichever is
-    available.
-  </p>
-
-  <h3>With a token</h3>
-  <p>
-    This is the way that works today, from any computer or phone, with nothing
-    to install anywhere. A token is a long password you make on GitHub and
-    paste in once.
-  </p>
+  <h2 id="signing-in">Opening the local editor</h2>
+  <p>This dashboard is local-only. It edits the files on your computer directly; there is no sign-in, GitHub token, Netlify account, or online CMS service.</p>
   <ol>
-    <li>On GitHub open <strong>Settings &rarr; Developer settings &rarr;
-      Personal access tokens &rarr; Fine-grained tokens</strong> and press
-      <strong>Generate new token</strong>.</li>
-    <li>Under <strong>Repository access</strong> choose <em>Only select
-      repositories</em> and pick <strong>Tusher-Portfolio</strong>.</li>
-    <li>Under <strong>Repository permissions</strong> set
-      <strong>Contents</strong> to <em>Read and write</em>. Nothing else is
-      needed.</li>
-    <li>Choose how long it should last, generate it, and copy it — GitHub
-      shows it once and never again.</li>
-    <li>Paste it into the dashboard and press <strong>Open the editor</strong>.</li>
+    <li>Open Terminal in the portfolio folder.</li>
+    <li>Run <code>npx decap-server</code> and leave it running.</li>
+    <li>Open a second Terminal window, then run <code>python3 -m http.server 8000</code> in the same folder.</li>
+    <li>Open <code>http://localhost:8000/admin/</code> and choose <strong>Work with Local Repo</strong>.</li>
   </ol>
-  <p>
-    A token that cannot do the job is refused on the spot, with the reason: it
-    has expired, or it cannot see this repository, or it can read but not
-    write. Nothing is saved until one passes.
-  </p>
-
   <div class="rule-box">
-    <p><strong>Tick &ldquo;stay signed in&rdquo; only on your own computer.</strong>
-      Ticked, the token is remembered until you sign out. Left unticked it is
-      forgotten the moment the browser closes — which is what you want on a
-      borrowed laptop.</p>
-    <p><strong>A token never goes into a file.</strong> It belongs in the
-      browser and nowhere else. If one ever escapes, delete it on GitHub — the
-      same page you made it on — and make another.</p>
-    <p><strong>Sign out</strong>, bottom right of the dashboard, forgets the
-      token and the password together.</p>
+    <p><strong>Your edits save into the project folder immediately.</strong> They do not become public until you commit and push them yourself.</p>
+    <p><strong>To publish:</strong> use <code>git add -A &amp;&amp; git commit -m "Update portfolio" &amp;&amp; git push</code>. GitHub Pages usually updates within a minute.</p>
   </div>
-  <p>
-    Tokens can be given an expiry date. If GitHub stops accepting a saved one,
-    the dashboard says so and asks for a new one; no work is lost.
-  </p>
-
-  <h3>Switching the GitHub button on</h3>
-  <p>
-    <strong>Log in with GitHub</strong> is the tidier way in — no token to
-    keep, nothing stored in the browser — but it needs one small service of its
-    own. GitHub will not hand out a login to a site that cannot keep a secret,
-    and a site made only of files cannot keep one. That service is free and the
-    code for it is already written: open <code>admin/login-helper.js</code> and
-    follow the five steps at the top of the file. The last step puts its
-    address on the <code>base_url</code> line in
-    <code>admin/config.yml</code>, and the button switches itself on as soon as
-    that line is there.
-  </p>
-  <p>
-    Until then the button stays hidden rather than opening a page that cannot
-    work. If it is ever set up and later misbehaves, the address
-    <code>/admin/?token=new</code> asks for the token door instead.
-  </p>
 
   <h2>Saving and publishing</h2>
   <ol>
