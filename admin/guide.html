@@ -12,14 +12,20 @@
 <link rel="stylesheet" href="../assets/css/style.css">
 <style>
   /* The site scrolls smoothly, which Chrome sometimes takes as licence to skip
-     the jump to a #section when a page is *opened* at one. The dashboard links
-     straight to #signing-in, so on this page the jump is instant instead. */
+     the jump to a #section when a page is *opened* at one — so a bookmarked or
+     shared #signing-in link would land at the top of this page instead. There
+     is no smooth scrolling to lose here, so the jump is instant. */
   html { scroll-behavior: auto; }
   .guide { max-width: 46rem; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5rem) 1.5rem 6rem; }
   .guide h2 { font-size: 1.35rem; margin: 3rem 0 0.85rem; }
   .guide h2:first-of-type { margin-top: 2rem; }
   .guide h3 { font-size: 1.0625rem; margin: 2rem 0 0.6rem; }
   .guide p, .guide li { color: var(--ink-2); }
+  .guide code {
+    font: 0.875em var(--mono); color: var(--ink); background: var(--paper);
+    border: 1px solid var(--rule); border-radius: 3px;
+    padding: 0.1rem 0.35rem; word-break: break-word;
+  }
   .guide ul, .guide ol { padding-left: 1.15rem; }
   .guide li { margin-bottom: 0.4rem; }
   .rule-box {
@@ -57,12 +63,45 @@
 
   <h2 id="signing-in">Opening the local editor</h2>
   <p>This dashboard is local-only. It edits the files on your computer directly; there is no sign-in, GitHub token, Netlify account, or online CMS service.</p>
+
+  <h3>Open Terminal in the portfolio folder</h3>
+  <p>
+    Every command below has to run <em>inside</em> the portfolio folder —
+    <code>Documents/GitHub/Tusher-Portfolio</code>. Terminal opens in your home
+    folder instead, so you have to walk it over first. Either way works:
+  </p>
+  <ul>
+    <li><strong>Type the folder in.</strong> Open Terminal — press
+      <strong>⌘ Space</strong>, type <em>Terminal</em>, press Return — then
+      paste this line and press Return:
+      <code>cd ~/Documents/GitHub/Tusher-Portfolio</code></li>
+    <li><strong>Or start from Finder.</strong> Control-click the
+      <strong>Tusher-Portfolio</strong> folder and choose <strong>Services
+      &rarr; New Terminal at Folder</strong>; the window opens already inside
+      it. If that menu item is missing, switch it on under <strong>System
+      Settings &rarr; Keyboard &rarr; Keyboard Shortcuts &rarr; Services &rarr;
+      Files and Folders</strong>.</li>
+  </ul>
+  <p>
+    To check you are in the right place, run <code>ls</code>. It should list
+    <code>index.html</code>, <code>admin</code> and <code>content</code>. If you
+    see your own documents instead, the <code>cd</code> line did not take.
+  </p>
+
+  <h3>Start the two windows</h3>
   <ol>
-    <li>Open Terminal in the portfolio folder.</li>
-    <li>Run <code>npx decap-server</code> and leave it running.</li>
-    <li>Open a second Terminal window, then run <code>python3 -m http.server 8000</code> in the same folder.</li>
-    <li>Open <code>http://localhost:8000/admin/</code> and choose <strong>Work with Local Repo</strong>.</li>
+    <li>In that window, run <code>npx decap-server</code> and leave it running.
+      The first run downloads the tool, so it needs internet.</li>
+    <li>Open a second Terminal window with <strong>⌘ N</strong>, get into the
+      same folder again, then run <code>python3 -m http.server 8000</code>.
+      Leave this one running too.</li>
+    <li>Open <code>http://localhost:8000/admin/</code> and choose
+      <strong>Work with Local Repo</strong>.</li>
   </ol>
+  <p>
+    Both windows have to stay open while you edit. Closing one, or pressing
+    <strong>Control C</strong> in it, stops the editor.
+  </p>
   <div class="rule-box">
     <p><strong>Your edits save into the project folder immediately.</strong> They do not become public until you commit and push them yourself.</p>
     <p><strong>To publish:</strong> use <code>git add -A &amp;&amp; git commit -m "Update portfolio" &amp;&amp; git push</code>. GitHub Pages usually updates within a minute.</p>
@@ -71,10 +110,14 @@
   <h2>Saving and publishing</h2>
   <ol>
     <li>Open a section, change what you want.</li>
-    <li>Press <strong>Save</strong>. Nothing is live yet.</li>
-    <li>Press <strong>Publish &rarr; Publish now</strong>.</li>
-    <li>Wait about a minute, then refresh the site. GitHub rebuilds the
-      page after every publish, which is what takes the minute.</li>
+    <li>Press the <strong>Published</strong> button at the top right of the
+      editor and choose the publish option in its menu. Despite the name, in
+      local mode this only writes the change into the file in your folder — the
+      live site does not change yet. The line beside the button tells you
+      whether anything is still unsaved.</li>
+    <li>Back in Terminal, run the three Git commands above.</li>
+    <li>Wait about a minute, then refresh the site. GitHub rebuilds the page
+      after every push, which is what takes the minute.</li>
   </ol>
 
   <h2>What each section changes</h2>
@@ -159,9 +202,9 @@
       right — an entry with no picture uploaded is skipped.</li>
     <li><strong>A whole block vanished.</strong> One of the optional labels was
       emptied. Write the label back in and it returns.</li>
-    <li><strong>You were sent back to the sign-in card.</strong> GitHub stopped
-      accepting the saved token — it expired, or it was withdrawn. Make a new
-      one and paste it in. The card says when that is what happened.</li>
+    <li><strong>The editor will not open, or the pictures cannot be uploaded.</strong>
+      The <code>npx decap-server</code> window has stopped. Start it again and
+      refresh the editor.</li>
   </ul>
 
   <p class="guide-foot">
