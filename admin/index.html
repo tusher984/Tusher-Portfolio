@@ -40,6 +40,8 @@
   .number { display:grid; place-items:center; width:2.2rem; height:2.2rem; margin-top:.05rem; border-radius:50%; background:var(--accent-soft); color:var(--accent-deep); font:500 .8rem var(--mono); }
   .step h3 { margin:0 0 .35rem; font:600 1.05rem var(--display); letter-spacing:-.015em; }
   .step p { margin:0; color:var(--muted); font-size:.94rem; }
+  .step p + p { margin-top:.55rem; }
+  .step code { font:.9em var(--mono); color:var(--ink-2); background:var(--wash); border:1px solid var(--rule); border-radius:3px; padding:.05rem .3rem; }
   .command { position:relative; margin-top:.8rem; border-radius:5px; background:#102124; overflow:hidden; }
   .command pre { margin:0; padding:1rem 4.5rem 1rem 1rem; overflow:auto; color:#eff8f8; font:.78rem/1.65 var(--mono); white-space:pre-wrap; }
   .copy { position:absolute; top:.55rem; right:.55rem; padding:.3rem .5rem; border:1px solid rgba(255,255,255,.2); border-radius:3px; background:transparent; color:#cae0e0; font:500 .67rem var(--mono); cursor:pointer; }
@@ -90,9 +92,9 @@
         <h2 class="section-title">দুটি Terminal, চারটি ছোট ধাপ।</h2>
         <p class="section-lead">প্রথমবার <code>npx</code> Decap CMS download করতে ইন্টারনেট লাগতে পারে। পরেরবার সাধারণত শুধু command দুটো চালালেই হবে।</p>
         <ol class="steps">
-          <li class="step"><span class="number">1</span><div><h3>Terminal খুলুন</h3><p>Mac-এ Spotlight থেকে <strong>Terminal</strong> খুলে project folder-এ যান।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio</pre><button class="copy" type="button" data-copy="cd ~/Documents/GitHub/Tusher-Portfolio">Copy</button></div></div></li>
+          <li class="step"><span class="number">1</span><div><h3>Portfolio folder-এ Terminal খুলুন</h3><p>নিচের সব command এই folder-এর ভিতর থেকেই চালাতে হবে। Terminal প্রথমে home folder-এ খোলে, তাই folder-টিতে যেতে হবে। <strong>⌘ Space</strong> চেপে <em>Terminal</em> লিখে Return দিন, তারপর নিচের লাইনটি paste করে আবার Return দিন।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio</pre><button class="copy" type="button" data-copy="cd ~/Documents/GitHub/Tusher-Portfolio">Copy</button></div><p>অথবা Finder-এ <strong>Tusher-Portfolio</strong> folder-টিতে Control-click করে <strong>Services → New Terminal at Folder</strong> বেছে নিন — window সোজা folder-এর ভিতরেই খোলে।</p><p>ঠিক জায়গায় আছেন কি না দেখতে <code>ls</code> চালান। <code>index.html</code>, <code>admin</code> আর <code>content</code> দেখা গেলে ঠিক আছে।</p></div></li>
           <li class="step"><span class="number">2</span><div><h3>Local CMS চালু করুন</h3><p>এই Terminal window খোলা রাখুন। এটি আপনার ফাইলগুলো edit করার অনুমতি দেয়।</p><div class="command"><pre>npx decap-server</pre><button class="copy" type="button" data-copy="npx decap-server">Copy</button></div></div></li>
-          <li class="step"><span class="number">3</span><div><h3>আরেকটি Terminal খুলুন</h3><p>নতুন window-তে একই folder থেকে local website চালু করুন। এটিও খোলা রাখবেন।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio
+          <li class="step"><span class="number">3</span><div><h3>আরেকটি Terminal খুলুন</h3><p>প্রথম window বন্ধ না করে <strong>⌘ N</strong> চেপে নতুন window খুলুন। নতুন window আবার home folder-এ শুরু হয়, তাই নিচের দুটি লাইন একসঙ্গেই paste করুন। এই window-টিও খোলা রাখবেন।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio
 python3 -m http.server 8000</pre><button class="copy" type="button" data-copy="cd ~/Documents/GitHub/Tusher-Portfolio\npython3 -m http.server 8000">Copy</button></div></div></li>
           <li class="step"><span class="number">4</span><div><h3>Local editor খুলুন</h3><p>নিচের address browser-এ খুলুন, তারপর <strong>Work with Local Repo</strong> চাপুন। এখানেই সব content edit করবেন।</p><div class="command"><pre>http://localhost:8000/admin/</pre><button class="copy" type="button" data-copy="http://localhost:8000/admin/">Copy</button></div></div></li>
         </ol>
@@ -113,7 +115,7 @@ python3 -m http.server 8000</pre><button class="copy" type="button" data-copy="c
     <div class="wrap">
       <p class="eyebrow">সম্পাদনা শেষে</p>
       <h2 class="section-title">Local থেকে live site-এ প্রকাশ করুন।</h2>
-      <p class="section-lead">Editor-এ <strong>Save</strong> চাপলে পরিবর্তন আপনার computer-এ সেভ হয়। Public website বদলাতে নিচের তিনটি Git command চালাতে হবে।</p>
+      <p class="section-lead">Editor-এর ওপরের ডানদিকের <strong>Published</strong> বোতাম দিয়ে publish করলে পরিবর্তন শুধু আপনার computer-এর ফাইলে সেভ হয়। Public website বদলাতে নিচের তিনটি Git command চালাতে হবে।</p>
       <div class="publish-grid">
         <article class="publish-card"><p class="kicker">01 · Check</p><h3>কী বদলেছে দেখুন</h3><p>Terminal-এ <code>git status</code> লিখে বদলানো ফাইলের তালিকা দেখুন।</p></article>
         <article class="publish-card"><p class="kicker">02 · Commit</p><h3>পরিবর্তন সংরক্ষণ করুন</h3><p>একটি ছোট message দিয়ে পরিবর্তনগুলো Git history-তে রাখুন।</p></article>
@@ -136,7 +138,7 @@ git push</pre><button class="copy" type="button" data-copy="git add -A\ngit comm
       </div>
     </div>
   </section>
-  <footer class="footer"><div class="wrap"><span>Local dashboard · Md. Al Amin Tusher</span><span><a href="guide.html">বিস্তারিত guide</a> &nbsp;·&nbsp; <a href="../README-bn.md">বাংলা নির্দেশিকা</a></span></div></footer>
+  <footer class="footer"><div class="wrap"><span>Local dashboard · Md. Al Amin Tusher</span><span><a href="guide.html">বিস্তারিত guide</a> &nbsp;·&nbsp; <a href="https://github.com/tusher984/Tusher-Portfolio/blob/main/README-bn.md" target="_blank" rel="noopener">বাংলা নির্দেশিকা</a></span></div></footer>
 </main>
 <div id="nc-root"></div>
 <script>

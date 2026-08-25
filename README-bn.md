@@ -18,14 +18,30 @@ window লাগবে।
 
 ### ১ — প্রথম Terminal: CMS চালু করুন
 
+নিচের সব command portfolio folder-এর **ভিতর** থেকে চালাতে হবে। Terminal প্রথমে
+home folder-এ খোলে, তাই আগে folder-টিতে যেতে হয়। দুটি উপায়ের যেকোনো একটি:
+
+- **নাম লিখে যাওয়া।** `⌘ Space` চেপে *Terminal* লিখে Return দিন, তারপর নিচের
+  প্রথম লাইনটি paste করে Return দিন।
+- **Finder থেকে।** `Tusher-Portfolio` folder-টিতে Control-click করে
+  **Services → New Terminal at Folder** বেছে নিন; window সোজা folder-এর
+  ভিতরেই খোলে। এই menu-তে জিনিসটি না থাকলে **System Settings → Keyboard →
+  Keyboard Shortcuts → Services → Files and Folders** থেকে চালু করে নিন।
+
 ```bash
 cd ~/Documents/GitHub/Tusher-Portfolio
 npx decap-server
 ```
 
+ঠিক folder-এ আছেন কি না দেখতে `ls` চালান — `index.html`, `admin` আর `content`
+দেখা গেলে ঠিক আছে। প্রথমবার `npx` টুলটি download করে, তাই তখন ইন্টারনেট লাগবে।
+
 এই window বন্ধ করবেন না।
 
 ### ২ — দ্বিতীয় Terminal: সাইট চালু করুন
+
+প্রথম window বন্ধ না করে `⌘ N` চেপে নতুন window খুলুন। নতুন window আবার home
+folder-এ শুরু হয়, তাই নিচের দুটি লাইন একসঙ্গেই চালান।
 
 ```bash
 cd ~/Documents/GitHub/Tusher-Portfolio
@@ -49,7 +65,10 @@ http://localhost:8000/admin/
 
 ## সেভ আর প্রকাশ
 
-1. সেকশন খুলে যা বদলাতে চান বদলান এবং **Save** চাপুন। ফাইলটি আপনার কম্পিউটারে সেভ হবে।
+1. সেকশন খুলে যা বদলাতে চান বদলান। তারপর editor-এর ওপরের ডানদিকের
+   **Published** বোতামটি খুলে publish অপশনটি বেছে নিন। নাম যেমনই হোক, local
+   mode-এ এটি শুধু আপনার কম্পিউটারের ফাইলেই লেখাটি সেভ করে — লাইভ সাইট তখনও
+   বদলায় না।
 2. কাজ শেষে Terminal-এ চালান:
 
    ```bash
