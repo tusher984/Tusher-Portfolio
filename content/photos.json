@@ -2,106 +2,106 @@
   "intro": "Documentary photography from assignments and personal work across Bangladesh — rivers, streets, and the people living alongside both.",
   "categories": [
     "Environment",
-    "Portraits",
     "Urban life",
+    "Portraits",
     "Reportage"
   ],
   "items": [
     {
-      "title": "Replace with your photograph",
-      "caption": "Landscape frames sit naturally in the grid alongside vertical ones.",
-      "location": "Buriganga",
-      "year": "2026",
-      "category": "Environment",
-      "image": "assets/img/found_434612229_5121757.jpg"
+      "image": "assets/img/found_17666552_14831059.jpg",
+      "title": "A Bangladesh flag on a bamboo pole in front of a brick-kiln chimney trailing smoke across a grey sky",
+      "caption": "The flag and the kiln, sharing the same sky.",
+      "location": "",
+      "year": "",
+      "category": "Environment"
     },
     {
-      "title": "Replace with your photograph",
-      "caption": "Square crops work too — the layout adapts to whatever you upload.",
+      "image": "assets/img/img_4020.jpg",
+      "title": "Aerial view of a tin-roofed house submerged to the eaves in floodwater, a wooden boat moored alongside",
+      "caption": "Floodwater up to the eaves. The boat tied alongside is the way in and the way out.",
+      "location": "",
+      "year": "",
+      "category": "Environment"
+    },
+    {
+      "image": "assets/img/dsc04267.jpg",
+      "title": "A man in a black T-shirt raises his hand among a crowd of people dressed in black on a Dhaka street",
+      "caption": "Hands up in the crowd.",
       "location": "Dhaka",
       "year": "2025",
-      "category": "Urban life",
-      "image": "assets/img/dsc04267.jpg"
+      "category": "Urban life"
     },
     {
-      "image": "/assets/img/dji_fly_20251126_154338_0057_1764150443835_photo.jpg",
-      "caption": "\n",
-      "location": "  ",
-      "title": "  Replace with your photograph",
-      "category": "  ",
-      "year": "  "
+      "image": "assets/img/found_434612229_5121757.jpg",
+      "title": "A wooden plank gangway leaning against the freshly painted blue and yellow hull of a river launch",
+      "caption": "A plank and a repainted hull — the way aboard.",
+      "location": "Buriganga",
+      "year": "2026",
+      "category": "Environment"
     },
     {
-      "image": "/assets/img/dji_20251110120523_0104_d_1.jpg",
-      "title": " Replace with your photograph",
-      "caption": " ",
-      "location": " ",
-      "year": " ",
-      "category": " "
-    },
-    {
-      "title": "Replace with your photograph",
-      "caption": "  ",
-      "image": "/assets/img/al-amin-tusher_01303043314_02.jpg",
-      "category": " ",
-      "year": " ",
-      "location": " "
-    },
-    {
-      "title": "Replace with your photograph",
-      "caption": "Captions appear on hover and in the full-screen view.",
-      "location": "Narayanganj",
+      "image": "assets/img/dji_fly_20251126_154338_0057_1764150443835_photo.jpg",
+      "title": "Aerial view of a lake threading between densely built blocks of Dhaka, high-rises on the horizon",
+      "caption": "Water still cuts a line through the density, from the air.",
+      "location": "Dhaka",
       "year": "2025",
-      "category": "Portraits",
-      "image": "assets/img/img_9482.jpg"
-    },
-    {
-      "title": "Replace with your photograph",
-      "image": "/assets/img/ca11c107-ab37-4a41-a453-47734d0172db01.jpg",
-      "caption": " ",
-      "location": " ",
-      "year": " ",
-      "category": " "
-    },
-    {
-      "title": "Replace with your photograph",
-      "image": "/assets/img/found_17666552_14831059.jpg",
-      "caption": " ",
-      "location": " ",
-      "year": " ",
-      "category": " "
-    },
-    {
-      "title": "Replace with your photograph",
-      "image": "/assets/img/img_4020.jpg",
-      "category": " ",
-      "year": " ",
-      "location": " ",
-      "caption": " "
-    },
-    {
-      "title": "Replace with your photograph",
-      "caption": "Set a category and the filter buttons above will sort by it.",
-      "location": "Jamuna",
-      "year": "2025",
-      "category": "Reportage",
-      "image": "assets/img/al-amin-tusher_01303043314_01.jpg"
-    },
-    {
-      "image": "assets/img/found_21147936_1336632-1-.jpg",
-      "title": " ",
-      "caption": " ",
-      "location": " ",
-      "year": " ",
-      "category": " "
+      "category": "Urban life"
     },
     {
       "image": "assets/img/dsc00258.jpg",
-      "title": " ",
-      "caption": " ",
-      "location": " ",
-      "year": " ",
-      "category": " "
+      "title": "A woman seated on a pavement at night with two small children in bright clothes",
+      "caption": "A mother and her two children on the footpath after dark.",
+      "location": "",
+      "year": "",
+      "category": "Portraits"
+    },
+    {
+      "image": "assets/img/img_9482.jpg",
+      "title": "Three men working waist-deep in a pale river beside a small boat, a woman and child in silhouette in the foreground",
+      "caption": "A woman and child watch the fishers work the shallows.",
+      "location": "Narayanganj",
+      "year": "2025",
+      "category": "Portraits"
+    },
+    {
+      "image": "assets/img/dji_20251110120523_0104_d_1.jpg",
+      "title": "Overhead view of three wooden boats moored against a silted, eroding riverbank beside a concrete-block revetment",
+      "caption": "Concrete blocks hold one stretch of bank. The silt beside them is going.",
+      "location": "",
+      "year": "2025",
+      "category": "Environment"
+    },
+    {
+      "image": "assets/img/al-amin-tusher_01303043314_01.jpg",
+      "title": "Aerial view of sunlight scattering across a river channel, a single boat pulled up on the sandbar",
+      "caption": "One boat on the sandbar, where the water has dropped back.",
+      "location": "Jamuna",
+      "year": "2025",
+      "category": "Reportage"
+    },
+    {
+      "image": "assets/img/ca11c107-ab37-4a41-a453-47734d0172db01.jpg",
+      "title": "Two wooden country boats moored on still water at sunrise, the sky mirrored around them",
+      "caption": "Still water doubling the sky.",
+      "location": "",
+      "year": "",
+      "category": "Environment"
+    },
+    {
+      "image": "assets/img/found_21147936_1336632-1-.jpg",
+      "title": "Two wooden boats in a narrow channel almost closed over by water hyacinth and overhanging trees",
+      "caption": "A channel water hyacinth has nearly closed.",
+      "location": "",
+      "year": "",
+      "category": "Environment"
+    },
+    {
+      "image": "assets/img/al-amin-tusher_01303043314_02.jpg",
+      "title": "A cyclist silhouetted on an embankment against a deep blue sky, eucalyptus trees on either side",
+      "caption": "Last light on the embankment road.",
+      "location": "",
+      "year": "",
+      "category": "Reportage"
     }
   ]
 }

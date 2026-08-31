@@ -12,16 +12,6 @@
       ]
     },
     {
-      "title": "Software",
-      "items": [
-        "Premiere Pro",
-        "Photoshop",
-        "After Effects",
-        "DaVinci Resolve",
-        "Google Earth Pro"
-      ]
-    },
-    {
       "title": "Multimedia",
       "items": [
         "Video production",
@@ -30,6 +20,15 @@
         "Video editing",
         "Voice-over",
         "Storytelling"
+      ]
+    },
+    {
+      "title": "Digital & audience",
+      "items": [
+        "Content planning",
+        "Digital publishing",
+        "Social content",
+        "Audience engagement"
       ]
     },
     {
@@ -44,12 +43,13 @@
       ]
     },
     {
-      "title": "Digital & audience",
+      "title": "Software",
       "items": [
-        "Content planning",
-        "Digital publishing",
-        "Social content",
-        "Audience engagement"
+        "Premiere Pro",
+        "Photoshop",
+        "After Effects",
+        "DaVinci Resolve",
+        "Google Earth Pro"
       ]
     }
   ]

@@ -1,3 +1,9 @@
+# macOS and Windows folder junk
 .DS_Store
 Thumbs.db
+
+# npm, only ever installed locally to run the dashboard (npx decap-server)
 node_modules/
+
+# Throwaway image-tooling scratch space — never part of the site
+.tmpbuild/

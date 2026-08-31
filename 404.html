@@ -5,53 +5,65 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Page not found — Md. Al Amin Tusher</title>
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12100f" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/opt/headshot-480.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Newsreader:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=17">
 </head>
-<body>
+<body data-page="404">
+
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="./">
       <span class="brand-dot" aria-hidden="true"></span>
-      Al Amin Tusher
+      <span id="brand-name">Al Amin Tusher</span>
     </a>
-    <nav class="nav" aria-label="Primary">
-      <a href="index.html#work">Work</a>
-      <a href="photos.html">Photography</a>
-      <a href="videos.html">Video</a>
-      <a href="index.html#contact">Contact</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <a href="index.html#work" data-nav="work">Work</a>
+      <a href="photos.html" data-nav="photography">Photography</a>
+      <a href="videos.html" data-nav="video">Video</a>
+      <a href="index.html#about" data-nav="about">About</a>
+      <a href="index.html#experience" data-nav="experience">Experience</a>
+      <a href="index.html#skills" data-nav="skills">Skills</a>
+      <a href="index.html#credentials" data-nav="credentials">Credentials</a>
+      <a href="index.html#contact" data-nav="contact">Contact</a>
     </nav>
   </div>
 </header>
 
 <main id="main">
-  <section class="section wrap" style="min-height:52vh">
+  <section class="section notfound wrap">
     <p class="eyebrow">Error 404</p>
-    <h1 style="font-size:clamp(2.1rem,5vw,3.6rem);font-weight:700;letter-spacing:-0.03em">
-      This page isn't here
-    </h1>
-    <p class="lead" style="max-width:52ch;color:var(--ink-2);margin-top:1rem">
+    <h1>This page isn&rsquo;t here</h1>
+    <p class="lead">
       The address may have changed, or the link that brought you here may be broken.
       The portfolio, photography and video pages are all reachable from the menu above.
     </p>
-    <div class="hero-actions" style="margin-top:2rem">
-      <a class="btn btn--solid" href="./">Go to the homepage <span class="arrow" aria-hidden="true">→</span></a>
-      <a class="btn btn--ghost" href="mailto:md.alamintusher@gmail.com">Report a broken link</a>
+    <div class="hero-actions">
+      <a class="btn btn--solid" href="./">Go to the homepage <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn--outline" href="mailto:md.alamintusher@gmail.com">Report a broken link</a>
     </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>© <span id="year">2026</span> Md. Al Amin Tusher</span>
-    <span>Dhaka, Bangladesh</span>
+    <span>&copy; <span id="year">2026</span> <span id="footer-left">Md. Al Amin Tusher</span></span>
+    <span class="foot-end"><span id="footer-right">Dhaka, Bangladesh</span></span>
   </div>
 </footer>
 
-<script src="assets/js/site.js"></script>
+<script src="assets/js/site.js?v=14"></script>
 </body>
 </html>

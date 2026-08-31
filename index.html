@@ -8,26 +8,60 @@
 <meta name="author" content="Md. Al Amin Tusher">
 <link rel="canonical" href="https://tusher984.github.io/Tusher-Portfolio/">
 
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12100f" media="(prefers-color-scheme: dark)">
+
 <!-- Social sharing preview -->
 <meta property="og:type" content="profile">
+<meta property="og:site_name" content="Md. Al Amin Tusher">
+<meta property="og:locale" content="en_GB">
 <meta property="og:url" content="https://tusher984.github.io/Tusher-Portfolio/">
 <meta property="og:title" content="Md. Al Amin Tusher — Investigative &amp; Multimedia Journalist">
 <meta property="og:description" content="Reporting on infrastructure, fire safety, rivers and public-interest failures in Bangladesh.">
 <meta property="og:image" content="https://tusher984.github.io/Tusher-Portfolio/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Md. Al Amin Tusher — investigative and multimedia journalist, Dhaka.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Alamin984">
+<meta name="twitter:creator" content="@Alamin984">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/img/headshot.jpg">
+<link rel="apple-touch-icon" href="assets/img/opt/headshot-480.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=10">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Newsreader:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=17">
 <noscript><style>[data-reveal],.hero [data-seq]{opacity:1!important;transform:none!important;animation:none!important}</style></noscript>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Md. Al Amin Tusher",
+  "alternateName": "Al Amin Tusher",
+  "url": "https://tusher984.github.io/Tusher-Portfolio/",
+  "image": "https://tusher984.github.io/Tusher-Portfolio/assets/img/opt/portrait-960.jpg",
+  "jobTitle": "Staff Correspondent",
+  "worksFor": { "@type": "NewsMediaOrganization", "name": "Netra News", "url": "https://netra.news/" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
+  "email": "mailto:md.alamintusher@gmail.com",
+  "telephone": "+8801303043314",
+  "knowsLanguage": ["bn", "en"],
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Stamford University Bangladesh" },
+  "sameAs": [
+    "https://www.linkedin.com/in/md-al-amin-tusher-607138170/",
+    "https://x.com/Alamin984",
+    "https://www.instagram.com/alamin_visuals/",
+    "https://www.facebook.com/md.alamintusher984/"
+  ]
+}
+</script>
 </head>
 <body data-page="home">
+<!-- Reading progress. Purely decorative, so it is hidden from the a11y tree. -->
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <a class="skip" href="#main">Skip to content</a>
 
@@ -46,8 +80,10 @@
       <a href="#work" data-nav="work">Work</a>
       <a href="#photography" data-nav="photography">Photography</a>
       <a href="#video" data-nav="video">Video</a>
-      <a href="#skills" data-nav="skills">Skills</a>
       <a href="#about" data-nav="about">About</a>
+      <a href="#experience" data-nav="experience">Experience</a>
+      <a href="#skills" data-nav="skills">Skills</a>
+      <a href="#credentials" data-nav="credentials">Credentials</a>
       <a href="#contact" data-nav="contact">Contact</a>
     </nav>
   </div>
@@ -67,7 +103,7 @@
         <p class="lead" id="hero-lead" data-seq>
           I report on the systems that are supposed to keep people safe — building codes,
           embankments, river channels, welfare rolls — and what happens when they fail.
-          Five years of field reporting, documents and data across Bangladesh.
+          Six years of field reporting, documents and data across Bangladesh.
         </p>
 
         <div class="hero-actions" data-seq>
@@ -78,23 +114,26 @@
             <span data-label>Get in touch</span>
           </a>
         </div>
-        
+
         <div class="hero-divider" data-seq></div>
-        
+
         <ul class="facts" id="facts" data-seq>
-          <li>5+ years reporting</li>
+          <li>6+ years reporting</li>
           <li>Netra News · OCCRP</li>
           <li>Bengali &amp; English</li>
         </ul>
       </div>
       <div class="portrait" data-seq>
-        <img id="portrait-img" src="assets/img/portrait.jpg"
+        <img id="portrait-img" src="assets/img/opt/portrait-960.jpg"
+             srcset="assets/img/opt/portrait-480.jpg 360w,
+                     assets/img/opt/portrait-960.jpg 720w,
+                     assets/img/opt/portrait-1600.jpg 900w"
+             sizes="(max-width: 880px) 290px, (max-width: 1307px) 36vw, 415px"
              alt="Md. Al Amin Tusher standing outdoors holding a DSLR camera"
-             width="900" height="1200" fetchpriority="high">
+             width="900" height="1200" fetchpriority="high" decoding="async">
       </div>
     </div>
   </section>
-
   <!-- ================= BEATS ================= -->
   <section class="section section--wash section--tight">
     <div class="wrap">
@@ -126,8 +165,10 @@
       </div>
     </div>
   </section>
-
   <!-- ================= SELECTED WORK ================= -->
+  <!-- Rendered statically so the reporting is crawlable and readable without
+       JS; site.js replaces the list from content/stories.json when it loads.
+       The first story in that file is the lead card. -->
   <section class="section" id="work">
     <div class="wrap">
       <div class="section-head" data-reveal>
@@ -138,11 +179,92 @@
           data projects. Reporting and analysis are my own unless noted.
         </p>
       </div>
-      <div class="index-list" id="story-index" aria-live="polite"></div>
+      <div id="story-index">
+        <a class="lede" href="https://interactive.netra.news/bangladesh-fire-incidents/" target="_blank" rel="noopener" data-reveal>
+          <div class="lede-slug">
+            <span class="slug-outlet">Netra News</span>
+            <time datetime="2025-10-25">25 Oct 2025</time>
+            <span>Interactive</span>
+          </div>
+          <h3>Inferno Cities: Fire incidents and safety compliance</h3>
+          <p>
+            An analysis of fire accidents in Bangladesh shows how these incidents are not
+            isolated but rather a terrifying reality deeply woven into everyday life.
+          </p>
+          <div class="lede-go">Open the interactive <span class="arrow" aria-hidden="true">→</span></div>
+        </a>
+        <div class="index-list">
+          <a class="index-row" href="https://netra.news/2026/dhakas-waterways-matter-more/" target="_blank" rel="noopener" data-reveal>
+            <div class="index-slug">
+              <span class="slug-outlet">Netra News</span>
+              <time class="slug-date" datetime="2026-03-22">22 Mar 2026</time>
+              <span class="slug-format">Report</span>
+            </div>
+            <div class="index-body">
+              <h3>Why Dhaka's waterways matter more than flyovers</h3>
+              <p>
+                For decades, successive governments have pursued grand solutions — metro rail,
+                flyovers, elevated expressways. Yet experts argue that the answer may already lie
+                beneath our feet: the waterways that once defined this riverine city.
+              </p>
+            </div>
+            <div class="index-go" aria-hidden="true">→</div>
+          </a>
+          <a class="index-row" href="https://netra.news/2025/the-bridge-that-broke-the-river/" target="_blank" rel="noopener" data-reveal>
+            <div class="index-slug">
+              <span class="slug-outlet">Netra News</span>
+              <time class="slug-date" datetime="2025-12-24">24 Dec 2025</time>
+              <span class="slug-format">Report</span>
+            </div>
+            <div class="index-body">
+              <h3>The bridge that broke the river</h3>
+              <p>
+                In 1998, Bangladesh witnessed a milestone: the inauguration of the Jamuna Bridge.
+                The 4.8-kilometre structure across the mighty Jamuna fundamentally transformed
+                connectivity between the northern districts and the capital. But projects of this
+                scale often come with casualties.
+              </p>
+            </div>
+            <div class="index-go" aria-hidden="true">→</div>
+          </a>
+          <a class="index-row" href="https://netra.news/2026/the-women-the-family-card-system-could-not-reach/" target="_blank" rel="noopener" data-reveal>
+            <div class="index-slug">
+              <span class="slug-outlet">Netra News</span>
+              <time class="slug-date" datetime="2026-06-14">14 Jun 2026</time>
+              <span class="slug-format">Report</span>
+            </div>
+            <div class="index-body">
+              <h3>The women the Family Card system could not reach</h3>
+              <p>
+                The newly-elected government's flagship welfare programme designed for the poorest
+                is helping some people but excluding others, and nobody is fully sure why.
+              </p>
+            </div>
+            <div class="index-go" aria-hidden="true">→</div>
+          </a>
+          <a class="index-row" href="https://netra.news/2026/bangladeshs-motorists-turn-to-cooking-gas/" target="_blank" rel="noopener" data-reveal>
+            <div class="index-slug">
+              <span class="slug-outlet">Netra News</span>
+              <time class="slug-date" datetime="2026-04-14">14 Apr 2026</time>
+              <span class="slug-format">Report</span>
+            </div>
+            <div class="index-body">
+              <h3>Faced with fuel shortage, Bangladesh's motorists turn to cooking gas</h3>
+              <p>
+                The economics of the cheaper alternative are compelling. But the risks, experts
+                say, are not.
+              </p>
+            </div>
+            <div class="index-go" aria-hidden="true">→</div>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
-
   <!-- ================= PHOTOGRAPHY ================= -->
+  <!-- Six frames, statically rendered from content/photos.json. Each links to
+       the gallery page, which is what happens without JS; with JS the click
+       opens the lightbox instead. -->
   <section class="section section--wash" id="photography">
     <div class="wrap">
       <div class="section-head" data-reveal>
@@ -151,15 +273,92 @@
         <p class="lead" id="photo-lead">
           Documentary photography from assignments and personal work across Bangladesh — rivers, streets, and the people living alongside both.
         </p>
-        <a class="textlink section-link" id="photo-link" href="photos.html" hidden>
+        <a class="textlink section-link" id="photo-link" href="photos.html">
           <span data-label>See all photographs</span> <span class="arrow" aria-hidden="true">→</span>
         </a>
       </div>
-      <div class="photo-strip" id="photo-strip" data-reveal></div>
+      <div class="photo-strip" id="photo-strip" data-reveal>
+        <a class="frame" href="photos.html">
+          <img src="assets/img/opt/found_17666552_14831059-960.jpg"
+               srcset="assets/img/opt/found_17666552_14831059-480.jpg 480w,
+                       assets/img/opt/found_17666552_14831059-960.jpg 960w,
+                       assets/img/opt/found_17666552_14831059-1600.jpg 1600w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="A Bangladesh flag on a bamboo pole in front of a brick-kiln chimney trailing smoke across a grey sky"
+               width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">The flag and the kiln, sharing the same sky.</span>
+          </span>
+        </a>
+        <a class="frame" href="photos.html">
+          <img src="assets/img/opt/img_4020-960.jpg"
+               srcset="assets/img/opt/img_4020-480.jpg 480w,
+                       assets/img/opt/img_4020-960.jpg 960w,
+                       assets/img/opt/img_4020-1600.jpg 1600w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="Aerial view of a tin-roofed house submerged to the eaves in floodwater, a wooden boat moored alongside"
+               width="1600" height="900" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">Floodwater up to the eaves. The boat tied alongside is the way in and the way out.</span>
+          </span>
+        </a>
+        <a class="frame" href="photos.html">
+          <img src="assets/img/opt/dsc04267-960.jpg"
+               srcset="assets/img/opt/dsc04267-480.jpg 320w,
+                       assets/img/opt/dsc04267-960.jpg 640w,
+                       assets/img/opt/dsc04267-1600.jpg 1067w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="A man in a black T-shirt raises his hand among a crowd of people dressed in black on a Dhaka street"
+               width="1067" height="1600" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">Hands up in the crowd.</span>
+            <span class="cap-meta">Dhaka · 2025</span>
+          </span>
+        </a>
+        <a class="frame" href="photos.html">
+          <img src="assets/img/opt/found_434612229_5121757-960.jpg"
+               srcset="assets/img/opt/found_434612229_5121757-480.jpg 320w,
+                       assets/img/opt/found_434612229_5121757-960.jpg 640w,
+                       assets/img/opt/found_434612229_5121757-1600.jpg 1067w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="A wooden plank gangway leaning against the freshly painted blue and yellow hull of a river launch"
+               width="1067" height="1600" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">A plank and a repainted hull — the way aboard.</span>
+            <span class="cap-meta">Buriganga · 2026</span>
+          </span>
+        </a>
+        <a class="frame" href="photos.html">
+          <img src="assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-960.jpg"
+               srcset="assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-480.jpg 320w,
+                       assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-960.jpg 639w,
+                       assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-1600.jpg 1066w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="Aerial view of a lake threading between densely built blocks of Dhaka, high-rises on the horizon"
+               width="1066" height="1600" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">Water still cuts a line through the density, from the air.</span>
+            <span class="cap-meta">Dhaka · 2025</span>
+          </span>
+        </a>
+        <a class="frame" href="photos.html">
+          <img src="assets/img/opt/dsc00258-960.jpg"
+               srcset="assets/img/opt/dsc00258-480.jpg 480w,
+                       assets/img/opt/dsc00258-960.jpg 960w,
+                       assets/img/opt/dsc00258-1600.jpg 1080w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="A woman seated on a pavement at night with two small children in bright clothes"
+               width="1080" height="720" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">A mother and her two children on the footpath after dark.</span>
+          </span>
+        </a>
+      </div>
     </div>
   </section>
-
   <!-- ================= VIDEO ================= -->
+  <!-- Bengali titles and blurbs carry lang="bn" so the right font and the right
+       screen-reader voice are used. -->
   <section class="section" id="video">
     <div class="wrap">
       <div class="section-head" data-reveal>
@@ -168,25 +367,61 @@
         <p class="lead" id="video-lead">
           Field reporting, document-backed video stories, and environmental investigations across Bangladesh.
         </p>
-        <a class="textlink section-link" id="video-link" href="videos.html" hidden>
+        <a class="textlink section-link" id="video-link" href="videos.html">
           <span data-label>See all video work</span> <span class="arrow" aria-hidden="true">→</span>
         </a>
       </div>
-      <div class="video-grid" id="video-strip" data-reveal></div>
+      <div class="video-grid" id="video-strip" data-reveal>
+        <a class="video-card" href="https://www.youtube.com/watch?v=p67U6jLntBA" target="_blank" rel="noopener">
+          <span class="video-thumb">
+            <img src="https://img.youtube.com/vi/p67U6jLntBA/hqdefault.jpg" alt=""
+                 width="480" height="360" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"><span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span></span>
+          </span>
+          <h3 lang="bn">যশোরের দুঃখ ভবদহ: জলাবদ্ধতায় বছরের পর বছর দুর্ভোগে হাজারো মানুষ</h3>
+          <p class="v-meta">2025</p>
+          <p class="v-desc" lang="bn">যশোরের ভবদহ অঞ্চলের জলাবদ্ধতা বছরের পর বছর ধরে স্থানীয় মানুষের জীবন ও জীবিকাকে বিপর্যস্ত করে তুলেছে। ঘরবাড়ি, রাস্তা, কৃষিজমি ও শিক্ষা প্রতিষ্ঠান পানিতে ডুবে থাকায় দুর্ভোগ পোহাতে হচ্ছে এলাকার বাসিন্দাদের। কৃষি ও দৈনন্দিন জীবনেও পড়ছে এর দীর্ঘমেয়াদি প্রভাব।</p>
+        </a>
+        <a class="video-card" href="https://www.youtube.com/watch?v=IKB6kLi_8xE" target="_blank" rel="noopener">
+          <span class="video-thumb">
+            <img src="https://img.youtube.com/vi/IKB6kLi_8xE/hqdefault.jpg" alt=""
+                 width="480" height="360" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"><span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span></span>
+          </span>
+          <h3 lang="bn">বিচার চাওয়ার অনুমতি</h3>
+          <p class="v-meta">2026</p>
+          <p class="v-desc" lang="bn">২০২৪-এর জুলাই অভ্যুত্থানে অনেক শহীদ পরিবার দুই বছর ধরে মামলা করতে গিয়ে থানা থেকে বারবার প্রত্যাখ্যাত হচ্ছেন শুধুমাত্র অভিযোগপত্রে পুলিশের নাম আছে বলে। এই ধরনের অভিযোগ পর্যালোচনা করেছে বাংলাদেশ প্রটেস্ট আর্কাইভ। উত্তরায় তারা কমপক্ষে সাতটি পরিবারকে পেয়েছে, যারা এখনও তাদের প্রিয়জনদের জন্য ন্যায়বিচার চাচ্ছেন।</p>
+        </a>
+        <a class="video-card" href="https://www.youtube.com/watch?v=0IoUDH-I_yA" target="_blank" rel="noopener">
+          <span class="video-thumb">
+            <img src="https://img.youtube.com/vi/0IoUDH-I_yA/hqdefault.jpg" alt=""
+                 width="480" height="360" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"><span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span></span>
+          </span>
+          <h3 lang="bn">অন্তিম নিঃশ্বাস নিচ্ছে বুড়িগঙ্গা, আর কতকাল ঘুমাবে নগরবাসী?</h3>
+          <p class="v-meta">2025</p>
+          <p class="v-desc" lang="bn">কুচকুচে কালো পানিতে ভেসে যাচ্ছে ময়লার ভেলা। উৎকট দুর্গন্ধ তো আছেই। বলছি, দূষণে জর্জরিত বুড়িগঙ্গার কথা। দিনের পর দিন ঢাকার ডাম্পিং হিসেবে ব্যবহৃত হতে হতে আপন রূপটাই হারিয়ে ফেলেছে এই নদী। এমনকি তলদেশের ১৫ ফিট নিচেও মিলছে প্লাস্টিক বর্জ্য। দেশের আইনে জীবন্ত সত্তার স্বীকৃতি পেলেও নদীরই কোনো নিরাপত্তা নেই।</p>
+        </a>
+      </div>
     </div>
   </section>
-
   <!-- ================= ABOUT ================= -->
   <section class="section section--wash" id="about">
     <div class="wrap">
       <div class="split">
         <div data-reveal>
           <p class="eyebrow" id="about-eyebrow">About</p>
-          <h2 style="font-size:var(--fs-h2)" id="about-heading">Reporting from Dhaka since 2019</h2>
+          <h2 id="about-heading">Reporting from Dhaka since 2019</h2>
         </div>
         <div class="prose" id="about-prose" data-reveal>
           <p>
-            I'm a multimedia journalist with more than five years in digital and broadcast
+            I'm a multimedia journalist with more than six years in digital and broadcast
             newsrooms, working across investigative research, data reporting, video production
             and interactive storytelling.
           </p>
@@ -243,6 +478,14 @@
           </ul>
         </article>
         <article class="job" data-reveal>
+          <span class="job-date">Dec 2022 — Feb 2023</span>
+          <h3>Intern Content Creator</h3>
+          <span class="org">Prothom Alo</span>
+          <ul>
+            <li>Digital content production, scripting, video editing and publishing.</li>
+          </ul>
+        </article>
+        <article class="job" data-reveal>
           <span class="job-date">Feb 2022 — Aug 2023</span>
           <h3>Digital Team Coordinator &amp; Content Creator</h3>
           <span class="org">The Report. Live</span>
@@ -254,7 +497,7 @@
         </article>
         <article class="job" data-reveal>
           <span class="job-date">May 2021 — Jan 2024</span>
-          <h3>Assistant Director <span style="color:var(--muted);font-weight:400">(part-time)</span></h3>
+          <h3>Assistant Director <span class="job-note">(part-time)</span></h3>
           <span class="org">BoxOffice</span>
           <ul>
             <li>Coordinated multimedia production and logistics.</li>
@@ -270,18 +513,9 @@
             <li>Produced photography and visual content for publication.</li>
           </ul>
         </article>
-        <article class="job" data-reveal>
-          <span class="job-date">Dec 2022 — Feb 2023</span>
-          <h3>Intern Content Creator</h3>
-          <span class="org">Prothom Alo</span>
-          <ul>
-            <li>Digital content production, scripting, video editing and publishing.</li>
-          </ul>
-        </article>
       </div>
     </div>
   </section>
-
   <!-- ================= SKILLS ================= -->
   <section class="section section--wash" id="skills">
     <div class="wrap">
@@ -291,7 +525,7 @@
       </div>
       <div class="skills" id="skills-grid">
         <div class="skill-group" data-reveal>
-          <h3>Journalism &amp; Research</h3>
+          <h3>Journalism &amp; research</h3>
           <ul class="tags">
             <li>Investigative reporting</li>
             <li>Field research</li>
@@ -313,7 +547,7 @@
           </ul>
         </div>
         <div class="skill-group" data-reveal>
-          <h3>Digital &amp; Audience</h3>
+          <h3>Digital &amp; audience</h3>
           <ul class="tags">
             <li>Content planning</li>
             <li>Digital publishing</li>
@@ -322,7 +556,7 @@
           </ul>
         </div>
         <div class="skill-group" data-reveal>
-          <h3>Code &amp; Interactives</h3>
+          <h3>Code &amp; interactives</h3>
           <ul class="tags">
             <li>HTML</li>
             <li>CSS</li>
@@ -345,7 +579,6 @@
       </div>
     </div>
   </section>
-
   <!-- ================= CREDENTIALS ================= -->
   <section class="section" id="credentials">
     <div class="wrap">
@@ -427,7 +660,6 @@
       </div>
     </div>
   </section>
-
   <!-- ================= CONTACT ================= -->
   <section class="section contact" id="contact" data-reveal>
     <div class="wrap">
@@ -486,6 +718,12 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=11"></script>
+<button class="to-top" type="button" id="to-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5"/><path d="M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<script src="assets/js/site.js?v=14"></script>
 </body>
 </html>

@@ -51,8 +51,10 @@ collections:
               - {label: "Menu label — Work", name: "nav_work", widget: "string", required: false}
               - {label: "Menu label — Photography", name: "nav_photography", widget: "string", required: false}
               - {label: "Menu label — Video", name: "nav_video", widget: "string", required: false}
-              - {label: "Menu label — Skills", name: "nav_skills", widget: "string", required: false}
               - {label: "Menu label — About", name: "nav_about", widget: "string", required: false}
+              - {label: "Menu label — Experience", name: "nav_experience", widget: "string", required: false}
+              - {label: "Menu label — Skills", name: "nav_skills", widget: "string", required: false}
+              - {label: "Menu label — Credentials", name: "nav_credentials", widget: "string", required: false}
               - {label: "Menu label — Contact", name: "nav_contact", widget: "string", required: false}
 
           - label: "Hero — the first thing visitors see"

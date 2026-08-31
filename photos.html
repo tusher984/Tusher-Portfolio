@@ -4,27 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Photography — Md. Al Amin Tusher</title>
-<meta name="description" content="Documentary photography by Md. Al Amin Tusher from assignments across Bangladesh — rivers, streets, portraits and reportage.">
+<meta name="description" content="Documentary photography by Md. Al Amin Tusher from assignments and personal work across Bangladesh — rivers, streets, portraits and reportage.">
 <link rel="canonical" href="https://tusher984.github.io/Tusher-Portfolio/photos.html">
+<meta name="author" content="Md. Al Amin Tusher">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12100f" media="(prefers-color-scheme: dark)">
 
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Md. Al Amin Tusher">
+<meta property="og:locale" content="en_GB">
 <meta property="og:url" content="https://tusher984.github.io/Tusher-Portfolio/photos.html">
 <meta property="og:title" content="Photography — Md. Al Amin Tusher">
-<meta property="og:description" content="Documentary photography from assignments across Bangladesh.">
+<meta property="og:description" content="Documentary photography from assignments and personal work across Bangladesh — rivers, streets, portraits and reportage.">
 <meta property="og:image" content="https://tusher984.github.io/Tusher-Portfolio/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Md. Al Amin Tusher — journalist and documentary photographer, Dhaka">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@tusher984">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/opt/headshot-480.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=10">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Newsreader:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=17">
 <noscript><style>[data-reveal],.hero [data-seq]{opacity:1!important;transform:none!important;animation:none!important}</style></noscript>
 
 </head>
 <body data-page="photos">
 
 <a class="skip" href="#main">Skip to content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="site-header">
   <div class="wrap">
@@ -42,6 +53,9 @@
       <a href="photos.html" aria-current="page" data-nav="photography">Photography</a>
       <a href="videos.html" data-nav="video">Video</a>
       <a href="index.html#about" data-nav="about">About</a>
+      <a href="index.html#experience" data-nav="experience">Experience</a>
+      <a href="index.html#skills" data-nav="skills">Skills</a>
+      <a href="index.html#credentials" data-nav="credentials">Credentials</a>
       <a href="index.html#contact" data-nav="contact">Contact</a>
     </nav>
   </div>
@@ -53,16 +67,152 @@
     <p class="eyebrow" data-seq>Photography</p>
     <h1 data-seq>Documentary photography</h1>
     <p class="lead" id="gallery-intro" data-seq>
-      Documentary photography from assignments and personal work across Bangladesh.
+      Documentary photography from assignments and personal work across Bangladesh —
+      rivers, streets, and the people living alongside both.
     </p>
   </section>
 
-  <section class="section section--tight" style="padding-top:0">
+  <section class="section section--tight section--flush">
     <div class="wrap">
-      <!-- Filter buttons are generated from the categories in content/photos.json -->
-      <div class="filters" id="filters" role="group" aria-label="Filter photographs by category"></div>
-      <!-- Photographs are generated from content/photos.json -->
-      <div class="masonry" id="masonry" aria-live="polite"></div>
+      <div class="filter-bar">
+        <!-- Filter buttons are generated from the categories in content/photos.json.
+             They are not written here: buttons that cannot filter anything until
+             JavaScript arrives would be worse than no buttons at all. -->
+        <div class="filters" id="filters" role="group" aria-label="Filter photographs by category"></div>
+        <p class="gallery-count" id="gallery-count" role="status">12 photographs</p>
+      </div>
+
+      <!-- Every photograph in content/photos.json is here in the HTML. The
+           renderer swaps each link for a button that opens the viewer; with
+           JavaScript off the links open the full-size picture instead. -->
+      <div class="masonry" id="masonry">
+        <a class="frame" href="assets/img/opt/found_17666552_14831059-1600.jpg">
+          <img src="assets/img/opt/found_17666552_14831059-960.jpg"
+               srcset="assets/img/opt/found_17666552_14831059-480.jpg 480w, assets/img/opt/found_17666552_14831059-960.jpg 960w, assets/img/opt/found_17666552_14831059-1600.jpg 1600w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="A Bangladesh flag on a bamboo pole in front of a brick-kiln chimney trailing smoke across a grey sky"
+               width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">The flag and the kiln, sharing the same sky.</span>
+          </span>
+        </a>
+        <a class="frame" href="assets/img/opt/img_4020-1600.jpg">
+          <img src="assets/img/opt/img_4020-960.jpg"
+               srcset="assets/img/opt/img_4020-480.jpg 480w, assets/img/opt/img_4020-960.jpg 960w, assets/img/opt/img_4020-1600.jpg 1600w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="Aerial view of a tin-roofed house submerged to the eaves in floodwater, a wooden boat moored alongside"
+               width="1600" height="900" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">Floodwater up to the eaves. The boat tied alongside is the way in and the way out.</span>
+          </span>
+        </a>
+        <a class="frame" href="assets/img/opt/dsc04267-1600.jpg">
+          <img src="assets/img/opt/dsc04267-960.jpg"
+               srcset="assets/img/opt/dsc04267-480.jpg 320w, assets/img/opt/dsc04267-960.jpg 640w, assets/img/opt/dsc04267-1600.jpg 1067w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="A man in a black T-shirt raises his hand among a crowd of people dressed in black on a Dhaka street"
+               width="1067" height="1600" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">Hands up in the crowd.</span>
+            <span class="cap-meta">Dhaka · 2025</span>
+          </span>
+        </a>
+        <a class="frame" href="assets/img/opt/found_434612229_5121757-1600.jpg">
+          <img src="assets/img/opt/found_434612229_5121757-960.jpg"
+               srcset="assets/img/opt/found_434612229_5121757-480.jpg 320w, assets/img/opt/found_434612229_5121757-960.jpg 640w, assets/img/opt/found_434612229_5121757-1600.jpg 1067w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="A wooden plank gangway leaning against the freshly painted blue and yellow hull of a river launch"
+               width="1067" height="1600" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">A plank and a repainted hull — the way aboard.</span>
+            <span class="cap-meta">Buriganga · 2026</span>
+          </span>
+        </a>
+        <a class="frame" href="assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-1600.jpg">
+          <img src="assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-960.jpg"
+               srcset="assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-480.jpg 320w, assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-960.jpg 639w, assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-1600.jpg 1066w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="Aerial view of a lake threading between densely built blocks of Dhaka, high-rises on the horizon"
+               width="1066" height="1600" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">Water still cuts a line through the density, from the air.</span>
+            <span class="cap-meta">Dhaka · 2025</span>
+          </span>
+        </a>
+        <a class="frame" href="assets/img/opt/dsc00258-1600.jpg">
+          <img src="assets/img/opt/dsc00258-960.jpg"
+               srcset="assets/img/opt/dsc00258-480.jpg 480w, assets/img/opt/dsc00258-960.jpg 960w, assets/img/opt/dsc00258-1600.jpg 1080w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="A woman seated on a pavement at night with two small children in bright clothes"
+               width="1080" height="720" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">A mother and her two children on the footpath after dark.</span>
+          </span>
+        </a>
+        <a class="frame" href="assets/img/opt/img_9482-1600.jpg">
+          <img src="assets/img/opt/img_9482-960.jpg"
+               srcset="assets/img/opt/img_9482-480.jpg 320w, assets/img/opt/img_9482-960.jpg 640w, assets/img/opt/img_9482-1600.jpg 1067w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="Three men working waist-deep in a pale river beside a small boat, a woman and child in silhouette in the foreground"
+               width="1067" height="1600" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">A woman and child watch the fishers work the shallows.</span>
+            <span class="cap-meta">Narayanganj · 2025</span>
+          </span>
+        </a>
+        <a class="frame" href="assets/img/opt/dji_20251110120523_0104_d_1-1600.jpg">
+          <img src="assets/img/opt/dji_20251110120523_0104_d_1-960.jpg"
+               srcset="assets/img/opt/dji_20251110120523_0104_d_1-480.jpg 480w, assets/img/opt/dji_20251110120523_0104_d_1-960.jpg 960w, assets/img/opt/dji_20251110120523_0104_d_1-1600.jpg 1600w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="Overhead view of three wooden boats moored against a silted, eroding riverbank beside a concrete-block revetment"
+               width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">Concrete blocks hold one stretch of bank. The silt beside them is going.</span>
+            <span class="cap-meta">2025</span>
+          </span>
+        </a>
+        <a class="frame" href="assets/img/opt/al-amin-tusher_01303043314_01-1600.jpg">
+          <img src="assets/img/opt/al-amin-tusher_01303043314_01-960.jpg"
+               srcset="assets/img/opt/al-amin-tusher_01303043314_01-480.jpg 320w, assets/img/opt/al-amin-tusher_01303043314_01-960.jpg 640w, assets/img/opt/al-amin-tusher_01303043314_01-1600.jpg 1067w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="Aerial view of sunlight scattering across a river channel, a single boat pulled up on the sandbar"
+               width="1067" height="1600" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">One boat on the sandbar, where the water has dropped back.</span>
+            <span class="cap-meta">Jamuna · 2025</span>
+          </span>
+        </a>
+        <a class="frame" href="assets/img/opt/ca11c107-ab37-4a41-a453-47734d0172db01-1600.jpg">
+          <img src="assets/img/opt/ca11c107-ab37-4a41-a453-47734d0172db01-960.jpg"
+               srcset="assets/img/opt/ca11c107-ab37-4a41-a453-47734d0172db01-480.jpg 480w, assets/img/opt/ca11c107-ab37-4a41-a453-47734d0172db01-960.jpg 960w, assets/img/opt/ca11c107-ab37-4a41-a453-47734d0172db01-1600.jpg 1600w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="Two wooden country boats moored on still water at sunrise, the sky mirrored around them"
+               width="1600" height="898" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">Still water doubling the sky.</span>
+          </span>
+        </a>
+        <a class="frame" href="assets/img/opt/found_21147936_1336632-1--1600.jpg">
+          <img src="assets/img/opt/found_21147936_1336632-1--960.jpg"
+               srcset="assets/img/opt/found_21147936_1336632-1--480.jpg 320w, assets/img/opt/found_21147936_1336632-1--960.jpg 640w, assets/img/opt/found_21147936_1336632-1--1600.jpg 720w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="Two wooden boats in a narrow channel almost closed over by water hyacinth and overhanging trees"
+               width="720" height="1080" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">A channel water hyacinth has nearly closed.</span>
+          </span>
+        </a>
+        <a class="frame" href="assets/img/opt/al-amin-tusher_01303043314_02-1600.jpg">
+          <img src="assets/img/opt/al-amin-tusher_01303043314_02-960.jpg"
+               srcset="assets/img/opt/al-amin-tusher_01303043314_02-480.jpg 480w, assets/img/opt/al-amin-tusher_01303043314_02-960.jpg 960w, assets/img/opt/al-amin-tusher_01303043314_02-1600.jpg 1600w"
+               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               alt="A cyclist silhouetted on an embankment against a deep blue sky, eucalyptus trees on either side"
+               width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="frame-cap">
+            <span class="cap-title">Last light on the embankment road.</span>
+          </span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -107,6 +257,12 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=11"></script>
+<button class="to-top" type="button" id="to-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5"/><path d="M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<script src="assets/js/site.js?v=14"></script>
 </body>
 </html>
