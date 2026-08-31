@@ -92,11 +92,10 @@
         <h2 class="section-title">দুটি Terminal, চারটি ছোট ধাপ।</h2>
         <p class="section-lead">প্রথমবার <code>npx</code> Decap CMS download করতে ইন্টারনেট লাগতে পারে। পরেরবার সাধারণত শুধু command দুটো চালালেই হবে।</p>
         <ol class="steps">
-          <li class="step"><span class="number">1</span><div><h3>Portfolio folder-এ Terminal খুলুন</h3><p>নিচের সব command এই folder-এর ভিতর থেকেই চালাতে হবে। Terminal প্রথমে home folder-এ খোলে, তাই folder-টিতে যেতে হবে। <strong>⌘ Space</strong> চেপে <em>Terminal</em> লিখে Return দিন, তারপর নিচের লাইনটি paste করে আবার Return দিন।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio</pre><button class="copy" type="button" data-copy="cd ~/Documents/GitHub/Tusher-Portfolio">Copy</button></div><p>অথবা Finder-এ <strong>Tusher-Portfolio</strong> folder-টিতে Control-click করে <strong>Services → New Terminal at Folder</strong> বেছে নিন — window সোজা folder-এর ভিতরেই খোলে।</p><p>ঠিক জায়গায় আছেন কি না দেখতে <code>ls</code> চালান। <code>index.html</code>, <code>admin</code> আর <code>content</code> দেখা গেলে ঠিক আছে।</p></div></li>
-          <li class="step"><span class="number">2</span><div><h3>Local CMS চালু করুন</h3><p>এই Terminal window খোলা রাখুন। এটি আপনার ফাইলগুলো edit করার অনুমতি দেয়।</p><div class="command"><pre>npx decap-server</pre><button class="copy" type="button" data-copy="npx decap-server">Copy</button></div></div></li>
-          <li class="step"><span class="number">3</span><div><h3>আরেকটি Terminal খুলুন</h3><p>প্রথম window বন্ধ না করে <strong>⌘ N</strong> চেপে নতুন window খুলুন। নতুন window আবার home folder-এ শুরু হয়, তাই নিচের দুটি লাইন একসঙ্গেই paste করুন। এই window-টিও খোলা রাখবেন।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio
-python3 -m http.server 8000</pre><button class="copy" type="button" data-copy="cd ~/Documents/GitHub/Tusher-Portfolio\npython3 -m http.server 8000">Copy</button></div></div></li>
-          <li class="step"><span class="number">4</span><div><h3>Local editor খুলুন</h3><p>নিচের address browser-এ খুলুন, তারপর <strong>Work with Local Repo</strong> চাপুন। এখানেই সব content edit করবেন।</p><div class="command"><pre>http://localhost:8000/admin/</pre><button class="copy" type="button" data-copy="http://localhost:8000/admin/">Copy</button></div></div></li>
+          <li class="step"><span class="number">1</span><div><h3>Portfolio folder-এ Terminal খুলুন</h3><p>নিচের সব command এই folder-এর ভিতর থেকেই চালাতে হবে। Terminal প্রথমে home folder-এ খোলে, তাই folder-টিতে যেতে হবে। <strong>⌘ Space</strong> চেপে <em>Terminal</em> লিখে Return দিন, তারপর নিচের লাইনটি paste করে আবার Return দিন।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio</pre><button class="copy" type="button">Copy</button></div><p>অথবা Finder-এ <strong>Tusher-Portfolio</strong> folder-টিতে Control-click করে <strong>Services → New Terminal at Folder</strong> বেছে নিন — window সোজা folder-এর ভিতরেই খোলে।</p><p>ঠিক জায়গায় আছেন কি না দেখতে <code>ls</code> চালান। <code>index.html</code>, <code>admin</code> আর <code>content</code> দেখা গেলে ঠিক আছে।</p></div></li>
+          <li class="step"><span class="number">2</span><div><h3>Local CMS চালু করুন</h3><p>এই লাইনটিও folder-এ যাওয়া আর CMS চালু করা — দুটোই করে, তাই Terminal কোথায় খুলেছে তা নিয়ে ভাবতে হবে না। এই window খোলা রাখুন; এটিই আপনার ফাইলগুলো edit করার অনুমতি দেয়।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio &amp;&amp; npx decap-server</pre><button class="copy" type="button">Copy</button></div></div></li>
+          <li class="step"><span class="number">3</span><div><h3>আরেকটি Terminal খুলুন</h3><p>প্রথম window বন্ধ না করে <strong>⌘ N</strong> চেপে নতুন window খুলুন। নতুন window আবার home folder-এ শুরু হয়, তাই নিচের একটি লাইনেই folder-এ যাওয়া আর server চালু করা — দুটোই আছে। paste করে Return দিন। এই window-টিও খোলা রাখবেন।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio &amp;&amp; python3 -m http.server 8000</pre><button class="copy" type="button">Copy</button></div></div></li>
+          <li class="step"><span class="number">4</span><div><h3>Local editor খুলুন</h3><p>নিচের address browser-এ খুলুন, তারপর <strong>Work with Local Repo</strong> চাপুন। এখানেই সব content edit করবেন।</p><div class="command"><pre>http://localhost:8000/admin/</pre><button class="copy" type="button">Copy</button></div></div></li>
         </ol>
       </div>
       <aside class="panel">
@@ -123,7 +122,7 @@ python3 -m http.server 8000</pre><button class="copy" type="button" data-copy="c
       </div>
       <div class="command publish-command"><pre>git add -A
 git commit -m "Update portfolio"
-git push</pre><button class="copy" type="button" data-copy="git add -A\ngit commit -m &quot;Update portfolio&quot;\ngit push">Copy</button></div>
+git push</pre><button class="copy" type="button">Copy</button></div>
     </div>
   </section>
   <section class="section section--white">
@@ -151,10 +150,17 @@ git push</pre><button class="copy" type="button" data-copy="git add -A\ngit comm
       cms.onload = function () { var previews = document.createElement('script'); previews.src = 'previews.js?v=1'; document.body.appendChild(previews); };
       document.body.appendChild(cms);
     }
-    document.querySelectorAll('[data-copy]').forEach(function (button) {
+    document.querySelectorAll('.copy').forEach(function (button) {
       button.addEventListener('click', function () {
-        var text = button.getAttribute('data-copy').replace(/&quot;/g, '"');
-        if (!navigator.clipboard) return;
+        /* The command is read straight off the block the button sits in, so what
+           gets copied is always exactly what is on screen. Spelling each command
+           out a second time in an attribute is how step 3 came to put a literal
+           "\n" on the clipboard instead of a line break — pasting it ran the two
+           lines as one and Terminal answered "cd: too many arguments". */
+        var block = button.closest('.command');
+        var pre = block && block.querySelector('pre');
+        var text = pre ? pre.textContent.replace(/\s+$/, '') : '';
+        if (!text || !navigator.clipboard) return;
         navigator.clipboard.writeText(text).then(function () {
           var old = button.textContent; button.textContent = 'Copied';
           window.setTimeout(function () { button.textContent = old; }, 1500);
