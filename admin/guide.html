@@ -29,7 +29,7 @@
   .guide ul, .guide ol { padding-left: 1.15rem; }
   .guide li { margin-bottom: 0.4rem; }
   .rule-box {
-    background: var(--wash); border-left: 2px solid var(--accent);
+    background: var(--wash); border-left: 2px solid var(--signal);
     padding: 1.15rem 1.35rem; margin: 1.5rem 0; border-radius: 0 3px 3px 0;
   }
   .rule-box p { margin-bottom: 0.65rem; }
@@ -104,7 +104,9 @@
       same folder again, then run <code>python3 -m http.server 8000</code>.
       Leave this one running too.</li>
     <li>Open <code>http://localhost:8000/admin/</code> and choose
-      <strong>Work with Local Repo</strong>.</li>
+      <strong>Work with Local Repo</strong>. The port number is not fixed — any
+      address that begins with <code>localhost</code> opens the editor, as long
+      as the number matches the server you started.</li>
   </ol>
   <p>
     Both windows have to stay open while you edit. Closing one, or pressing

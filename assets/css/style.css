@@ -35,6 +35,7 @@
   --signal-soft: #e4efef;
   --on-signal: #ffffff;      /* text that sits on a signal fill */
   --signal-on-slab: #7fb3b8; /* the accent, lifted to carry on the dark slab */
+  --signal-ink: #1d4e54;     /* the accent on a fill that is white in both schemes */
   --slab: #0f1b1d;           /* the contact band */
   --slab-ink: #ffffff;
   --shadow: 15 27 29;        /* rgb() channels for elevation */
@@ -74,13 +75,15 @@
     --muted: #9d9489;
     --rule: #2e2a27;
     --rule-strong: #3d3833;
-    --signal: #e0674f;
-    --signal-deep: #ee8a72;
-    --signal-soft: #2b1d19;
-    /* White on this coral is 3.4:1 — under AA. The near-black reads at 5.6:1. */
+    --signal: #5f9ba1;
+    --signal-deep: #7fb3b8;
+    --signal-soft: #172a2c;
+    /* The same teal as the light scheme, lifted until it carries on a near-black
+       page: 6.0:1 here against 5.9:1 for #2f6d74 on white. White on it is only
+       3.1:1, so a signal fill takes the near-black ink instead (6.0:1). */
     --on-signal: #12100f;
-    /* The dark slab is barely lighter than the page, so the coral already carries. */
-    --signal-on-slab: #e0674f;
+    /* The dark slab is barely lighter than the page, so the accent already carries. */
+    --signal-on-slab: #5f9ba1;
     --slab: #1b1918;
     --slab-ink: #f4f1eb;
     --shadow: 0 0 0;
@@ -469,9 +472,15 @@ a.index-row:hover .index-go, a.index-row:focus-visible .index-go { opacity: 1; t
 /* ========================================================================
    11. Photography
    ======================================================================== */
-/* Both the homepage strip and the gallery page use CSS columns, so every
-   photograph keeps the shape it was taken in. */
-.photo-strip { columns: 3 240px; column-gap: clamp(0.85rem, 1.6vw, 1.25rem); }
+/* Two different jobs, two different layouts. The gallery page uses CSS columns,
+   so every photograph there keeps the shape it was taken in. The homepage strip
+   is a contact sheet: one row of five equal squares, which only reads as a row
+   if every tile is the same size, so those are cropped to fit. */
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.4rem, 0.9vw, 0.8rem);
+}
 .masonry { columns: 3 260px; column-gap: clamp(0.85rem, 1.6vw, 1.25rem); }
 
 .frame {
@@ -489,6 +498,12 @@ a.frame { color: inherit; text-decoration: none; }
 .frame img { width: 100%; height: auto; display: block; transition: transform 0.6s var(--ease); }
 .frame:hover img { transform: scale(1.025); }
 
+/* The square crop lives here rather than on .frame so the gallery page, which
+   shares the same frame, is untouched. The bottom margin belongs to the column
+   flow and would become a gap on top of the grid's own. */
+.photo-strip .frame { margin: 0; aspect-ratio: 1; }
+.photo-strip .frame img { height: 100%; object-fit: cover; }
+
 .frame-cap {
   position: absolute; inset: auto 0 0 0; display: block; text-align: left;
   padding: 2.75rem 0.9rem 0.85rem; color: #ffffff;
@@ -503,8 +518,11 @@ a.frame { color: inherit; text-decoration: none; }
   font-family: var(--mono); font-size: var(--fs-mono); letter-spacing: 0.08em;
   text-transform: uppercase; color: rgb(255 255 255 / 0.75);
 }
+/* Below this, five across would be smaller than a thumbnail. Three is about the
+   size a phone's own gallery uses; the fifth photograph starts a second row. */
 @media (max-width: 640px) {
-  .photo-strip, .masonry { columns: 2 130px; }
+  .photo-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .masonry { columns: 2 130px; }
 }
 
 .filter-bar {
@@ -578,7 +596,9 @@ a.video-card:focus-visible .video-thumb img { transform: scale(1.03); filter: br
 .play { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
 .play span {
   display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%;
-  background: rgb(255 255 255 / 0.93); color: var(--signal-deep);
+  /* The disc is white in both schemes, so the arrow holds the dark teal in both.
+     The lifted dark-scheme accent would read at 2.3:1 on it. */
+  background: rgb(255 255 255 / 0.93); color: var(--signal-ink);
   box-shadow: 0 6px 22px rgb(8 7 6 / 0.3);
   transition: transform var(--dur) var(--ease), background var(--dur) var(--ease);
 }
@@ -592,6 +612,29 @@ a.video-card:hover h3, a.video-card:focus-visible h3 { color: var(--signal-deep)
 }
 .video-card .v-meta .v-outlet { color: var(--signal); }
 .video-card .v-desc { color: var(--muted); font-size: var(--fs-small); margin: 0; }
+
+/* The homepage row of five, to match the photography strip above it. The
+   thumbnail is already 16:9 whatever YouTube returns; what makes five cards
+   read as one row is the title and teaser being cut to a fixed number of
+   lines, so every card is the same height. The video page keeps the wide cards
+   and the description in full. */
+#video-strip { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(0.9rem, 1.6vw, 1.5rem); }
+#video-strip .video-card h3 { font-size: 1rem; line-height: 1.35; margin-top: 0.8rem; }
+#video-strip .v-meta { margin-bottom: 0.45rem; }
+#video-strip .video-card h3, #video-strip .v-desc {
+  display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;
+}
+#video-strip .video-card h3 { -webkit-line-clamp: 2; line-clamp: 2; }
+#video-strip .v-desc { -webkit-line-clamp: 3; line-clamp: 3; }
+#video-strip .play span { width: 40px; height: 40px; }
+@media (max-width: 1000px) { #video-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 720px)  { #video-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px)  {
+  /* One card per row again, so nothing needs cutting. */
+  #video-strip { grid-template-columns: 1fr; gap: 1.75rem; }
+  #video-strip .video-card h3 { font-size: var(--fs-h3); }
+  #video-strip .video-card h3, #video-strip .v-desc { display: block; overflow: visible; }
+}
 
 /* ========================================================================
    13. Experience
@@ -759,13 +802,19 @@ a.video-card:hover h3, a.video-card:focus-visible h3 { color: var(--signal-deep)
   :root {
     --paper: #ffffff; --surface: #ffffff; --wash: #ffffff; --ink: #000000;
     --ink-2: #1a1a1a; --muted: #444444; --rule: #cccccc; --rule-strong: #999999;
-    --signal: #000000; --signal-deep: #000000; --slab: #ffffff; --slab-ink: #000000;
+    --signal: #000000; --signal-deep: #000000; --signal-ink: #000000;
+    --slab: #ffffff; --slab-ink: #000000;
   }
   .site-header, .nav-toggle, .hero-actions, .contact-actions,
   .progress, .to-top, .filter-bar, .lightbox, .foot-admin, .section-link { display: none !important; }
   body { font-size: 10.5pt; background: #ffffff; }
   .section { padding-block: 1.25rem; break-inside: avoid; }
-  .photo-strip, .masonry { columns: 2; }
+  .masonry { columns: 2; }
+  /* On paper the caption sits under the picture, so the square crop is dropped
+     and the photograph prints whole. */
+  .photo-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .photo-strip .frame { aspect-ratio: auto; }
+  .photo-strip .frame img { height: auto; object-fit: fill; }
   .frame-cap { position: static; opacity: 1; padding: 0.4rem 0; background: none; color: #000000; transform: none; }
   .frame-cap .cap-meta { color: #444444; }
   a { color: #000000; text-decoration: none; }

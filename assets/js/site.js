@@ -107,6 +107,10 @@
      and records their real dimensions in this manifest. Reading it means the
      browser downloads a 40 KB file for a thumbnail instead of a 16 MB one. */
   const PHOTO_SIZES = '(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px';
+  /* The homepage strip is five squares across, so its tiles are far smaller
+     than a gallery frame and must say so — otherwise every one of them
+     downloads the 960px copy it has no use for. */
+  const STRIP_SIZES = '(max-width: 640px) 31vw, (max-width: 1240px) 18vw, 230px';
   let manifest = {};
 
   const loadManifest = async () => {
@@ -324,8 +328,9 @@
       (rest.length ? `\n<div class="index-list">${rest.map(storyRow).join('')}\n</div>` : ''));
   }
   /* ------------------------------------------------------------- photography */
-  /* The homepage shows the first six; the gallery page shows everything. */
-  const STRIP_COUNT = 6;
+  /* Five is one full row of the homepage strip, and the video row below it uses
+     the same number. The gallery and video pages show everything. */
+  const STRIP_COUNT = 5;
 
   const photoList = (photos) => rows(photos.items, ['image', 'src', 'url', 'title'])
     .map((photo) => {
@@ -338,8 +343,8 @@
 
   /* The caption sits over the picture on hover and on keyboard focus; the title
      is the alt text, because that is the description of what is in the frame. */
-  const frameInner = (photo) => `
-        <img${imgAttrs(photo.src)} alt="${esc(photo.title)}" loading="lazy" decoding="async">
+  const frameInner = (photo, sizes) => `
+        <img${imgAttrs(photo.src, sizes)} alt="${esc(photo.title)}" loading="lazy" decoding="async">
         ${photo.caption || photo.meta ? `<span class="frame-cap">
           ${photo.caption ? `<span class="cap-title"${langAttr(photo.caption)}>${esc(photo.caption)}</span>` : ''}
           ${photo.meta ? `<span class="cap-meta">${esc(photo.meta)}</span>` : ''}
@@ -359,7 +364,7 @@
        exactly what happens with JavaScript off, too. */
     const href = has(head.link_url) ? clean(head.link_url) : 'photos.html';
     setHTML('#photo-strip', items.slice(0, STRIP_COUNT).map((photo) => `
-      <a class="frame" href="${esc(href)}">${frameInner(photo)}
+      <a class="frame" href="${esc(href)}">${frameInner(photo, STRIP_SIZES)}
       </a>`).join(''));
   }
 
@@ -388,7 +393,9 @@
 
   /* The whole card is the link, so the accessible name is the headline rather
      than a bare image. withText is off on the homepage: one paragraph is a
-     teaser, the full description belongs on the video page. */
+     teaser — the stylesheet cuts it to three lines there so the row of five
+     cards keeps one height — and the full description belongs on the video
+     page. */
   const videoCard = (video, withText) => {
     const tag = video.url ? 'a' : 'div';
     const meta = [video.outlet ? `<span class="v-outlet">${esc(video.outlet)}</span>` : '', esc(video.year)]
@@ -417,7 +424,7 @@
 
     const items = videoList(videos);
     if (!items.length) return;
-    setHTML('#video-strip', items.map((video) => videoCard(video, false)).join(''));
+    setHTML('#video-strip', items.slice(0, STRIP_COUNT).map((video) => videoCard(video, false)).join(''));
   }
   /* --------------------------------------------------------------- experience */
   function renderExperience(site, experience) {

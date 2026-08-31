@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Newsreader:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=17">
+<link rel="stylesheet" href="assets/css/style.css?v=19">
 <noscript><style>[data-reveal],.hero [data-seq]{opacity:1!important;transform:none!important;animation:none!important}</style></noscript>
 
 <script type="application/ld+json">
@@ -262,9 +262,9 @@
     </div>
   </section>
   <!-- ================= PHOTOGRAPHY ================= -->
-  <!-- Six frames, statically rendered from content/photos.json. Each links to
-       the gallery page, which is what happens without JS; with JS the click
-       opens the lightbox instead. -->
+  <!-- One row of five, statically rendered from content/photos.json and cropped
+       square by the stylesheet. Every frame is a link through to the gallery,
+       with or without JavaScript; the lightbox lives on that page. -->
   <section class="section section--wash" id="photography">
     <div class="wrap">
       <div class="section-head" data-reveal>
@@ -283,7 +283,7 @@
                srcset="assets/img/opt/found_17666552_14831059-480.jpg 480w,
                        assets/img/opt/found_17666552_14831059-960.jpg 960w,
                        assets/img/opt/found_17666552_14831059-1600.jpg 1600w"
-               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               sizes="(max-width: 640px) 31vw, (max-width: 1240px) 18vw, 230px"
                alt="A Bangladesh flag on a bamboo pole in front of a brick-kiln chimney trailing smoke across a grey sky"
                width="1600" height="1067" loading="lazy" decoding="async">
           <span class="frame-cap">
@@ -295,7 +295,7 @@
                srcset="assets/img/opt/img_4020-480.jpg 480w,
                        assets/img/opt/img_4020-960.jpg 960w,
                        assets/img/opt/img_4020-1600.jpg 1600w"
-               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               sizes="(max-width: 640px) 31vw, (max-width: 1240px) 18vw, 230px"
                alt="Aerial view of a tin-roofed house submerged to the eaves in floodwater, a wooden boat moored alongside"
                width="1600" height="900" loading="lazy" decoding="async">
           <span class="frame-cap">
@@ -307,7 +307,7 @@
                srcset="assets/img/opt/dsc04267-480.jpg 320w,
                        assets/img/opt/dsc04267-960.jpg 640w,
                        assets/img/opt/dsc04267-1600.jpg 1067w"
-               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               sizes="(max-width: 640px) 31vw, (max-width: 1240px) 18vw, 230px"
                alt="A man in a black T-shirt raises his hand among a crowd of people dressed in black on a Dhaka street"
                width="1067" height="1600" loading="lazy" decoding="async">
           <span class="frame-cap">
@@ -320,7 +320,7 @@
                srcset="assets/img/opt/found_434612229_5121757-480.jpg 320w,
                        assets/img/opt/found_434612229_5121757-960.jpg 640w,
                        assets/img/opt/found_434612229_5121757-1600.jpg 1067w"
-               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               sizes="(max-width: 640px) 31vw, (max-width: 1240px) 18vw, 230px"
                alt="A wooden plank gangway leaning against the freshly painted blue and yellow hull of a river launch"
                width="1067" height="1600" loading="lazy" decoding="async">
           <span class="frame-cap">
@@ -333,24 +333,12 @@
                srcset="assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-480.jpg 320w,
                        assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-960.jpg 639w,
                        assets/img/opt/dji_fly_20251126_154338_0057_1764150443835_photo-1600.jpg 1066w"
-               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
+               sizes="(max-width: 640px) 31vw, (max-width: 1240px) 18vw, 230px"
                alt="Aerial view of a lake threading between densely built blocks of Dhaka, high-rises on the horizon"
                width="1066" height="1600" loading="lazy" decoding="async">
           <span class="frame-cap">
             <span class="cap-title">Water still cuts a line through the density, from the air.</span>
             <span class="cap-meta">Dhaka · 2025</span>
-          </span>
-        </a>
-        <a class="frame" href="photos.html">
-          <img src="assets/img/opt/dsc00258-960.jpg"
-               srcset="assets/img/opt/dsc00258-480.jpg 480w,
-                       assets/img/opt/dsc00258-960.jpg 960w,
-                       assets/img/opt/dsc00258-1600.jpg 1080w"
-               sizes="(max-width: 940px) 45vw, (max-width: 1320px) 30vw, 340px"
-               alt="A woman seated on a pavement at night with two small children in bright clothes"
-               width="1080" height="720" loading="lazy" decoding="async">
-          <span class="frame-cap">
-            <span class="cap-title">A mother and her two children on the footpath after dark.</span>
           </span>
         </a>
       </div>
@@ -407,6 +395,30 @@
           <h3 lang="bn">অন্তিম নিঃশ্বাস নিচ্ছে বুড়িগঙ্গা, আর কতকাল ঘুমাবে নগরবাসী?</h3>
           <p class="v-meta">2025</p>
           <p class="v-desc" lang="bn">কুচকুচে কালো পানিতে ভেসে যাচ্ছে ময়লার ভেলা। উৎকট দুর্গন্ধ তো আছেই। বলছি, দূষণে জর্জরিত বুড়িগঙ্গার কথা। দিনের পর দিন ঢাকার ডাম্পিং হিসেবে ব্যবহৃত হতে হতে আপন রূপটাই হারিয়ে ফেলেছে এই নদী। এমনকি তলদেশের ১৫ ফিট নিচেও মিলছে প্লাস্টিক বর্জ্য। দেশের আইনে জীবন্ত সত্তার স্বীকৃতি পেলেও নদীরই কোনো নিরাপত্তা নেই।</p>
+        </a>
+        <a class="video-card" href="https://www.youtube.com/watch?v=SDSXzwVRkF8" target="_blank" rel="noopener">
+          <span class="video-thumb">
+            <img src="https://img.youtube.com/vi/SDSXzwVRkF8/hqdefault.jpg" alt=""
+                 width="480" height="360" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"><span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span></span>
+          </span>
+          <h3 lang="bn">প্লাস্টিক - যে বর্জ্যের মৃত্যু নেই</h3>
+          <p class="v-meta">2023</p>
+          <p class="v-desc" lang="bn">পৃথিবীতে ক্রমবর্ধমান হারে প্লাস্টিক দূষণ বেড়ে চলেছে। প্রতিদিন প্রকৃতির নানা অংশ ক্ষতিগ্রস্ত হচ্ছে। নানা পদক্ষেপ, কর্মসূচি এবং পরিকল্পনা থাকলেও পরিবেশকে রক্ষা করতে এখনো কার্যকর সমাধান যথেষ্ট প্রয়োগ করা হয়নি। বিশেষজ্ঞরা মনে করছেন, পরিবেশ রক্ষায় দূষিত প্লাস্টিক ব্যবহারের বিকল্প গ্রহণ করা এখন একমাত্র উপায়।</p>
+        </a>
+        <a class="video-card" href="https://www.youtube.com/watch?v=X7UP6Zht1s4" target="_blank" rel="noopener">
+          <span class="video-thumb">
+            <img src="https://img.youtube.com/vi/X7UP6Zht1s4/hqdefault.jpg" alt=""
+                 width="480" height="360" loading="lazy" decoding="async">
+            <span class="play" aria-hidden="true"><span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span></span>
+          </span>
+          <h3 lang="bn">প্রতিদিন নষ্ট হচ্ছে প্রায় ৮২ লাখ কর্মঘণ্টা</h3>
+          <p class="v-meta">2024</p>
+          <p class="v-desc" lang="bn">রাজধানীর তীব্র যানজটের অন্যতম কারণ বাস স্টপেজ ব্যবহার না করে যত্রতত্র যাত্রী ওঠা-নামা। দিনকে দিন মন্থর হচ্ছে নগর জীবন। বুয়েটের গবেষণা প্রতিবেদনের তথ্য, প্রতিবছর যানজটে আর্থিক ক্ষতি হচ্ছে গড়ে প্রায় ৫০ হাজার কোটি টাকা।</p>
         </a>
       </div>
     </div>
@@ -724,6 +736,6 @@
   </svg>
 </button>
 
-<script src="assets/js/site.js?v=14"></script>
+<script src="assets/js/site.js?v=15"></script>
 </body>
 </html>

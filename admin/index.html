@@ -121,14 +121,14 @@
           <li class="step"><span class="number">1</span><div><h3>Portfolio folder-এ Terminal খুলুন</h3><p>নিচের সব command এই folder-এর ভিতর থেকেই চালাতে হবে। Terminal প্রথমে home folder-এ খোলে, তাই folder-টিতে যেতে হবে। <strong>⌘ Space</strong> চেপে <em>Terminal</em> লিখে Return দিন, তারপর নিচের লাইনটি paste করে আবার Return দিন।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio</pre><button class="copy" type="button">Copy</button></div><p>অথবা Finder-এ <strong>Tusher-Portfolio</strong> folder-টিতে Control-click করে <strong>Services → New Terminal at Folder</strong> বেছে নিন — window সোজা folder-এর ভিতরেই খোলে।</p><p>ঠিক জায়গায় আছেন কি না দেখতে <code>ls</code> চালান। <code>index.html</code>, <code>admin</code> আর <code>content</code> দেখা গেলে ঠিক আছে।</p></div></li>
           <li class="step"><span class="number">2</span><div><h3>Local CMS চালু করুন</h3><p>এই লাইনটিও folder-এ যাওয়া আর CMS চালু করা — দুটোই করে, তাই Terminal কোথায় খুলেছে তা নিয়ে ভাবতে হবে না। এই window খোলা রাখুন; এটিই আপনার ফাইলগুলো edit করার অনুমতি দেয়।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio &amp;&amp; npx decap-server</pre><button class="copy" type="button">Copy</button></div></div></li>
           <li class="step"><span class="number">3</span><div><h3>আরেকটি Terminal খুলুন</h3><p>প্রথম window বন্ধ না করে <strong>⌘ N</strong> চেপে নতুন window খুলুন। নতুন window আবার home folder-এ শুরু হয়, তাই নিচের একটি লাইনেই folder-এ যাওয়া আর server চালু করা — দুটোই আছে। paste করে Return দিন। এই window-টিও খোলা রাখবেন।</p><div class="command"><pre>cd ~/Documents/GitHub/Tusher-Portfolio &amp;&amp; python3 -m http.server 8000</pre><button class="copy" type="button">Copy</button></div></div></li>
-          <li class="step"><span class="number">4</span><div><h3>Local editor খুলুন</h3><p>নিচের address browser-এ খুলুন, তারপর <strong>Work with Local Repo</strong> চাপুন। এখানেই সব content edit করবেন।</p><div class="command"><pre>http://localhost:8000/admin/</pre><button class="copy" type="button">Copy</button></div></div></li>
+          <li class="step"><span class="number">4</span><div><h3>Local editor খুলুন</h3><p>নিচের address browser-এ খুলুন, তারপর <strong>Work with Local Repo</strong> চাপুন। এখানেই সব content edit করবেন।</p><div class="command"><pre>http://localhost:8000/admin/</pre><button class="copy" type="button">Copy</button></div><p>Port নম্বরটি বাঁধা নয়, শর্ত দুটো: ঠিকানার শুরুতে <code>localhost</code> থাকতে হবে — তখনই editor খোলে — আর নম্বরটি হতে হবে আপনি যে server চালু করেছেন ঠিক সেটির। উপরের ধাপ <code>8000</code>-এ server চালায়, তাই ঠিকানাতেও <code>8000</code>। অন্য কোনো port-এ চললে <code>http://localhost:</code>-এর পরে সেই নম্বরটিই বসবে, বাকি সব একই থাকে।</p></div></li>
         </ol>
       </div>
       <aside class="panel">
         <h3>কাজ শুরু করার আগে</h3>
         <ul class="checklist">
           <li>দুটি Terminal window চালু আছে</li>
-          <li>Address-এ <code>localhost:8000/admin/</code> লেখা আছে</li>
+          <li>Address <code>localhost</code> দিয়ে শুরু, শেষে <code>/admin/</code> — যেমন <code>localhost:8000/admin/</code></li>
           <li><strong>Work with Local Repo</strong> button চাপা হয়েছে</li>
           <li>সাইটের সব ৯টি section editor-এ দেখা যাচ্ছে</li>
         </ul>
