@@ -32,14 +32,6 @@
       "category": "Portraits"
     },
     {
-      "image": "assets/img/dsc04267.jpg",
-      "title": "A man in a black T-shirt raises his hand among a crowd of people dressed in black on a Dhaka street",
-      "caption": "Hands up in the crowd.",
-      "location": "Dhaka",
-      "year": "2025",
-      "category": "Urban life"
-    },
-    {
       "image": "assets/img/al-amin-tusher_01303043314_01.jpg",
       "title": "Aerial view of sunlight scattering across a river channel, a single boat pulled up on the sandbar",
       "caption": "One boat on the sandbar, where the water has dropped back.",
@@ -102,6 +94,14 @@
       "location": "",
       "year": "",
       "category": "Reportage"
+    },
+    {
+      "image": "assets/img/dsc04267.jpg",
+      "title": "A man in a black T-shirt raises his hand among a crowd of people dressed in black on a Dhaka street",
+      "caption": "Hands up in the crowd.",
+      "location": "Dhaka",
+      "year": "2025",
+      "category": "Urban life"
     }
   ]
 }
