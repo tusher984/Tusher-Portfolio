@@ -24,12 +24,20 @@
       "category": "Environment"
     },
     {
-      "image": "assets/img/dsc04267.jpg",
-      "title": "A man in a black T-shirt raises his hand among a crowd of people dressed in black on a Dhaka street",
-      "caption": "Hands up in the crowd.",
-      "location": "Dhaka",
+      "image": "assets/img/dsc00258.jpg",
+      "title": "A woman seated on a pavement at night with two small children in bright clothes",
+      "caption": "A mother and her two children on the footpath after dark.",
+      "location": "",
+      "year": "",
+      "category": "Portraits"
+    },
+    {
+      "image": "assets/img/al-amin-tusher_01303043314_01.jpg",
+      "title": "Aerial view of sunlight scattering across a river channel, a single boat pulled up on the sandbar",
+      "caption": "One boat on the sandbar, where the water has dropped back.",
+      "location": "Jamuna",
       "year": "2025",
-      "category": "Urban life"
+      "category": "Reportage"
     },
     {
       "image": "assets/img/found_434612229_5121757.jpg",
@@ -40,20 +48,20 @@
       "category": "Environment"
     },
     {
+      "image": "assets/img/ca11c107-ab37-4a41-a453-47734d0172db01.jpg",
+      "title": "Two wooden country boats moored on still water at sunrise, the sky mirrored around them",
+      "caption": "Still water doubling the sky.",
+      "location": "",
+      "year": "",
+      "category": "Environment"
+    },
+    {
       "image": "assets/img/dji_fly_20251126_154338_0057_1764150443835_photo.jpg",
       "title": "Aerial view of a lake threading between densely built blocks of Dhaka, high-rises on the horizon",
       "caption": "Water still cuts a line through the density, from the air.",
       "location": "Dhaka",
       "year": "2025",
       "category": "Urban life"
-    },
-    {
-      "image": "assets/img/dsc00258.jpg",
-      "title": "A woman seated on a pavement at night with two small children in bright clothes",
-      "caption": "A mother and her two children on the footpath after dark.",
-      "location": "",
-      "year": "",
-      "category": "Portraits"
     },
     {
       "image": "assets/img/img_9482.jpg",
@@ -72,22 +80,6 @@
       "category": "Environment"
     },
     {
-      "image": "assets/img/al-amin-tusher_01303043314_01.jpg",
-      "title": "Aerial view of sunlight scattering across a river channel, a single boat pulled up on the sandbar",
-      "caption": "One boat on the sandbar, where the water has dropped back.",
-      "location": "Jamuna",
-      "year": "2025",
-      "category": "Reportage"
-    },
-    {
-      "image": "assets/img/ca11c107-ab37-4a41-a453-47734d0172db01.jpg",
-      "title": "Two wooden country boats moored on still water at sunrise, the sky mirrored around them",
-      "caption": "Still water doubling the sky.",
-      "location": "",
-      "year": "",
-      "category": "Environment"
-    },
-    {
       "image": "assets/img/found_21147936_1336632-1-.jpg",
       "title": "Two wooden boats in a narrow channel almost closed over by water hyacinth and overhanging trees",
       "caption": "A channel water hyacinth has nearly closed.",
@@ -102,6 +94,14 @@
       "location": "",
       "year": "",
       "category": "Reportage"
+    },
+    {
+      "image": "assets/img/dsc04267.jpg",
+      "title": "A man in a black T-shirt raises his hand among a crowd of people dressed in black on a Dhaka street",
+      "caption": "Hands up in the crowd.",
+      "location": "Dhaka",
+      "year": "2025",
+      "category": "Urban life"
     }
   ]
 }
