@@ -8,15 +8,17 @@
 #   ./tools/optimize-images.sh --manifest-only rebuild the manifest from the
 #                                              files already in opt/
 #
-# Run it from anywhere; it works on the repository it lives in. It needs only
-# sips, which every Mac already has — no Homebrew, no npm, no Python.
+# Run it from anywhere; it works on the repository it lives in.
 #
-# Why this exists: the camera originals in assets/img are 5–15 MB each. They
+# It runs in two places and must behave identically in both: on a Mac, where
+# sips is already installed, and on the GitHub Actions runner that publishes
+# the site, where ImageMagick is. That is the only reason this script knows
+# about two image tools — so the copies a browser upload produces in CI match
+# the ones you would have made by hand.
+#
+# Why this exists: the camera originals in assets/img are 5-15 MB each. They
 # are the archive and they stay in the repository, but nothing on the site
 # ever links to them. Every <img> points at a copy from assets/img/opt.
-#
-# Run it after adding photographs through the dashboard, then commit both the
-# new originals and the new files in assets/img/opt.
 # ==========================================================================
 set -euo pipefail
 
@@ -32,10 +34,45 @@ MANIFEST_ONLY=0
 
 mkdir -p "$OUT"
 
-# "1600 1067" for a file, straight out of sips.
+# Settle on one tool up front rather than testing inside the loop.
+if command -v sips >/dev/null 2>&1; then
+  TOOL=sips
+elif command -v magick >/dev/null 2>&1; then
+  TOOL=magick
+elif command -v convert >/dev/null 2>&1; then
+  TOOL=convert
+else
+  echo "No image tool found. On a Mac sips is built in; on Linux install" >&2
+  echo "ImageMagick (apt-get install imagemagick)." >&2
+  exit 1
+fi
+
+# "1600 1067" for a file. [0] takes the first frame, so a stray multi-page
+# TIFF or an animated file cannot print two lines and break the read below.
 dims() {
-  sips -g pixelWidth -g pixelHeight "$1" 2>/dev/null |
-    awk '/pixelWidth/ {w=$2} /pixelHeight/ {h=$2} END {print w, h}'
+  case "$TOOL" in
+    sips)
+      sips -g pixelWidth -g pixelHeight "$1" 2>/dev/null |
+        awk '/pixelWidth/ {w=$2} /pixelHeight/ {h=$2} END {print w, h}' ;;
+    magick)  magick identify -format '%w %h' "$1[0]" 2>/dev/null ;;
+    convert) identify -format '%w %h' "$1[0]" 2>/dev/null ;;
+  esac
+}
+
+# Scale so the longest edge is EDGE, keeping the aspect ratio. -auto-orient is
+# what makes ImageMagick agree with sips: sips already applies the camera's
+# EXIF rotation, and without this flag portrait photographs would come out of
+# CI lying on their side.
+resize() { # src edge dst
+  case "$TOOL" in
+    sips)
+      sips -Z "$2" -s format jpeg -s formatOptions "$QUALITY" \
+           "$1" --out "$3" >/dev/null ;;
+    magick)
+      magick "$1[0]" -auto-orient -resize "$2x$2" -quality "$QUALITY" "$3" ;;
+    convert)
+      convert "$1[0]" -auto-orient -resize "$2x$2" -quality "$QUALITY" "$3" ;;
+  esac
 }
 
 entries=""
@@ -68,8 +105,7 @@ EOF
       [ -f "$dst" ] || break
       kept=$((kept + 1))
     else
-      sips -Z "$edge" -s format jpeg -s formatOptions "$QUALITY" \
-           "$src" --out "$dst" >/dev/null
+      resize "$src" "$edge" "$dst"
       made=$((made + 1))
     fi
 
@@ -94,6 +130,7 @@ done
 printf '{%s}\n' "${entries#,}" > "$OUT/manifest.json"
 
 echo
+echo "image tool: $TOOL"
 if [ "$MANIFEST_ONLY" -eq 1 ]; then
   echo "manifest rebuilt from $kept existing files"
 else

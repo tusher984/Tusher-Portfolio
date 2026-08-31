@@ -13,10 +13,24 @@ backend:
   name: github
   repo: tusher984/Tusher-Portfolio
   branch: main
+  # ---------------------------------------------------------------------
+  # THE ONE LINE THAT TURNS ON THE ONLINE DASHBOARD.
+  #
+  # Uncomment it and put your own Cloudflare Worker URL in place of the
+  # example. Signing in to GitHub needs a client secret, and a secret can
+  # never live in a public repository — the worker is the one small place
+  # that holds it. No /callback on the end here; that suffix belongs only
+  # in the GitHub OAuth App's callback field.
+  #
+  # While this line stays commented out nothing breaks: /admin/ on the
+  # live site shows the setup guide, and local editing works as before.
+  # ---------------------------------------------------------------------
+  # base_url: https://sveltia-cms-auth.YOUR-SUBDOMAIN.workers.dev
 
-# This dashboard is intentionally local-only. Start `npx decap-server`, then
-# open it through a local web server. Decap writes your edits to the files in
-# this folder; you decide when to commit and push them to GitHub.
+# Local editing keeps working either way. This line only takes effect on
+# localhost, where `npx decap-server` answers on port 8081; on the live site it
+# is ignored. Decap writes your edits straight to the files in this folder and
+# you decide when to commit them.
 local_backend: true
 
 site_url: https://tusher984.github.io/Tusher-Portfolio/

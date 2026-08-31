@@ -61,8 +61,16 @@
       the page. Every field like that says so underneath.</p>
   </div>
 
-  <h2 id="signing-in">Opening the local editor</h2>
-  <p>This dashboard is local-only. It edits the files on your computer directly; there is no sign-in, GitHub token, Netlify account, or online CMS service.</p>
+  <h2 id="signing-in">Opening the editor</h2>
+  <p>The dashboard runs in either of two modes. <strong>Local mode</strong> works
+    on this computer today: no sign-in, no GitHub token, no online service — the
+    editor writes straight into the files in your folder. <strong>Online
+    mode</strong> is a one-time setup that puts a real
+    <em>Login&nbsp;with&nbsp;GitHub</em> button on the live
+    <code>/admin/</code> page, so the site can be edited from any browser. The
+    steps for turning it on are on the
+    <a href="index.html#online">dashboard page</a>; everything below describes
+    local mode.</p>
 
   <h3>Open Terminal in the portfolio folder</h3>
   <p>
@@ -115,7 +123,8 @@
       local mode this only writes the change into the file in your folder — the
       live site does not change yet. The line beside the button tells you
       whether anything is still unsaved.</li>
-    <li>Back in Terminal, run the three Git commands above.</li>
+    <li>Back in Terminal, run the three Git commands above. In online mode this
+      step does not exist: saving commits to GitHub itself.</li>
     <li>Wait about a minute, then refresh the site. GitHub rebuilds the page
       after every push, which is what takes the minute.</li>
   </ol>

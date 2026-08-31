@@ -1,7 +1,11 @@
-# Publishes the repository to GitHub Pages exactly as it stands.
+# Publishes the repository to GitHub Pages.
 #
-# The site is plain HTML, CSS and JavaScript: there is nothing to compile, so
-# this workflow uploads the folder and deploys it — no build step to break.
+# There is no framework here and nothing to compile. The one build step is the
+# photographs: a photo added through the dashboard arrives as a full-size
+# camera original, so this workflow rebuilds the web-sized copies in
+# assets/img/opt before publishing. That is what lets the dashboard be used
+# from a browser without a Mac in the loop.
+#
 # Deploying through the Pages artifact means Jekyll never runs, and
 # include-hidden-files keeps .nojekyll in the upload so the site behaves the
 # same way if it is ever served straight from the branch again.
@@ -31,6 +35,35 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # The runner usually ships ImageMagick already; install it only if it is
+      # missing so a change in the runner image cannot break the build.
+      - name: Make sure an image tool is available
+        run: |
+          if ! command -v magick >/dev/null 2>&1 && ! command -v convert >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq imagemagick
+          fi
+          { magick -version || convert -version; } | head -1
+
+      # Rebuilds every derivative rather than only the missing ones. git does
+      # not preserve modification times, so in a fresh checkout there is no
+      # honest way to tell a stale copy from a current one — and a stale
+      # photograph on the live site is worse than thirty seconds of CPU.
+      #
+      # The script picks sips on a Mac and ImageMagick here, so this runner is
+      # where the ImageMagick path gets exercised. It is checked rather than
+      # trusted: an empty output folder, or copies too small to be photographs,
+      # fails the deploy instead of publishing a page full of broken images.
+      - name: Build the web-sized photograph copies
+        run: |
+          ./tools/optimize-images.sh
+          copies=$(find assets/img/opt -name '*.jpg' | wc -l | tr -d ' ')
+          broken=$(find assets/img/opt -name '*.jpg' -size -2k | head -5)
+          [ "$copies" -gt 0 ] || { echo "::error::no web-sized copies were written"; exit 1; }
+          [ -z "$broken" ] || { echo "::error::these copies came out too small to be photographs:"; echo "$broken"; exit 1; }
+          echo "$copies web-sized copies present"
+
       - name: Setup Pages
         uses: actions/configure-pages@v6
       - name: Upload the site

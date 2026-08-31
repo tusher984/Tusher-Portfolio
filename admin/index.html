@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Local dashboard · Md. Al Amin Tusher</title>
+<title>Dashboard · Md. Al Amin Tusher</title>
 <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,9 +13,13 @@
   :root { --paper:#fff; --wash:#f3f7f7; --wash-deep:#e9f0f0; --ink:#0f1b1d; --ink-2:#2c3d40; --muted:#647579; --rule:#dce5e5; --accent:#2f6d74; --accent-deep:#1d4e54; --accent-soft:#e4efef; --display:"Schibsted Grotesk",Arial,sans-serif; --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace; }
   * { box-sizing:border-box; }
   html { scroll-behavior:smooth; }
+  /* The one animated thing on the page is that smooth scroll, and the link to
+     the online-setup section is what triggers it. Honour the system setting. */
+  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
   body { margin:0; background:var(--wash); color:var(--ink); font-family:var(--body); line-height:1.55; }
   #local-start { min-height:100vh; }
   .wrap { width:min(1120px,100%); margin:0 auto; padding:0 clamp(1.25rem,4vw,3rem); }
+  .wrap.narrow { width:min(700px,100%); }
   .topbar { background:var(--paper); border-bottom:1px solid var(--rule); }
   .topbar .wrap { min-height:4.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
   .brand { font:600 1.05rem var(--display); letter-spacing:-.02em; }
@@ -27,15 +31,24 @@
   .eyebrow::before { content:""; display:block; width:2.25rem; height:1px; background:currentColor; }
   h1 { max-width:15ch; margin:0; font:600 clamp(2.55rem,6vw,5.2rem)/.98 var(--display); letter-spacing:-.055em; }
   .hero p { max-width:58ch; margin:1.35rem 0 0; color:var(--ink-2); font-size:clamp(1rem,1.6vw,1.18rem); }
-  .status { display:inline-flex; align-items:center; gap:.55rem; margin-top:1.5rem; padding:.55rem .8rem; border:1px solid #cfe0df; border-radius:999px; color:var(--accent-deep); background:rgba(255,255,255,.65); font-size:.82rem; }
+  .statuses { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.5rem; }
+  .status { display:inline-flex; align-items:center; gap:.55rem; padding:.55rem .8rem; border:1px solid #cfe0df; border-radius:999px; color:var(--accent-deep); background:rgba(255,255,255,.65); font-size:.82rem; }
   .status::before { content:""; width:.5rem; height:.5rem; border-radius:50%; background:#2f8b72; box-shadow:0 0 0 3px rgba(47,139,114,.14); }
+  /* Second state: true, and not a failure — the online login is off until it is
+     set up, so it gets amber rather than the green "ready" dot. */
+  .status--todo { border-color:#e3d6b4; color:#6d5312; }
+  .status--todo::before { background:#b98a2e; box-shadow:0 0 0 3px rgba(185,138,46,.14); }
   .section { padding:clamp(3rem,6vw,5rem) 0; }
   .section--white { background:var(--paper); }
   .section-title { margin:0 0 .55rem; font:600 clamp(1.8rem,3vw,2.65rem)/1.05 var(--display); letter-spacing:-.04em; }
   .section-lead { max-width:58ch; margin:0 0 2.25rem; color:var(--muted); }
   .setup-grid { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr); gap:clamp(1.5rem,4vw,4rem); align-items:start; }
   .steps { display:grid; gap:1.1rem; margin:0; padding:0; list-style:none; }
-  .step { display:grid; grid-template-columns:2.2rem 1fr; gap:1rem; padding-bottom:1.1rem; border-bottom:1px solid var(--rule); }
+  /* minmax(0,…) rather than 1fr: a long URL in the text would otherwise set the
+     column's minimum width and push the whole step off a narrow screen. Paired
+     with the wrapping rule below so nothing has to overflow to stay readable. */
+  .step { display:grid; grid-template-columns:2.2rem minmax(0,1fr); gap:1rem; padding-bottom:1.1rem; border-bottom:1px solid var(--rule); }
+  .step code, .step a { overflow-wrap:anywhere; }
   .step:last-child { padding-bottom:0; border-bottom:0; }
   .number { display:grid; place-items:center; width:2.2rem; height:2.2rem; margin-top:.05rem; border-radius:50%; background:var(--accent-soft); color:var(--accent-deep); font:500 .8rem var(--mono); }
   .step h3 { margin:0 0 .35rem; font:600 1.05rem var(--display); letter-spacing:-.015em; }
@@ -44,6 +57,9 @@
   .step code { font:.9em var(--mono); color:var(--ink-2); background:var(--wash); border:1px solid var(--rule); border-radius:3px; padding:.05rem .3rem; }
   .command { position:relative; margin-top:.8rem; border-radius:5px; background:#102124; overflow:hidden; }
   .command pre { margin:0; padding:1rem 4.5rem 1rem 1rem; overflow:auto; color:#eff8f8; font:.78rem/1.65 var(--mono); white-space:pre-wrap; }
+  /* A block with nothing worth copying has no button, so it need not keep the
+     room for one — and the extra width is what lets a long URL stay on one line. */
+  .command--plain pre { padding-right:1rem; }
   .copy { position:absolute; top:.55rem; right:.55rem; padding:.3rem .5rem; border:1px solid rgba(255,255,255,.2); border-radius:3px; background:transparent; color:#cae0e0; font:500 .67rem var(--mono); cursor:pointer; }
   .copy:hover { color:#fff; border-color:rgba(255,255,255,.55); }
   .panel { padding:1.5rem; border:1px solid var(--rule); border-radius:5px; background:var(--paper); box-shadow:0 8px 26px rgba(15,27,29,.04); }
@@ -70,6 +86,16 @@
   #nc-root [class*="CustomIconWrapper"] { width:auto; height:auto; }
   #nc-root [class*="CustomIconWrapper"] img { width:4.25rem; height:4.25rem; border-radius:14px; box-shadow:0 10px 30px rgba(15,27,29,.12); }
   @media (max-width:760px) { .setup-grid,.publish-grid,.faq { grid-template-columns:1fr; } .hero { padding-top:3.75rem; } .topbar .wrap { min-height:4rem; } }
+  /* On a narrow phone there is no room for a button floating over the command:
+     the first line used to slide underneath it. Below this width the button
+     drops out of the corner and the command gets the whole block, breaking a
+     long path across lines rather than hiding it behind a scrollbar. What the
+     button copies is unchanged — the wrapping is only how it looks. */
+  @media (max-width:520px) {
+    .command { padding-bottom:.5rem; }
+    .command pre { padding-right:1rem; overflow-wrap:anywhere; }
+    .copy { position:static; display:block; margin:.15rem .55rem .25rem auto; }
+  }
 </style>
 </head>
 <body>
@@ -80,15 +106,15 @@
   <section class="hero">
     <div class="wrap">
       <p class="eyebrow">Portfolio dashboard</p>
-      <h1>নিজের কম্পিউটার থেকেই সাইট সম্পাদনা করুন।</h1>
-      <p>এই dashboard সম্পূর্ণ local। কোনো GitHub token, Netlify login বা online password লাগবে না। লেখাগুলো, ছবি ও ভিডিও বদলালে সেগুলো সরাসরি আপনার project folder-এ সেভ হবে।</p>
-      <span class="status">Local editing is ready</span>
+      <h1>নিজের কম্পিউটার থেকে, চাইলে ব্রাউজার থেকেও।</h1>
+      <p>দুটি পথ, একই editor। <strong>Local mode</strong> এখনই তৈরি — দুটি Terminal command, কোনো account বা password ছাড়াই, আর সব পরিবর্তন সরাসরি আপনার project folder-এ সেভ হয়। <strong>Online mode</strong> একবার সেট করে নিলে live <code>/admin/</code> ঠিকানাতেই “Login with GitHub” আসে; তখন আর এই কম্পিউটারটিরই দরকার থাকে না।</p>
+      <div class="statuses"><span class="status">Local editing is ready</span><span class="status status--todo">Online login: one-time setup</span></div>
     </div>
   </section>
   <section class="section section--white">
     <div class="wrap setup-grid">
       <div>
-        <p class="eyebrow">শুরু করার নিয়ম</p>
+        <p class="eyebrow">Local mode · শুরু করার নিয়ম</p>
         <h2 class="section-title">দুটি Terminal, চারটি ছোট ধাপ।</h2>
         <p class="section-lead">প্রথমবার <code>npx</code> Decap CMS download করতে ইন্টারনেট লাগতে পারে। পরেরবার সাধারণত শুধু command দুটো চালালেই হবে।</p>
         <ol class="steps">
@@ -106,15 +132,30 @@
           <li><strong>Work with Local Repo</strong> button চাপা হয়েছে</li>
           <li>সাইটের সব ৯টি section editor-এ দেখা যাচ্ছে</li>
         </ul>
-        <p class="small-note">Live <code>/admin/</code> page শুধুই এই নির্দেশনা দেখায়। Editor সবসময় <code>localhost</code> address থেকে খুলবেন।</p>
+        <p class="small-note">Online mode চালু না করা পর্যন্ত live <code>/admin/</code> page শুধু এই নির্দেশনাই দেখায়, আর editor খুলবে <code>localhost</code> ঠিকানা থেকে। চালু করার নিয়ম <a href="#online">নিচে দেওয়া আছে</a>।</p>
       </aside>
     </div>
   </section>
-  <section class="section">
+  <section class="section" id="online">
+    <div class="wrap narrow">
+      <p class="eyebrow">Online mode · একবারের সেটআপ</p>
+      <h2 class="section-title">ব্রাউজার থেকেই লেখা বদলাতে চাইলে।</h2>
+      <p class="section-lead">GitHub-এ login করে সরাসরি live সাইট সম্পাদনা করতে একটি জিনিস দরকার: নিজের একটি OAuth client। এর গোপন key কখনোই public repository-তে রাখা যায় না, তাই সেটি থাকে একটি ছোট Cloudflare Worker-এ — free plan-এই যথেষ্ট। কাজটি একবারই করতে হবে।</p>
+      <ol class="steps">
+        <li class="step"><span class="number">1</span><div><h3>GitHub-এ একটি OAuth App বানান</h3><p><a href="https://github.com/settings/developers" target="_blank" rel="noopener">github.com/settings/developers</a> খুলে <strong>OAuth Apps</strong> → <strong>New OAuth App</strong> চাপুন। নাম যা খুশি দিতে পারেন; Homepage URL-এ সাইটের ঠিকানা দিন। Callback URL এখন যা-ই থাকুক, ২ নম্বর ধাপের পরে সেটি বদলাতে হবে।</p><div class="command"><pre>https://tusher984.github.io/Tusher-Portfolio/</pre><button class="copy" type="button">Copy</button></div><p>App তৈরি হলে <strong>Client ID</strong>-টি কোথাও লিখে রাখুন, তারপর <strong>Generate a new client secret</strong> চেপে secret-টিও copy করে রাখুন — secret একবারই দেখানো হয়।</p></div></li>
+        <li class="step"><span class="number">2</span><div><h3>একটি Cloudflare Worker deploy করুন</h3><p>Cloudflare-এ free account খুলে <a href="https://github.com/sveltia/sveltia-cms-auth" target="_blank" rel="noopener">sveltia/sveltia-cms-auth</a> repo-র README অনুযায়ী worker-টি deploy করুন। এটি Decap CMS-এর সাথেই কাজ করে, আর এর একমাত্র কাজ GitHub-এর secret-টি নিজের কাছে রাখা।</p><p>তারপর worker-এর settings-এ তিনটি environment variable যোগ করুন। secret-টির পাশে <strong>Encrypt</strong> চাপবেন, নইলে সেটি dashboard-এ খোলা অবস্থায় থেকে যায়।</p><div class="command command--plain"><pre>GITHUB_CLIENT_ID      = &lt;আপনার Client ID&gt;
+GITHUB_CLIENT_SECRET  = &lt;আপনার Client Secret&gt;   ← Encrypt
+ALLOWED_DOMAINS       = tusher984.github.io</pre></div><p>শেষের লাইনটিই নিরাপত্তার তালা: worker কেবল এই ঠিকানার page-কে token দেয়, অন্য কোনো সাইট চাইলেও পায় না।</p><p>Deploy শেষ হলে worker-এর ঠিকানা পাবেন — <code>https://sveltia-cms-auth.<em>YOUR-SUBDOMAIN</em>.workers.dev</code>। এখন GitHub-এ ফিরে গিয়ে OAuth App-এর <strong>Authorization callback URL</strong>-এ ওই ঠিকানার শেষে <code>/callback</code> যোগ করে বসান।</p></div></li>
+        <li class="step"><span class="number">3</span><div><h3><code>admin/config.yml</code>-এ একটি লাইন</h3><p>ফাইলটির শুরুতেই <code>base_url</code> লাইনটি comment করা আছে। সামনের <code>#</code> চিহ্নটি তুলে দিয়ে নিজের worker-এর ঠিকানা বসান — শেষে <code>/callback</code> <strong>দেবেন না</strong>, ওটা শুধু GitHub-এর ঘরের জন্য।</p><div class="command command--plain"><pre>  base_url: https://sveltia-cms-auth.YOUR-SUBDOMAIN.workers.dev</pre></div><p>তারপর নিচের publish command তিনটি চালান। এক মিনিট পরে live <code>/admin/</code> খুললে <strong>Login with GitHub</strong> বোতামটি দেখা যাবে।</p></div></li>
+      </ol>
+      <p class="small-note">লাইনটি যতক্ষণ comment করা থাকবে ততক্ষণ কিছুই বদলাবে না — live <code>/admin/</code> এই নির্দেশনাই দেখাবে আর local editing আগের মতোই চলবে। আর চালু করার পরেও repository-তে write access আছে এমন GitHub account ছাড়া কেউ কিছু সেভ করতে পারবে না।</p>
+    </div>
+  </section>
+  <section class="section section--white">
     <div class="wrap">
       <p class="eyebrow">সম্পাদনা শেষে</p>
       <h2 class="section-title">Local থেকে live site-এ প্রকাশ করুন।</h2>
-      <p class="section-lead">Editor-এর ওপরের ডানদিকের <strong>Published</strong> বোতাম দিয়ে publish করলে পরিবর্তন শুধু আপনার computer-এর ফাইলে সেভ হয়। Public website বদলাতে নিচের তিনটি Git command চালাতে হবে।</p>
+      <p class="section-lead">নিচের তিনটি command শুধু <strong>local mode</strong>-এর জন্য। Editor-এর ওপরের ডানদিকের <strong>Published</strong> বোতাম local mode-এ পরিবর্তনগুলো আপনার computer-এর ফাইলেই সেভ করে, তাই public website বদলাতে সেগুলো Git দিয়ে পাঠাতে হয়। Online mode-এ এই ধাপটি লাগে না — সেভ করলেই সরাসরি GitHub-এ commit হয় এবং সাইট এক-দুই মিনিটের মধ্যে নিজে থেকেই নতুন হয়ে যায়।</p>
       <div class="publish-grid">
         <article class="publish-card"><p class="kicker">01 · Check</p><h3>কী বদলেছে দেখুন</h3><p>Terminal-এ <code>git status</code> লিখে বদলানো ফাইলের তালিকা দেখুন।</p></article>
         <article class="publish-card"><p class="kicker">02 · Commit</p><h3>পরিবর্তন সংরক্ষণ করুন</h3><p>একটি ছোট message দিয়ে পরিবর্তনগুলো Git history-তে রাখুন।</p></article>
@@ -125,7 +166,7 @@ git commit -m "Update portfolio"
 git push</pre><button class="copy" type="button">Copy</button></div>
     </div>
   </section>
-  <section class="section section--white">
+  <section class="section">
     <div class="wrap">
       <p class="eyebrow">সহায়তা</p>
       <h2 class="section-title">কোনো সমস্যা হলে</h2>
@@ -134,21 +175,40 @@ git push</pre><button class="copy" type="button">Copy</button></div>
         <article><h3>Page খুলছে না</h3><p>দ্বিতীয় Terminal-এ <code>python3 -m http.server 8000</code> চলছে কি না দেখুন এবং address ঠিক আছে কি না দেখুন।</p></article>
         <article><h3>ছবি upload হচ্ছে না</h3><p>Editor local mode-এ খোলা আছে কি না নিশ্চিত করুন। Live site-এর address থেকে ছবি upload করা যাবে না।</p></article>
         <article><h3>Live site-এ change নেই</h3><p><code>git push</code> চালানোর পরে প্রায় এক মিনিট অপেক্ষা করে live site refresh করুন।</p></article>
+        <article><h3>“Login with GitHub” চেপে 404 আসছে</h3><p>OAuth App-এর callback URL-এ worker-এর ঠিকানার শেষে <code>/callback</code> আছে কি না দেখুন, আর <code>config.yml</code>-এর <code>base_url</code>-এ যেন <code>/callback</code> <strong>না</strong> থাকে।</p></article>
+        <article><h3>Online mode-এ ছবি upload হবে?</h3><p>হবে। Browser থেকে দেওয়া ছবি পুরো আকারে জমা হয়, আর publish-এর সময় GitHub Actions ছোট copy-গুলো নিজেই বানিয়ে নেয়।</p></article>
       </div>
     </div>
   </section>
-  <footer class="footer"><div class="wrap"><span>Local dashboard · Md. Al Amin Tusher</span><span><a href="guide.html">বিস্তারিত guide</a> &nbsp;·&nbsp; <a href="https://github.com/tusher984/Tusher-Portfolio/blob/main/README-bn.md" target="_blank" rel="noopener">বাংলা নির্দেশিকা</a></span></div></footer>
+  <footer class="footer"><div class="wrap"><span>Dashboard · Md. Al Amin Tusher</span><span><a href="guide.html">বিস্তারিত guide</a> &nbsp;·&nbsp; <a href="https://github.com/tusher984/Tusher-Portfolio/blob/main/README-bn.md" target="_blank" rel="noopener">বাংলা নির্দেশিকা</a></span></div></footer>
 </main>
 <div id="nc-root"></div>
 <script>
   (function () {
     var local = /^(localhost|127\.0\.0\.1|\[::1\])$/i.test(window.location.hostname);
-    if (local) {
+
+    function bootEditor() {
       document.getElementById('local-start').hidden = true;
       var cms = document.createElement('script');
       cms.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
       cms.onload = function () { var previews = document.createElement('script'); previews.src = 'previews.js?v=1'; document.body.appendChild(previews); };
       document.body.appendChild(cms);
+    }
+
+    if (local) {
+      /* decap-server is answering on 8081, or the editor will say so itself. */
+      bootEditor();
+    } else {
+      /* On the live site the editor is only worth showing once an OAuth client
+         exists. Without one Decap falls back to Netlify's service and the login
+         button dead-ends on a 404 — worse than no editor at all. config.yml is
+         the single source of truth for that URL, so ask it instead of naming the
+         worker a second time here. A commented-out base_url must not count,
+         which is why the test starts at the beginning of the line. */
+      fetch('config.yml', { cache: 'no-cache' })
+        .then(function (res) { return res.ok ? res.text() : ''; })
+        .then(function (yml) { if (/^\s*base_url:\s*\S/m.test(yml)) bootEditor(); })
+        .catch(function () { /* Leave the setup guide on screen. */ });
     }
     document.querySelectorAll('.copy').forEach(function (button) {
       button.addEventListener('click', function () {
