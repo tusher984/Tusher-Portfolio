@@ -419,9 +419,13 @@ main > .section > .wrap > .eyebrow::before {
   text-decoration: none; color: inherit;
   transition: background var(--dur) var(--ease);
 }
-/* A signal bar wipes in from the left. Nothing moves, so nothing reflows. */
+/* A signal bar wipes in from the left. Nothing moves, so nothing reflows.
+   The row carries no inline padding — its text starts at the very left edge —
+   so the bar hangs in the gutter beside it. At left: 0 it would be painted over
+   the first letters of NETRA NEWS and the date. 0.75rem keeps it clear of the
+   viewport edge too: the gutter is never narrower than 1.25rem. */
 .index-row::before {
-  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  content: ""; position: absolute; left: -0.75rem; top: 0; bottom: 0; width: 2px;
   background: var(--signal); transform: scaleY(0); transform-origin: top;
   transition: transform 0.3s var(--ease);
 }

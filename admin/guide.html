@@ -62,21 +62,29 @@
   </div>
 
   <h2 id="signing-in">Opening the editor</h2>
-  <p>The dashboard runs in either of two modes. <strong>Local mode</strong> works
-    on this computer today: no sign-in, no GitHub token, no online service — the
-    editor writes straight into the files in your folder. <strong>Online
-    mode</strong> is a one-time setup that puts a real
-    <em>Login&nbsp;with&nbsp;GitHub</em> button on the live
-    <code>/admin/</code> page, so the site can be edited from any browser. The
-    steps for turning it on are on the
-    <a href="index.html#online">dashboard page</a>; everything below describes
-    local mode.</p>
+  <p>The editor lives at a <code>localhost</code> address served by this
+    computer, so it starts with one command here and then opens in a browser on
+    this machine — not on a phone or another device. Once it is open you sign in
+    with <em>Login&nbsp;with&nbsp;GitHub</em>, and everything you save is
+    committed straight to the repository; the live site catches up about a minute
+    later. <strong>Online mode</strong> is a one-time setup that puts the same
+    login on the live <code>/admin/</code> page, after which this computer is not
+    needed at all — the steps are on the
+    <a href="index.html#online">dashboard page</a>.</p>
+  <p>There is a second route if you want to work without internet. Run
+    <code>npx decap-server</code> alongside the file server and the editor offers
+    <strong>Work with Local Repo</strong> instead of the GitHub login. Saves then
+    land in the files in your folder and nothing reaches GitHub until you push
+    them yourself, which is what <a href="#publishing">Saving and publishing</a>
+    below describes.</p>
 
-  <h3>Open Terminal in the portfolio folder</h3>
+  <h3>Getting Terminal into the folder</h3>
   <p>
-    Every command below has to run <em>inside</em> the portfolio folder —
-    <code>Documents/GitHub/Tusher-Portfolio</code>. Terminal opens in your home
-    folder instead, so you have to walk it over first. Either way works:
+    Commands have to run <em>inside</em> the portfolio folder —
+    <code>Documents/GitHub/Tusher-Portfolio</code> — and Terminal opens in your
+    home folder instead. The line in the next step carries the folder with it, so
+    you can skip this; it is here for the other commands on this page, like
+    <code>git push</code>. Either way works:
   </p>
   <ul>
     <li><strong>Type the folder in.</strong> Open Terminal — press
@@ -96,40 +104,64 @@
     see your own documents instead, the <code>cd</code> line did not take.
   </p>
 
-  <h3>Start the two windows</h3>
+  <h3>Start the server</h3>
+  <p>
+    Open Terminal — press <strong>⌘ Space</strong>, type <em>Terminal</em>, press
+    Return — then paste the line below and press Return. It walks into the folder
+    and starts the server in one go, so it does not matter where Terminal opened:
+  </p>
+  <ul>
+    <li><code>cd ~/Documents/GitHub/Tusher-Portfolio &amp;&amp; python3 -m http.server 8124</code></li>
+  </ul>
+  <p>
+    Leave that window open. Closing it, or pressing <strong>Control C</strong> in
+    it, stops the editor.
+  </p>
+
+  <h3>Open the editor</h3>
   <ol>
-    <li>In that window, run <code>npx decap-server</code> and leave it running.
-      The first run downloads the tool, so it needs internet.</li>
-    <li>Open a second Terminal window with <strong>⌘ N</strong>, get into the
-      same folder again, then run <code>python3 -m http.server 8000</code>.
-      Leave this one running too.</li>
-    <li>Open <code>http://localhost:8000/admin/</code> and choose
-      <strong>Work with Local Repo</strong>. The port number is not fixed — any
-      address that begins with <code>localhost</code> opens the editor, as long
-      as the number matches the server you started.</li>
+    <li>Open <code>http://localhost:8124/admin/#/collections/website</code> in a
+      browser on this computer.</li>
+    <li>Press <strong>Login with GitHub</strong> and allow the permission it asks
+      for. The nine sections of the site appear as a list.</li>
+    <li>Open a section, change what you want, and save. The change is committed to
+      GitHub for you, and the live site shows it about a minute later.</li>
   </ol>
   <p>
-    Both windows have to stay open while you edit. Closing one, or pressing
-    <strong>Control C</strong> in it, stops the editor.
+    The port number is not fixed — any address that begins with
+    <code>localhost</code> opens the editor, as long as the number matches the
+    server you started.
   </p>
   <div class="rule-box">
-    <p><strong>Your edits save into the project folder immediately.</strong> They do not become public until you commit and push them yourself.</p>
-    <p><strong>To publish:</strong> use <code>git add -A &amp;&amp; git commit -m "Update portfolio" &amp;&amp; git push</code>. GitHub Pages usually updates within a minute.</p>
+    <p><strong>Saving here publishes.</strong> There is nothing else to run: the
+      change goes to GitHub as you save it, and GitHub Pages rebuilds the page
+      within a minute or so.</p>
+    <p><strong>On the offline route it does not.</strong> If you started
+      <code>npx decap-server</code> and chose <strong>Work with Local
+      Repo</strong>, saves land in the files in your folder and stay there until
+      you push them — see below.</p>
   </div>
 
-  <h2>Saving and publishing</h2>
-  <ol>
-    <li>Open a section, change what you want.</li>
-    <li>Press the <strong>Published</strong> button at the top right of the
-      editor and choose the publish option in its menu. Despite the name, in
-      local mode this only writes the change into the file in your folder — the
-      live site does not change yet. The line beside the button tells you
-      whether anything is still unsaved.</li>
-    <li>Back in Terminal, run the three Git commands above. In online mode this
-      step does not exist: saving commits to GitHub itself.</li>
-    <li>Wait about a minute, then refresh the site. GitHub rebuilds the page
-      after every push, which is what takes the minute.</li>
-  </ol>
+  <h2 id="publishing">Saving and publishing</h2>
+  <p>
+    Signed in with GitHub, saving is the whole of it: press the
+    <strong>Published</strong> button at the top right of the editor and choose the
+    publish option in its menu. The change is committed for you, and the line
+    beside the button tells you whether anything is still unsaved. Wait about a
+    minute and refresh the site — GitHub rebuilds the page after every commit,
+    which is what takes the minute.
+  </p>
+  <p>
+    On the <strong>Work with Local Repo</strong> route the same button only writes
+    the change into the file in your folder; the live site does not move until you
+    send it yourself. In Terminal, in the portfolio folder, run:
+  </p>
+  <ul>
+    <li><code>git add -A &amp;&amp; git commit -m "Update portfolio" &amp;&amp; git push</code></li>
+  </ul>
+  <p>
+    Then wait the same minute and refresh.
+  </p>
 
   <h2>What each section changes</h2>
   <table class="map">
@@ -213,9 +245,13 @@
       right — an entry with no picture uploaded is skipped.</li>
     <li><strong>A whole block vanished.</strong> One of the optional labels was
       emptied. Write the label back in and it returns.</li>
-    <li><strong>The editor will not open, or the pictures cannot be uploaded.</strong>
-      The <code>npx decap-server</code> window has stopped. Start it again and
-      refresh the editor.</li>
+    <li><strong>The page will not open at all.</strong> The
+      <code>python3 -m http.server 8124</code> window has stopped. Start it again
+      and reload the address.</li>
+    <li><strong>It offers &ldquo;Work with Local Repo&rdquo; instead of the GitHub
+      login.</strong> An <code>npx decap-server</code> is running somewhere. Stop
+      it with <strong>Control C</strong> and refresh, or carry on with that route
+      and push the changes yourself.</li>
   </ul>
 
   <p class="guide-foot">
