@@ -1,58 +1,4 @@
 {
-  "brand": {
-    "name": "Al Amin Tusher",
-    "nav_work": "Work",
-    "nav_photography": "Photography",
-    "nav_video": "Video",
-    "nav_about": "About",
-    "nav_experience": "Experience",
-    "nav_skills": "Skills",
-    "nav_credentials": "Credentials",
-    "nav_contact": "Contact"
-  },
-  "seo": {
-    "title": "Md. Al Amin Tusher — Investigative & Multimedia Journalist, Dhaka",
-    "description": "Md. Al Amin Tusher is an investigative and multimedia journalist in Dhaka, Bangladesh, reporting on infrastructure, fire safety, rivers and public-interest failures. Staff correspondent at Netra News."
-  },
-  "hero": {
-    "eyebrow": "Dhaka, Bangladesh · Staff Correspondent, Netra News",
-    "name": "Md. Al Amin Tusher",
-    "tagline": "Investigative & multimedia journalist",
-    "lead": "I report on the systems that are supposed to keep people safe — building codes, embankments, river channels, welfare rolls — and what happens when they fail. Six years of field reporting, documents and data across Bangladesh.",
-    "cta_primary": "See selected work",
-    "cta_primary_url": "#work",
-    "cta_secondary": "Get in touch",
-    "cta_secondary_url": ""
-  },
-  "work": {
-    "eyebrow": "Selected work",
-    "heading": "Investigations, data reporting and interactives",
-    "lead": "Reported for Netra News, including document-based investigations and interactive data projects. Reporting and analysis are my own unless noted."
-  },
-  "photography": {
-    "eyebrow": "Photography",
-    "heading": "Documentary photography",
-    "link_label": "See all photographs",
-    "link_url": "photos.html"
-  },
-  "video": {
-    "eyebrow": "Video",
-    "heading": "Broadcast & documentary",
-    "link_label": "See all video work",
-    "link_url": "videos.html"
-  },
-  "experience": {
-    "eyebrow": "Experience",
-    "heading": "Newsrooms & assignments"
-  },
-  "skills": {
-    "eyebrow": "Skills & Tools",
-    "heading": "How the work gets made"
-  },
-  "credentials": {
-    "eyebrow": "Credentials",
-    "heading": "Education, fellowships & extra-curriculars"
-  },
   "contact": {
     "eyebrow": "Contact",
     "heading": "Working on a story I should know about?",
@@ -61,8 +7,62 @@
     "elsewhere_label": "Social Media",
     "references_label": "References"
   },
+  "skills": {
+    "eyebrow": "Skills & Tools",
+    "heading": "How the work gets made"
+  },
+  "brand": {
+    "nav_credentials": "Credentials",
+    "nav_photography": "Photography",
+    "nav_contact": "Contact",
+    "nav_experience": "Experience",
+    "name": "Al Amin Tusher",
+    "nav_work": "Work",
+    "nav_about": "About",
+    "nav_skills": "Skills",
+    "nav_video": "Video"
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "heading": "Newsrooms & assignments"
+  },
+  "work": {
+    "eyebrow": "Selected work",
+    "heading": "Investigations, data reporting and interactives",
+    "lead": "Reported for Netra News, including document-based investigations and interactive data projects. Reporting and analysis are my own unless noted."
+  },
+  "hero": {
+    "eyebrow": "Dhaka, Bangladesh · Staff Correspondent, Netra News",
+    "name": "Al Amin Tusher",
+    "tagline": "Investigative & multimedia journalist",
+    "lead": "I report on the systems that are supposed to keep people safe — building codes, embankments, river channels, welfare rolls — and what happens when they fail. Six years of field reporting, documents and data across Bangladesh.",
+    "cta_primary": "See selected work",
+    "cta_primary_url": "#work",
+    "cta_secondary": "Get in touch",
+    "cta_secondary_url": ""
+  },
+  "video": {
+    "eyebrow": "Video",
+    "heading": "Broadcast & documentary",
+    "link_label": "See all video work",
+    "link_url": "videos.html"
+  },
   "footer": {
     "left": "Md. Al Amin Tusher",
     "right": "Dhaka, Bangladesh"
+  },
+  "credentials": {
+    "eyebrow": "Credentials",
+    "heading": "Education, fellowships & extra-curriculars"
+  },
+  "seo": {
+    "title": "Md. Al Amin Tusher — Investigative & Multimedia Journalist, Dhaka",
+    "description": "Md. Al Amin Tusher is an investigative and multimedia journalist in Dhaka, Bangladesh, reporting on infrastructure, fire safety, rivers and public-interest failures. Staff correspondent at Netra News."
+  },
+  "photography": {
+    "eyebrow": "Photography",
+    "heading": "Documentary photography",
+    "link_label": "See all photographs",
+    "link_url": "photos.html"
   }
 }
